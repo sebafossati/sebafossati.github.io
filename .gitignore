@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# RStudio leftovers (not part of the site)
+.Rhistory
+.Rproj.user/
+
+# Local tooling
+.claude/

@@ -1,0 +1,648 @@
+/* ==========================================================================
+   style.css — all styling for the site.
+
+   To change the look, edit the variables in the two blocks below:
+   the first block is light mode, the "dark" blocks are dark mode.
+   ========================================================================== */
+
+/* ---- Light theme (default) ---------------------------------------------- */
+:root {
+  --bg: #fcfcfb;
+  --bg-soft: #f3f4f1;
+  --text: #1b1e22;
+  --muted: #5d646c;
+  --faint: #9096a0;
+  --border: #e6e7e3;
+  --nav: #64748b;
+  --accent: #0e7a67;
+  --accent-soft: rgba(14, 122, 103, 0.08);
+  --shadow: 0 1px 2px rgba(20, 24, 28, 0.04), 0 10px 30px rgba(20, 24, 28, 0.06);
+  --radius: 14px;
+  color-scheme: light;
+}
+
+/* ---- Dark theme (follows system setting) -------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101216;
+    --bg-soft: #181b20;
+    --text: #e7e9ec;
+    --muted: #a2aab4;
+    --faint: #6f7883;
+    --border: #262a31;
+    --nav: #94a3b8;
+    --accent: #46cfae;
+    --accent-soft: rgba(70, 207, 174, 0.1);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+
+/* ---- Dark theme (forced by the toggle button) ---------------------------- */
+:root[data-theme="dark"] {
+  --bg: #101216;
+  --bg-soft: #181b20;
+  --text: #e7e9ec;
+  --muted: #a2aab4;
+  --faint: #6f7883;
+  --border: #262a31;
+  --nav: #94a3b8;
+  --accent: #46cfae;
+  --accent-soft: rgba(70, 207, 174, 0.1);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+
+.skip:focus {
+  left: 0;
+}
+
+/* ==========================================================================
+   Header / navigation
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .site-header {
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 3.75rem;
+}
+
+.brand {
+  font-weight: 650;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--nav);
+  text-decoration: none;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.brand:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand .brand-short {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--nav);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.25rem 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: right 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--text);
+}
+
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  right: 0;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--nav);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(15deg);
+}
+
+.theme-toggle svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Show sun in dark mode, moon in light mode */
+.icon-moon { display: block; }
+.icon-sun  { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-moon { display: none; }
+  :root:not([data-theme="light"]) .icon-sun  { display: block; }
+}
+
+:root[data-theme="dark"] .icon-moon { display: none; }
+:root[data-theme="dark"] .icon-sun  { display: block; }
+
+/* ==========================================================================
+   Hero (landing page intro)
+   ========================================================================== */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2.75rem;
+  padding: 4.25rem 0 3rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 0 0 1.35rem;
+  font-size: clamp(1.8rem, 4.2vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.hero .lede {
+  margin: 0 0 1.5rem;
+  font-size: 1.06rem;
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.portrait {
+  width: 165px;
+  height: 165px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+/* Social / contact icon buttons */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease,
+    background 0.15s ease, transform 0.15s ease;
+}
+
+.socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.socials svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section {
+  padding: 2.25rem 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+.section h2 {
+  margin: 0 0 1.4rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.section > p {
+  color: var(--text);
+  max-width: 40rem;
+}
+
+/* Page header used on interior pages (Research, Teaching) */
+.page-head {
+  padding: 3.5rem 0 1rem;
+}
+
+.page-head h1 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page-head .lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 36rem;
+}
+
+/* ==========================================================================
+   Publications
+   ========================================================================== */
+
+.pubs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pub {
+  display: grid;
+  grid-template-columns: 3.6rem 1fr;
+  gap: 1.1rem;
+  padding: 1.15rem 0;
+}
+
+.pub + .pub {
+  border-top: 1px solid var(--border);
+}
+
+.pub-year {
+  padding-top: 0.12rem;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--faint);
+}
+
+.pub-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.pub-title:hover {
+  color: var(--accent);
+}
+
+.pub-meta {
+  margin: 0.3rem 0 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.pub-meta em {
+  font-style: italic;
+}
+
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Expandable abstract (used on the research page) */
+.abstract {
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+}
+
+.abstract summary {
+  cursor: pointer;
+  width: fit-content;
+  color: var(--faint);
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.abstract summary:hover {
+  color: var(--accent);
+}
+
+.abstract p {
+  margin: 0.6rem 0 0;
+  padding: 0.85rem 1rem;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border-radius: 10px;
+}
+
+/* "View all" style link with sliding arrow */
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.more-link .arrow {
+  transition: transform 0.18s ease;
+}
+
+.more-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Teaching cards
+   ========================================================================== */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.card .course-code {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.card .course-term {
+  margin: 0 0 0.6rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.card .course-links {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Simple list of past courses */
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plain-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  font-size: 0.95rem;
+}
+
+.plain-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.plain-list .when {
+  color: var(--faint);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  margin-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2.25rem;
+  font-size: 0.85rem;
+  color: var(--faint);
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Entry animation (skipped for users who prefer reduced motion)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fadeUp 0.55s ease both;
+  }
+
+  .fade-in:nth-child(2) { animation-delay: 0.07s; }
+  .fade-in:nth-child(3) { animation-delay: 0.14s; }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ==========================================================================
+   Small screens
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding-top: 2.75rem;
+  }
+
+  .portrait {
+    width: 110px;
+    height: 110px;
+    border-radius: 18px;
+    order: -1;
+  }
+
+  .brand .brand-full { display: none; }
+  .brand .brand-short { display: inline; }
+
+  .nav {
+    gap: 1.1rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .pub {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .plain-list li {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+}

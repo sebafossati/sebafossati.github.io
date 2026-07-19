@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sebastian Fossati — Economics, University of Alberta</title>
+  <meta name="description" content="Sebastian Fossati is an associate professor of economics at the University of Alberta, working in time series econometrics and empirical macroeconomics.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Applies the saved light/dark preference before the page paints -->
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t) document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ====================================================================
+       HEADER — identical on every page. If you edit the nav here,
+       copy the change to research.html and teaching.html too.
+       ==================================================================== -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <a class="brand" href="index.html">
+        <span class="brand-full">Sebastian Fossati</span>
+        <span class="brand-short">SF</span>
+      </a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="assets/fossati_cv.pdf" target="_blank" rel="noopener">CV</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+
+    <!-- ==================================================================
+         HERO — name, title, short intro, photo, and profile links.
+         Photo lives at assets/img/portrait.jpg — replace that file to
+         change it (keep it roughly square).
+         ================================================================== -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow fade-in">Department of Economics · University of Alberta</p>
+        <h1 class="fade-in">Sebastian Fossati</h1>
+
+        <!-- PROFILE / CONTACT LINKS (icon buttons).
+             Each link has aria-label + title for screen readers and hover
+             tooltips. To add a service, copy a <li>, swap the href/label, and
+             paste a new 24×24 <path> (brand glyphs are from simpleicons.org). -->
+        <ul class="socials fade-in">
+          <li><a href="mailto:sfossati@ualberta.ca" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a></li>
+          <li><a href="https://scholar.google.com/citations?user=sV46lYsAAAAJ" target="_blank" rel="me noopener" aria-label="Google Scholar" title="Google Scholar">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+          </a></li>
+          <li><a href="https://orcid.org/0009-0007-8081-2197" target="_blank" rel="me noopener" aria-label="ORCID" title="ORCID (0009-0007-8081-2197)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+          </a></li>
+          <li><a href="https://www.linkedin.com/in/sebafossati/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          </a></li>
+          <li><a href="https://x.com/sebafossati" target="_blank" rel="me noopener" aria-label="X" title="X (@sebafossati)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>
+          </a></li>
+          <li><a href="https://bsky.app/profile/sebafossati.bsky.social" target="_blank" rel="me noopener" aria-label="Bluesky" title="Bluesky (@sebafossati.bsky.social)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+      <img class="portrait" src="assets/img/portrait.jpg" alt="Sebastian Fossati" width="165" height="165">
+    </section>
+
+    <!-- ==================================================================
+         ABOUT — short bio. Edit freely.
+         ================================================================== -->
+    <section class="section">
+      <h2>About</h2>
+      <p>
+        I am an Associate Professor in the
+        <a href="https://www.economics.ualberta.ca/" target="_blank" rel="noopener">Department of Economics</a>
+        at the University of Alberta. My research is in time series econometrics
+        — unit root testing, forecasting, and business-cycle dating — and I apply
+        these and other tools to questions in empirical macroeconomics, labour
+        economics, and quantitative criminology. You can find my full record on
+        the <a href="research.html">research</a> page or in my
+        <a href="assets/fossati_cv.pdf" target="_blank" rel="noopener">CV</a>.
+      </p>
+    </section>
+
+    <!-- ==================================================================
+         SELECTED PUBLICATIONS — a short highlight reel; the full list
+         lives on research.html.
+
+         TO ADD A PAPER: copy an entire <li class="pub"> … </li> block,
+         paste it where you want it, and edit the text and links.
+         ================================================================== -->
+    <section class="section">
+      <h2>Selected publications</h2>
+      <ul class="pubs">
+
+        <li class="pub">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <a class="pub-title" href="https://doi.org/10.1186/s40163-026-00277-x" target="_blank" rel="noopener">Opportunity in Transit: Bus Stop Crowding and Crime</a>
+            <p class="pub-meta">with C. Díaz, F. Fernandez, and N. Trajtenberg · <em>Crime Science</em>, forthcoming</p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.1186/s40163-026-00277-x" target="_blank" rel="noopener">Published version</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5897163" target="_blank" rel="noopener">Working paper</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="pub-year">2024</div>
+          <div class="pub-body">
+            <a class="pub-title" href="https://doi.org/10.1177/00197939231213064" target="_blank" rel="noopener">First to $15: Alberta's Minimum Wage Policy on Employment by Wages, Ages, and Places</a>
+            <p class="pub-meta">with J. Marchand · <em>ILR Review</em>, 2024</p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.1177/00197939231213064" target="_blank" rel="noopener">Published version</a>
+              <a href="https://ideas.repec.org/p/ris/albaec/2020_015.html" target="_blank" rel="noopener">Working paper</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="pub-year">2016</div>
+          <div class="pub-body">
+            <a class="pub-title" href="https://doi.org/10.1515/snde-2015-0037" target="_blank" rel="noopener">Dating US Business Cycles with Macro Factors</a>
+            <p class="pub-meta"><em>Studies in Nonlinear Dynamics &amp; Econometrics</em>, 2016</p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.1515/snde-2015-0037" target="_blank" rel="noopener">Published version</a>
+              <a href="assets/papers/factor_probit.pdf" target="_blank" rel="noopener">Working paper</a>
+              <a href="assets/papers/factor_probit_matlab.zip">Data &amp; code</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="pub-year">2013</div>
+          <div class="pub-body">
+            <a class="pub-title" href="https://doi.org/10.1111/jtsa.12020" target="_blank" rel="noopener">Unit Root Testing with Stationary Covariates and a Structural Break in the Trend Function</a>
+            <p class="pub-meta"><em>Journal of Time Series Analysis</em>, 2013</p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.1111/jtsa.12020" target="_blank" rel="noopener">Published version</a>
+              <a href="assets/papers/break.pdf" target="_blank" rel="noopener">Working paper</a>
+              <a href="assets/papers/break_matlab.zip">Code</a>
+            </p>
+          </div>
+        </li>
+
+      </ul>
+      <a class="more-link" href="research.html">View all research <span class="arrow" aria-hidden="true">→</span></a>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       FOOTER — identical on every page.
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Sebastian Fossati</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/theme.js"></script>
+</body>
+</html>
