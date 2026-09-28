@@ -95,17 +95,17 @@ Then open <http://localhost:4173>.
 
 One-time setup:
 
-1. Create a GitHub repo named `USERNAME.github.io` (public).
+1. Create a GitHub repo named `sebafossati.github.io` (public).
 2. In this folder:
    ```sh
    git init
    git add .
    git commit -m "Initial site"
    git branch -M main
-   git remote add origin git@github.com:USERNAME/USERNAME.github.io.git
+   git remote add origin https://github.com/sebafossati/sebafossati.github.io.git
    git push -u origin main
    ```
-3. The site appears at `https://USERNAME.github.io` within a minute or two.
+3. The site appears at `https://sebafossati.github.io` within a minute or two.
    (If not, check Settings → Pages → deploy from `main` branch.)
 
 After that, publishing an update is just:
