@@ -312,10 +312,10 @@ a:hover {
 .head-chart-dual {
   -webkit-mask-image:
     linear-gradient(to right, transparent 20%, #000 34%, #000 88%, transparent),
-    linear-gradient(to top, #000 50%, transparent);
+    linear-gradient(to top, #000 80%, transparent);
   mask-image:
     linear-gradient(to right, transparent 20%, #000 34%, #000 88%, transparent),
-    linear-gradient(to top, #000 50%, transparent);
+    linear-gradient(to top, #000 80%, transparent);
 }
 
 .band-chart .line {
@@ -560,6 +560,10 @@ a:hover {
   padding-bottom: 3.25rem;
 }
 
+.page-head-title-only .wrap {
+  padding-top: 3.25rem;
+}
+
 .page-head h1 {
   margin: 0 0 0.75rem;
   font-family: var(--font-serif);
@@ -576,15 +580,14 @@ a:hover {
   max-width: 38rem;
 }
 
-/* Header with a title but no subtitle (Research, Teaching): extra bottom
-   padding keeps it as tall as a header with a one-line subtitle.
-   One subtitle line = 1.12rem × 1.65 line height. */
+/* Header with a title but no subtitle (Research, Teaching): a compact band
+   that the header chart fills top to bottom */
 .page-head-title-only h1 {
   margin-bottom: 0;
 }
 
 .page-head-title-only .wrap {
-  padding-bottom: calc(3.25rem + 0.75rem + 1.12rem * 1.65);
+  padding-bottom: 3.75rem;
 }
 
 /* ==========================================================================
@@ -1214,7 +1217,8 @@ a.pub-title:hover {
 
   /* On phones, leave just enough room under the title for the chart */
   .page-head-title-only .wrap {
-    padding-bottom: 5.6875rem;
+    padding-top: 2rem;
+    padding-bottom: 6rem;
   }
 
   .head-chart-dual .loss {
@@ -1223,7 +1227,7 @@ a.pub-title:hover {
 
   .head-chart {
     top: auto;
-    height: 120px;
+    height: 150px;
     -webkit-mask-image:
       linear-gradient(to right, transparent, #000 25%, #000 90%, transparent),
       linear-gradient(to top, #000 50%, transparent);
