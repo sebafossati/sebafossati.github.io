@@ -696,9 +696,11 @@ a.pub-title:hover {
   color: var(--muted);
 }
 
-/* Link chips under each paper. The icon is picked from the link address:
-   doi.org → arrow, .zip or github.com → code, anything else → document. */
-.pub-links {
+/* Link chips under each paper (and under each course, e.g. a syllabus).
+   The icon is picked from the link address: doi.org → arrow, .zip or
+   github.com → code, anything else → document. */
+.pub-links,
+.course-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -706,7 +708,8 @@ a.pub-title:hover {
   padding: 0;
 }
 
-.pub-links a {
+.pub-links a,
+.course-links a {
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5M9 13h6M9 17h4'/%3E%3C/svg%3E");
   display: inline-flex;
   align-items: center;
@@ -723,7 +726,8 @@ a.pub-title:hover {
   transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
-.pub-links a::before {
+.pub-links a::before,
+.course-links a::before {
   content: "";
   flex: none;
   width: 0.85rem;
@@ -742,7 +746,8 @@ a.pub-title:hover {
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m8 7-5 5 5 5M16 7l5 5-5 5'/%3E%3C/svg%3E");
 }
 
-.pub-links a:hover {
+.pub-links a:hover,
+.course-links a:hover {
   color: var(--accent);
   border-color: var(--accent);
   background: var(--accent-soft);
@@ -896,9 +901,7 @@ a.pub-title:hover {
 }
 
 .card .course-links {
-  margin: 0.8rem 0 0;
-  font-size: 0.88rem;
-  font-weight: 500;
+  margin: 0.9rem 0 0;
 }
 
 /* Current courses: one full-width card per row, with a small figure on
