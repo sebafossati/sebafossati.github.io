@@ -27,7 +27,7 @@ don't need. On the research page you can optionally include a
 `<details class="abstract">` block for an expandable abstract.
 
 The small icon on each link button is chosen automatically from the link
-address: `doi.org` links get an arrow, `.zip` files get a code icon, and
+address: `doi.org` links get an arrow, `.zip` files and GitHub links get a code icon, and
 everything else gets a document icon.
 
 For working papers, the status pill is
