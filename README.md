@@ -57,11 +57,18 @@ Google Fonts in the `<head>` of each page. To swap them, change the Google
 Fonts `<link>` in all three HTML files and the `--font-serif` /
 `--font-sans` variables at the top of `style.css`.
 
-**Header charts** — each page has a faint, made-up decorative chart in its
-tinted header: an output series with shaded recessions (landing page), a
-forecast fan chart (Research), and a scatter plot with a fitted regression
-line (Teaching). They pick up the accent color automatically. To remove one,
-delete the `<svg class="band-chart …"> … </svg>` block in that page.
+**Header charts** — the charts are faint, made-up decorations that pick up
+the accent color automatically. The landing page has an output series with
+shaded recessions along the bottom of its tinted header; delete the
+`<svg class="band-chart …"> … </svg>` block to remove it. Research and
+Teaching share a row of five same-size cards running behind the title, one
+chart per card: a forecast fan chart, an event study, loss functions, a
+scatter plot with a regression line, and the output series. The cards are
+listed right to left in the HTML: the first sits at the far right and always
+shows, and more appear as the window gets wider, each fainter than the one to
+its right (and fainter still behind the title). Phones show the title only.
+To reorder or drop a chart, move or delete its `<svg class="head-card …">`
+block (in both pages).
 
 **Nav / footer** — these are duplicated across the three HTML pages, so make
 the same edit in all three files.

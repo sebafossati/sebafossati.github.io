@@ -264,10 +264,11 @@ a:hover {
 :root[data-theme="dark"] .icon-sun  { display: block; }
 
 /* ==========================================================================
-   Decorative charts in the tinted header bands
-   Each page has its own: the landing page shows an output series with shaded
-   recessions, Research a forecast fan chart, Teaching a scatter plot with a
-   fitted regression line. Colors come from --accent and --chart-band.
+   Decorative charts
+   The landing page has an output series with shaded recessions along the
+   bottom of the hero. Research and Teaching have a row of cards next to the
+   title, one small chart per card (see .head-cards below). Colors come from
+   --accent and --chart-band.
    ========================================================================== */
 
 .band-chart {
@@ -293,32 +294,49 @@ a:hover {
   mask-composite: intersect;
 }
 
-/* Research / Teaching: fills the page header, to the right of the title */
-.head-chart {
-  top: 0;
-  height: 100%;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 25%, #000 52%, #000 88%, transparent),
-    linear-gradient(to top, #000 50%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 25%, #000 52%, #000 88%, transparent),
-    linear-gradient(to top, #000 50%, transparent);
-  mask-composite: intersect;
+/* Research / Teaching: same-size 5:3 cards with no outline, running behind
+   the title. The first card in the HTML sits at the far right. The row
+   wraps, but only its first line is visible, so a card that doesn't fit the
+   window is hidden whole rather than cut off. Each card is fainter than the
+   one to its right. */
+.head-cards {
+  --card-w: 13.75rem;
+  --card-h: 8.25rem;
+  display: flex;
+  flex-flow: row-reverse wrap;
+  align-content: flex-start;
+  gap: 2rem 1.5rem;
+  min-width: 0;
+  height: var(--card-h);
+  /* reach past the content column to the right edge of the window */
+  margin-right: min(0px, (var(--wrap) - 100vw) / 2);
+  overflow: hidden;
+  pointer-events: none;
+  /* extra fade behind the title (about 4 × its font size wide), easing
+     back to full strength just past it */
+  -webkit-mask-image: linear-gradient(to right,
+    rgb(0 0 0 / 0.4) calc(var(--title-size) * 4),
+    #000 calc(var(--title-size) * 4 + 4rem));
+  mask-image: linear-gradient(to right,
+    rgb(0 0 0 / 0.4) calc(var(--title-size) * 4),
+    #000 calc(var(--title-size) * 4 + 4rem));
 }
 
-/* Research and Teaching show two charts each, so the fade starts just
-   right of the title */
-.head-chart-dual {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 20%, #000 34%, #000 88%, transparent),
-    linear-gradient(to top, #000 80%, transparent);
-  mask-image:
-    linear-gradient(to right, transparent 20%, #000 34%, #000 88%, transparent),
-    linear-gradient(to top, #000 80%, transparent);
+.head-card {
+  flex: none;
+  width: var(--card-w);
+  height: var(--card-h);
+  overflow: visible;
 }
 
-.band-chart .line {
+.head-card:nth-child(2) { opacity: 0.72; }
+.head-card:nth-child(3) { opacity: 0.5; }
+.head-card:nth-child(4) { opacity: 0.34; }
+.head-card:nth-child(5) { opacity: 0.22; }
+
+/* ---- Chart marks ---------------------------------------------------------- */
+
+:is(.band-chart, .head-card) .line {
   fill: none;
   stroke: var(--accent);
   stroke-width: 1.6;
@@ -327,74 +345,99 @@ a:hover {
   opacity: 0.55;
 }
 
-.band-chart .line-dashed {
+:is(.band-chart, .head-card) .line-dashed {
   stroke-dasharray: 5 6;
   opacity: 0.45;
 }
 
-.band-chart .shade rect {
+/* Output series: shaded recessions and a soft fill under the line */
+:is(.band-chart, .head-card) .shade rect {
   fill: var(--chart-band);
 }
 
-.band-chart .area {
+:is(.band-chart, .head-card) .area {
   fill: url(#chart-fade);
 }
 
-.band-chart .stop-top {
+:is(.band-chart, .head-card) .stop-top {
   stop-color: var(--accent);
   stop-opacity: 0.12;
 }
 
-.band-chart .stop-bottom {
+:is(.band-chart, .head-card) .stop-bottom {
   stop-color: var(--accent);
   stop-opacity: 0;
 }
 
 /* Fan chart: three nested prediction bands (90/70/50%) that stack up.
    The bands and the dashed forecast line fade out toward the horizon. */
-.band-chart .fan path {
+.head-card .fan path {
   fill: url(#fan-fade);
   opacity: 0.07;
 }
 
-.band-chart .fan-stop-on {
+.head-card .fan-stop-on {
   stop-color: var(--accent);
   stop-opacity: 1;
 }
 
-.band-chart .fan-stop-off {
+.head-card .fan-stop-off {
   stop-color: var(--accent);
   stop-opacity: 0;
 }
 
-.head-chart-dual .line-dashed {
+.head-card .forecast {
   stroke: url(#fan-fade);
 }
 
-.band-chart .origin,
-.band-chart .ref {
+.head-card .origin,
+.head-card .ref {
   stroke: var(--faint);
   stroke-width: 1;
   stroke-dasharray: 3 5;
   opacity: 0.6;
 }
 
-.band-chart .marker {
+.head-card .marker {
   fill: var(--band);
   stroke: var(--accent);
-  stroke-width: 2;
+  stroke-width: 1.6;
+}
+
+/* Event study: point estimates and their interval bars */
+.head-card .est {
+  fill: var(--accent);
+  opacity: 0.55;
+}
+
+.head-card .ci-bar {
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  opacity: 0.35;
 }
 
 /* Loss functions: squared (solid), absolute (dashed), asymmetric (dotted) */
-.band-chart .loss-l1 {
+.head-card .loss-l1 {
   stroke-dasharray: 5 6;
   opacity: 0.45;
 }
 
-.band-chart .loss-asym {
+.head-card .loss-asym {
   stroke-dasharray: 0.5 5;
   stroke-width: 2.4;
   opacity: 0.5;
+}
+
+/* Scatter plot: data points and the regression confidence band */
+.head-card .dots circle {
+  fill: var(--accent);
+  opacity: 0.3;
+}
+
+.head-card .ci {
+  fill: var(--accent);
+  opacity: 0.09;
 }
 
 /* ==========================================================================
@@ -544,50 +587,40 @@ a:hover {
 }
 
 /* ==========================================================================
-   Page header used on interior pages (Research, Teaching)
+   Page header used on interior pages (Research, Teaching): the title on
+   the left, on top of the row of chart cards (.head-cards)
    ========================================================================== */
 
 .page-head {
+  --title-size: clamp(2.4rem, 5vw, 3.4rem);
   position: relative;
+  height: 11.25rem; /* 180px, bottom border included */
   overflow: hidden;
   background: var(--band);
   border-bottom: 1px solid var(--border);
 }
 
+/* The title and the card row share one grid cell, so they overlap */
 .page-head .wrap {
-  position: relative;
-  padding-top: 4.5rem;
-  padding-bottom: 3.25rem;
+  display: grid;
+  align-items: center;
+  height: 100%;
 }
 
-.page-head-title-only .wrap {
-  padding-top: 3.25rem;
+.page-head .wrap > * {
+  grid-area: 1 / 1;
 }
 
 .page-head h1 {
-  margin: 0 0 0.75rem;
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-size: var(--title-size);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.05;
-}
-
-.page-head .lede {
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.12rem;
-  max-width: 38rem;
-}
-
-/* Header with a title but no subtitle (Research, Teaching): a compact band
-   that the header chart fills top to bottom */
-.page-head-title-only h1 {
-  margin-bottom: 0;
-}
-
-.page-head-title-only .wrap {
-  padding-bottom: 3.75rem;
 }
 
 /* ==========================================================================
@@ -1106,11 +1139,13 @@ a.pub-title:hover {
   }
 
   /* Header charts: the main line draws itself in once on load, then the
-     shading appears. On Research the forecast fan opens once the history
-     line reaches the "now" marker. */
-  .band-chart .draw {
+     shading appears */
+  :is(.band-chart, .head-card) .draw {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
+  }
+
+  .band-chart .draw {
     animation: draw 2.4s 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
@@ -1119,16 +1154,33 @@ a.pub-title:hover {
     animation: fadeIn 1.2s 0.9s ease both;
   }
 
-  .band-chart .fan,
-  .band-chart .origin,
-  .band-chart .marker,
-  .band-chart .line-dashed {
-    animation: fadeIn 1.2s 1.9s ease both;
+  /* Research / Teaching cards fade in one after another, right to left.
+     Inside each card the same sequence plays from the card's own start;
+     the forecast fan opens once the history line reaches "now". */
+  .head-card {
+    --delay: 0.1s;
+    animation: fadeIn 0.9s var(--delay) ease both;
   }
 
-  /* The loss functions appear after the fan chart */
-  .band-chart .loss {
-    animation: fadeIn 1.2s 2.4s ease both;
+  .head-card:nth-child(2) { --delay: 0.25s; }
+  .head-card:nth-child(3) { --delay: 0.4s; }
+  .head-card:nth-child(4) { --delay: 0.55s; }
+  .head-card:nth-child(5) { --delay: 0.7s; }
+
+  .head-card .draw {
+    animation: draw 1.4s calc(var(--delay) + 0.1s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .head-card .area,
+  .head-card .shade {
+    animation: fadeIn 1s calc(var(--delay) + 0.6s) ease both;
+  }
+
+  .card-fan .fan,
+  .card-fan .origin,
+  .card-fan .marker,
+  .card-fan .forecast {
+    animation: fadeIn 1s calc(var(--delay) + 1.2s) ease both;
   }
 
   @keyframes draw {
@@ -1209,31 +1261,13 @@ a.pub-title:hover {
     height: 150px;
   }
 
-  /* On phones the header chart moves to a strip below the title */
-  .page-head .wrap {
-    padding-top: 3rem;
-    padding-bottom: 6rem;
+  /* On phones the header is just the title, no charts */
+  .page-head {
+    height: 7.5rem; /* 120px, bottom border included */
   }
 
-  /* On phones, leave just enough room under the title for the chart */
-  .page-head-title-only .wrap {
-    padding-top: 2rem;
-    padding-bottom: 6rem;
-  }
-
-  .head-chart-dual .loss {
+  .head-cards {
     display: none;
-  }
-
-  .head-chart {
-    top: auto;
-    height: 150px;
-    -webkit-mask-image:
-      linear-gradient(to right, transparent, #000 25%, #000 90%, transparent),
-      linear-gradient(to top, #000 50%, transparent);
-    mask-image:
-      linear-gradient(to right, transparent, #000 25%, #000 90%, transparent),
-      linear-gradient(to top, #000 50%, transparent);
   }
 
   .section {
