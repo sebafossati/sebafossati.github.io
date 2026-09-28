@@ -1,58 +1,70 @@
 /* ==========================================================================
    style.css — all styling for the site.
 
-   To change the look, edit the variables in the two blocks below:
-   the first block is light mode, the "dark" blocks are dark mode.
+   To change the look, edit the variables in the blocks below:
+   the first block is light mode, the two "dark" blocks are dark mode
+   (keep them identical). Fonts are set in the "Type" block.
    ========================================================================== */
+
+/* ---- Type (shared by both themes) ---------------------------------------- */
+:root {
+  --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --radius: 16px;
+  --wrap: 70rem;
+  --label-col: 12rem;
+}
 
 /* ---- Light theme (default) ---------------------------------------------- */
 :root {
-  --bg: #fcfcfb;
-  --bg-soft: #f3f4f1;
-  --band: #eef0ec;
-  --text: #1b1e22;
-  --muted: #5d646c;
-  --faint: #9096a0;
-  --border: #e6e7e3;
-  --nav: #64748b;
-  --accent: #0e7a67;
-  --accent-soft: rgba(14, 122, 103, 0.08);
-  --shadow: 0 1px 2px rgba(20, 24, 28, 0.04), 0 10px 30px rgba(20, 24, 28, 0.06);
-  --radius: 14px;
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --band: #f3f1ec;
+  --text: #15171a;
+  --muted: #555c66;
+  --faint: #8a9099;
+  --border: #e6e2da;
+  --border-strong: #d3cec4;
+  --accent: #17624a;
+  --accent-soft: rgba(23, 98, 74, 0.08);
+  --chart-band: rgba(21, 23, 26, 0.045);
+  --shadow: 0 1px 2px rgba(20, 24, 28, 0.04), 0 12px 32px -8px rgba(20, 24, 28, 0.1);
   color-scheme: light;
 }
 
 /* ---- Dark theme (follows system setting) -------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101216;
-    --bg-soft: #181b20;
-    --band: #181b20;
-    --text: #e7e9ec;
-    --muted: #a2aab4;
-    --faint: #6f7883;
-    --border: #262a31;
-    --nav: #94a3b8;
-    --accent: #46cfae;
-    --accent-soft: rgba(70, 207, 174, 0.1);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
+    --bg: #0f1113;
+    --surface: #161a1d;
+    --band: #131618;
+    --text: #ebe8e2;
+    --muted: #a4aab2;
+    --faint: #6f7680;
+    --border: #262b30;
+    --border-strong: #353b42;
+    --accent: #62c9a4;
+    --accent-soft: rgba(98, 201, 164, 0.1);
+    --chart-band: rgba(255, 255, 255, 0.035);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
     color-scheme: dark;
   }
 }
 
 /* ---- Dark theme (forced by the toggle button) ---------------------------- */
 :root[data-theme="dark"] {
-  --bg: #101216;
-  --bg-soft: #181b20;
-  --band: #181b20;
-  --text: #e7e9ec;
-  --muted: #a2aab4;
-  --faint: #6f7883;
-  --border: #262a31;
-  --nav: #94a3b8;
-  --accent: #46cfae;
-  --accent-soft: rgba(70, 207, 174, 0.1);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
+  --bg: #0f1113;
+  --surface: #161a1d;
+  --band: #131618;
+  --text: #ebe8e2;
+  --muted: #a4aab2;
+  --faint: #6f7680;
+  --border: #262b30;
+  --border-strong: #353b42;
+  --accent: #62c9a4;
+  --accent-soft: rgba(98, 201, 164, 0.1);
+  --chart-band: rgba(255, 255, 255, 0.035);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
 }
 
@@ -72,7 +84,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
@@ -91,7 +103,7 @@ a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-color: transparent;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
   transition: text-decoration-color 0.15s ease, color 0.15s ease;
 }
 
@@ -102,13 +114,13 @@ a:hover {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .wrap {
-  max-width: 46rem;
+  max-width: var(--wrap);
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
 }
 
 .skip {
@@ -138,73 +150,77 @@ a:hover {
 
 @supports (backdrop-filter: blur(12px)) {
   .site-header {
-    background: color-mix(in srgb, var(--bg) 80%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(1.4) blur(12px);
+    -webkit-backdrop-filter: saturate(1.4) blur(12px);
   }
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  min-height: 3.75rem;
+  gap: 1rem;
+  min-height: 4rem;
 }
 
+/* Brand: monogram tile + full name (name hides on small screens) */
 .brand {
-  font-weight: 650;
-  font-size: 1rem;
-  letter-spacing: -0.01em;
-  color: var(--nav);
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
   margin-right: auto;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
   white-space: nowrap;
 }
 
-.brand:hover {
-  color: var(--text);
-  text-decoration: none;
+.brand .brand-short {
+  order: -1;
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease;
 }
 
-.brand .brand-short {
-  display: none;
+.brand:hover .brand-short {
+  transform: rotate(-6deg);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  gap: 0.25rem;
 }
 
 .nav-links a {
-  position: relative;
-  color: var(--nav);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  color: var(--muted);
   font-size: 0.92rem;
   font-weight: 500;
   text-decoration: none;
-  padding: 0.25rem 0;
+  transition: color 0.15s ease, background 0.15s ease;
 }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: 0;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  transition: right 0.2s ease;
-}
-
-.nav-links a:hover,
-.nav-links a[aria-current="page"] {
+.nav-links a:hover {
   color: var(--text);
+  background: var(--accent-soft);
 }
 
-.nav-links a:hover::after,
-.nav-links a[aria-current="page"]::after {
-  right: 0;
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 /* Theme toggle button */
@@ -212,15 +228,16 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: 0.25rem;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 50%;
-  background: transparent;
-  color: var(--nav);
+  background: var(--surface);
+  color: var(--muted);
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.2s ease;
 }
 
 .theme-toggle:hover {
@@ -247,61 +264,224 @@ a:hover {
 :root[data-theme="dark"] .icon-sun  { display: block; }
 
 /* ==========================================================================
-   Hero (landing page intro)
+   Decorative charts in the tinted header bands
+   Each page has its own: the landing page shows an output series with shaded
+   recessions, Research a forecast fan chart, Teaching a scatter plot with a
+   fitted regression line. Colors come from --accent and --chart-band.
    ========================================================================== */
 
-/* Full-width tinted band behind the hero + About sections on the landing
-   page. The tint is --band (defined in the theme blocks at the top). */
+.band-chart {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Landing page: along the bottom of the hero, fading at both edges and
+   toward the top */
+.hero-chart {
+  height: 190px;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 15%, #000 85%, transparent),
+    linear-gradient(to top, #000 35%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 15%, #000 85%, transparent),
+    linear-gradient(to top, #000 35%, transparent);
+  mask-composite: intersect;
+}
+
+/* Research / Teaching: fills the page header, kept clear of the title */
+.head-chart {
+  top: 0;
+  height: 100%;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 30%, #000 62%, #000 88%, transparent),
+    linear-gradient(to top, #000 50%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 30%, #000 62%, #000 88%, transparent),
+    linear-gradient(to top, #000 50%, transparent);
+  mask-composite: intersect;
+}
+
+.band-chart .line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.band-chart .line-dashed {
+  stroke-dasharray: 5 6;
+  opacity: 0.45;
+}
+
+.band-chart .shade rect {
+  fill: var(--chart-band);
+}
+
+.band-chart .area {
+  fill: url(#chart-fade);
+}
+
+.band-chart .stop-top {
+  stop-color: var(--accent);
+  stop-opacity: 0.12;
+}
+
+.band-chart .stop-bottom {
+  stop-color: var(--accent);
+  stop-opacity: 0;
+}
+
+/* Fan chart: three nested prediction bands (90/70/50%) that stack up */
+.band-chart .fan path {
+  fill: var(--accent);
+  opacity: 0.07;
+}
+
+.band-chart .origin {
+  stroke: var(--faint);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+  opacity: 0.6;
+}
+
+.band-chart .marker {
+  fill: var(--band);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+/* Scatter plot: data points and the regression confidence band */
+.band-chart .dots circle {
+  fill: var(--accent);
+  opacity: 0.26;
+}
+
+.band-chart .ci {
+  fill: var(--accent);
+  opacity: 0.09;
+}
+
+/* ==========================================================================
+   Hero (landing page)
+   ========================================================================== */
+
+/* Full-width tinted band behind the hero. The tint is --band. */
 .intro-band {
+  position: relative;
+  overflow: hidden;
   background: var(--band);
   border-bottom: 1px solid var(--border);
 }
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 2.75rem;
-  padding: 4.25rem 0 3rem;
+  gap: 4rem;
+  padding: 5.5rem 0 7.5rem;
 }
 
 .eyebrow {
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .hero h1 {
-  margin: 0 0 1.35rem;
-  font-size: clamp(1.8rem, 4.2vw, 2.3rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.12;
+  margin: 0 0 0.9rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 6vw, 4.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
 }
 
 .hero .lede {
-  margin: 0 0 1.5rem;
-  font-size: 1.06rem;
+  margin: 0;
+  font-size: 1.25rem;
   color: var(--muted);
-  max-width: 34rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin-top: 2.25rem;
+}
+
+/* Photo with an offset outline behind it */
+.portrait-wrap {
+  position: relative;
+  margin: 0 14px 14px 0;
+}
+
+.portrait-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 28px;
+  opacity: 0.4;
 }
 
 .portrait {
-  width: 165px;
-  height: 165px;
-  border-radius: 24px;
+  position: relative;
+  display: block;
+  width: 220px;
+  height: 220px;
+  border-radius: 28px;
   object-fit: cover;
   box-shadow: var(--shadow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.6rem;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 550;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-1px);
 }
 
 /* Social / contact icon buttons */
 .socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -311,10 +491,11 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border: 1px solid var(--border);
   border-radius: 50%;
+  background: var(--surface);
   color: var(--muted);
   text-decoration: none;
   transition: color 0.15s ease, border-color 0.15s ease,
@@ -329,54 +510,95 @@ a:hover {
 }
 
 .socials svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.1rem;
+  height: 1.1rem;
   display: block;
 }
 
 /* ==========================================================================
-   Sections
+   Page header used on interior pages (Research, Teaching)
+   ========================================================================== */
+
+.page-head {
+  position: relative;
+  overflow: hidden;
+  background: var(--band);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-head .wrap {
+  position: relative;
+  padding-top: 4.5rem;
+  padding-bottom: 3.25rem;
+}
+
+.page-head h1 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.page-head .lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.12rem;
+  max-width: 38rem;
+}
+
+/* ==========================================================================
+   Sections — label in a left column, content on the right
    ========================================================================== */
 
 .section {
-  padding: 2.25rem 0;
+  display: grid;
+  grid-template-columns: var(--label-col) minmax(0, 1fr);
+  column-gap: 3rem;
+  padding: 4rem 0;
 }
 
 .section + .section {
   border-top: 1px solid var(--border);
 }
 
-.section h2 {
-  margin: 0 0 1.4rem;
-  font-size: 0.8rem;
-  font-weight: 650;
-  letter-spacing: 0.1em;
+.section > * {
+  grid-column: 2;
+}
+
+.section > h2 {
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: var(--muted);
+}
+
+.section > h2::before {
+  content: "";
+  flex: none;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .section > p {
-  color: var(--text);
-  max-width: 40rem;
-}
-
-/* Page header used on interior pages (Research, Teaching) */
-.page-head {
-  padding: 3.5rem 0 1rem;
-}
-
-.page-head h1 {
-  margin: 0 0 0.6rem;
-  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.page-head .lede {
   margin: 0;
-  color: var(--muted);
-  font-size: 1.02rem;
-  max-width: 36rem;
+  max-width: 42rem;
+  font-size: 1.1rem;
+  line-height: 1.75;
 }
 
 /* ==========================================================================
@@ -391,9 +613,13 @@ a:hover {
 
 .pub {
   display: grid;
-  grid-template-columns: 3.6rem 1fr;
-  gap: 1.1rem;
-  padding: 1.15rem 0;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.pub:first-child {
+  padding-top: 0;
 }
 
 .pub + .pub {
@@ -401,48 +627,168 @@ a:hover {
 }
 
 .pub-year {
-  padding-top: 0.12rem;
-  font-size: 0.88rem;
+  padding-top: 0.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
   color: var(--faint);
 }
 
 .pub-title {
-  font-weight: 600;
-  font-size: 1.02rem;
-  line-height: 1.4;
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
   color: var(--text);
   text-decoration: none;
 }
 
-.pub-title:hover {
+a.pub-title:hover {
   color: var(--accent);
 }
 
 .pub-meta {
-  margin: 0.3rem 0 0;
-  font-size: 0.92rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.93rem;
   color: var(--muted);
 }
 
 .pub-meta em {
-  font-style: italic;
+  color: var(--text);
 }
 
+.pub-meta a {
+  color: inherit;
+}
+
+.pub-meta a:hover {
+  color: var(--accent);
+}
+
+/* Status pill for working papers: <span class="status">Submitted</span>.
+   Add "status-wip" for work in progress (neutral color). */
+.status {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  vertical-align: 0.05em;
+}
+
+.status-wip {
+  background: color-mix(in srgb, var(--faint) 14%, transparent);
+  color: var(--muted);
+}
+
+/* Link chips under each paper. The icon is picked from the link address:
+   doi.org → arrow, .zip → code, anything else → document. */
 .pub-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.1rem;
-  margin: 0.55rem 0 0;
+  gap: 0.5rem;
+  margin: 0.9rem 0 0;
   padding: 0;
-  font-size: 0.85rem;
+}
+
+.pub-links a {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5M9 13h6M9 17h4'/%3E%3C/svg%3E");
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.8rem;
   font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.pub-links a::before {
+  content: "";
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.pub-links a[href*="doi.org"] {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
+}
+
+.pub-links a[href$=".zip"] {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m8 7-5 5 5 5M16 7l5 5-5 5'/%3E%3C/svg%3E");
+}
+
+.pub-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Selected publications on the landing page: a grid of cards */
+.pubs-featured {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 1rem;
+}
+
+.pubs-featured .pub,
+.pubs-featured .pub + .pub {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 1.5rem 1.6rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pubs-featured .pub:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.pubs-featured .pub-year {
+  margin-bottom: 0.6rem;
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.pubs-featured .pub-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.pubs-featured .pub-title {
+  font-size: 1.28rem;
+}
+
+.pubs-featured .pub-links {
+  margin-top: auto;
+  padding-top: 1.1rem;
 }
 
 /* Expandable abstract (used on the research page) */
 .abstract {
-  margin-top: 0.6rem;
-  font-size: 0.92rem;
+  margin-top: 0.7rem;
+  font-size: 0.93rem;
 }
 
 .abstract summary {
@@ -459,19 +805,20 @@ a:hover {
 
 .abstract p {
   margin: 0.6rem 0 0;
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1.1rem;
   color: var(--muted);
-  background: var(--bg-soft);
-  border-radius: 10px;
+  background: var(--band);
+  border-radius: 12px;
 }
 
 /* "View all" style link with sliding arrow */
 .more-link {
+  justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  margin-top: 1.25rem;
-  font-size: 0.92rem;
+  gap: 0.4rem;
+  margin-top: 1.75rem;
+  font-size: 0.95rem;
   font-weight: 550;
   text-decoration: none;
 }
@@ -485,12 +832,12 @@ a:hover {
 }
 
 /* ==========================================================================
-   Teaching cards
+   Teaching
    ========================================================================== */
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -498,45 +845,47 @@ a:hover {
 }
 
 .card {
-  padding: 1.25rem 1.35rem;
+  padding: 1.5rem 1.6rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--bg);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease,
-    transform 0.15s ease;
+  background: var(--surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .card:hover {
-  border-color: var(--accent);
+  border-color: var(--border-strong);
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
 
 .card .course-code {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.6rem;
   font-size: 0.78rem;
-  font-weight: 650;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .card h3 {
-  margin: 0 0 0.3rem;
-  font-size: 1.02rem;
-  font-weight: 600;
+  margin: 0 0 0.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.25;
   letter-spacing: -0.01em;
 }
 
 .card .course-term {
-  margin: 0 0 0.6rem;
-  font-size: 0.88rem;
+  margin: 0;
+  font-size: 0.9rem;
   color: var(--muted);
 }
 
 .card .course-links {
-  margin: 0;
-  font-size: 0.85rem;
+  margin: 0.8rem 0 0;
+  font-size: 0.88rem;
   font-weight: 500;
 }
 
@@ -550,9 +899,14 @@ a:hover {
 .plain-list li {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 1rem;
-  padding: 0.7rem 0;
-  font-size: 0.95rem;
+  padding: 0.85rem 0;
+  font-size: 0.98rem;
+}
+
+.plain-list li:first-child {
+  padding-top: 0;
 }
 
 .plain-list li + li {
@@ -561,7 +915,7 @@ a:hover {
 
 .plain-list .when {
   color: var(--faint);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   white-space: nowrap;
 }
 
@@ -570,7 +924,7 @@ a:hover {
    ========================================================================== */
 
 .site-footer {
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-top: 1px solid var(--border);
 }
 
@@ -579,9 +933,9 @@ a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem 2rem;
-  padding-top: 1.5rem;
-  padding-bottom: 2.25rem;
-  font-size: 0.85rem;
+  padding-top: 1.75rem;
+  padding-bottom: 2.5rem;
+  font-size: 0.86rem;
   color: var(--faint);
 }
 
@@ -599,7 +953,7 @@ a:hover {
 
 @media (prefers-reduced-motion: no-preference) {
   .fade-in {
-    animation: fadeUp 0.55s ease both;
+    animation: fadeUp 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
 
   .fade-in:nth-child(2) { animation-delay: 0.07s; }
@@ -609,47 +963,161 @@ a:hover {
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
+
+  /* Header charts: the main line draws itself in once on load, then the
+     shading appears. On Research the forecast fan opens once the history
+     line reaches the "now" marker. */
+  .band-chart .draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 2.4s 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .band-chart .area,
+  .band-chart .shade,
+  .band-chart .ci {
+    animation: fadeIn 1.2s 0.9s ease both;
+  }
+
+  .band-chart .dots {
+    animation: fadeIn 1s 0.1s ease both;
+  }
+
+  .band-chart .fan,
+  .band-chart .origin,
+  .band-chart .marker,
+  .band-chart .line-dashed {
+    animation: fadeIn 1.2s 1.9s ease both;
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+  }
 }
 
 /* ==========================================================================
-   Small screens
+   Medium screens — narrower label column
    ========================================================================== */
 
-@media (max-width: 640px) {
+@media (max-width: 960px) {
+  :root {
+    --label-col: 9rem;
+  }
+
+  .section {
+    column-gap: 2rem;
+  }
+
   .hero {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-    padding-top: 2.75rem;
+    gap: 2.5rem;
   }
 
   .portrait {
-    width: 110px;
-    height: 110px;
-    border-radius: 18px;
-    order: -1;
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* ==========================================================================
+   Small screens — everything stacks
+   ========================================================================== */
+
+@media (max-width: 720px) {
+  .wrap {
+    padding: 0 1rem;
   }
 
   .brand .brand-full { display: none; }
-  .brand .brand-short { display: inline; }
 
-  .nav {
-    gap: 1.1rem;
+  .nav-links a {
+    padding: 0.4rem 0.6rem;
   }
 
-  .nav-links {
-    gap: 1rem;
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 0 6rem;
+  }
+
+  .hero .lede {
+    font-size: 1.1rem;
+  }
+
+  .portrait-wrap {
+    order: -1;
+    justify-self: start;
+    margin: 0 10px 10px 0;
+  }
+
+  .portrait-wrap::before {
+    inset: 10px -10px -10px 10px;
+    border-radius: 22px;
+  }
+
+  .portrait {
+    width: 120px;
+    height: 120px;
+    border-radius: 22px;
+  }
+
+  .hero-chart {
+    height: 150px;
+  }
+
+  /* On phones the header chart moves to a strip below the title */
+  .page-head .wrap {
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+  }
+
+  .head-chart {
+    top: auto;
+    height: 110px;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 25%, #000 90%, transparent),
+      linear-gradient(to top, #000 50%, transparent);
+    mask-image:
+      linear-gradient(to right, transparent, #000 25%, #000 90%, transparent),
+      linear-gradient(to top, #000 50%, transparent);
+  }
+
+  .section {
+    display: block;
+    padding: 2.75rem 0;
+  }
+
+  .section > h2 {
+    position: static;
+    margin: 0 0 1.5rem;
+  }
+
+  .section > p {
+    font-size: 1.04rem;
   }
 
   .pub {
     grid-template-columns: 1fr;
-    gap: 0.15rem;
+    gap: 0.3rem;
+  }
+
+  .pubs-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .pubs-featured .pub,
+  .pubs-featured .pub + .pub {
+    padding: 1.25rem 1.25rem 1.15rem;
   }
 
   .plain-list li {

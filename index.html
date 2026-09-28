@@ -19,7 +19,7 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Applies the saved light/dark preference before the page paints -->
   <script>
@@ -57,10 +57,28 @@
   <main id="main">
 
     <!-- ==================================================================
-         INTRO BAND — full-width tinted background behind the hero and
-         About sections. The tint color is --band in style.css.
+         INTRO BAND — full-width tinted background behind the hero. The
+         tint color is --band in style.css. The faint line along the bottom
+         is a decorative "output series with shaded recessions" graphic;
+         delete the <svg class="band-chart hero-chart"> block to remove it.
          ================================================================== -->
     <div class="intro-band">
+    <svg class="band-chart hero-chart" viewBox="0 0 1600 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="chart-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" class="stop-top"/>
+          <stop offset="1" class="stop-bottom"/>
+        </linearGradient>
+      </defs>
+      <g class="shade">
+        <rect x="221" y="0" width="81" height="220"/>
+        <rect x="584" y="0" width="50" height="220"/>
+        <rect x="976" y="0" width="111" height="220"/>
+        <rect x="1389" y="0" width="30" height="220"/>
+      </g>
+      <path class="area" d="M0 199.5 L10 196.6 L20 194.1 L30 191.8 L40 190.9 L50 189.4 L60 185.1 L70 180.5 L81 174.7 L91 169.7 L101 164.8 L111 160.3 L121 159.5 L131 156.1 L141 151.9 L151 147.3 L161 146.4 L171 147.7 L181 148.6 L191 148.6 L201 146.6 L211 144.2 L221 146.1 L231 152.6 L242 159.8 L252 167.3 L262 176.8 L272 183.1 L282 189.8 L292 195.6 L302 198.4 L312 199.9 L322 200.0 L332 198.8 L342 195.6 L352 192.0 L362 189.4 L372 188.3 L382 187.3 L392 183.0 L403 180.8 L413 177.7 L423 173.8 L433 173.0 L443 171.0 L453 166.2 L463 165.8 L473 164.7 L483 162.9 L493 162.0 L503 159.2 L513 156.4 L523 156.1 L533 153.0 L543 148.7 L553 143.2 L564 136.1 L574 130.1 L584 130.9 L594 137.9 L604 144.8 L614 154.0 L624 164.1 L634 170.5 L644 174.4 L654 176.1 L664 173.3 L674 174.0 L684 175.7 L694 174.8 L704 170.2 L714 165.3 L725 164.6 L735 167.4 L745 166.9 L755 166.6 L765 167.0 L775 164.1 L785 159.0 L795 154.5 L805 150.2 L815 145.7 L825 138.8 L835 132.5 L845 126.7 L855 121.1 L865 119.5 L875 114.8 L886 109.1 L896 103.6 L906 102.8 L916 102.1 L926 98.7 L936 98.8 L946 97.8 L956 93.9 L966 92.8 L976 93.5 L986 97.0 L996 103.5 L1006 110.7 L1016 117.7 L1026 125.5 L1036 132.0 L1047 141.0 L1057 150.9 L1067 158.7 L1077 167.1 L1087 172.0 L1097 171.5 L1107 167.2 L1117 164.2 L1127 163.6 L1137 162.2 L1147 160.3 L1157 158.3 L1167 153.3 L1177 151.0 L1187 146.0 L1197 144.2 L1208 143.2 L1218 140.1 L1228 134.9 L1238 129.1 L1248 123.9 L1258 119.3 L1268 115.1 L1278 110.4 L1288 106.7 L1298 102.7 L1308 98.1 L1318 94.1 L1328 89.2 L1338 84.0 L1348 76.1 L1358 69.7 L1369 65.6 L1379 62.6 L1389 65.2 L1399 69.2 L1409 76.2 L1419 77.9 L1429 74.1 L1439 75.3 L1449 76.6 L1459 75.5 L1469 72.7 L1479 69.3 L1489 66.9 L1499 62.9 L1509 58.8 L1519 56.1 L1530 48.8 L1540 42.7 L1550 38.9 L1560 35.6 L1570 32.8 L1580 30.0 L1590 32.0 L1600 32.6 L1600 220 L0 220 Z"/>
+      <path class="line draw" pathLength="1" d="M0 199.5 L10 196.6 L20 194.1 L30 191.8 L40 190.9 L50 189.4 L60 185.1 L70 180.5 L81 174.7 L91 169.7 L101 164.8 L111 160.3 L121 159.5 L131 156.1 L141 151.9 L151 147.3 L161 146.4 L171 147.7 L181 148.6 L191 148.6 L201 146.6 L211 144.2 L221 146.1 L231 152.6 L242 159.8 L252 167.3 L262 176.8 L272 183.1 L282 189.8 L292 195.6 L302 198.4 L312 199.9 L322 200.0 L332 198.8 L342 195.6 L352 192.0 L362 189.4 L372 188.3 L382 187.3 L392 183.0 L403 180.8 L413 177.7 L423 173.8 L433 173.0 L443 171.0 L453 166.2 L463 165.8 L473 164.7 L483 162.9 L493 162.0 L503 159.2 L513 156.4 L523 156.1 L533 153.0 L543 148.7 L553 143.2 L564 136.1 L574 130.1 L584 130.9 L594 137.9 L604 144.8 L614 154.0 L624 164.1 L634 170.5 L644 174.4 L654 176.1 L664 173.3 L674 174.0 L684 175.7 L694 174.8 L704 170.2 L714 165.3 L725 164.6 L735 167.4 L745 166.9 L755 166.6 L765 167.0 L775 164.1 L785 159.0 L795 154.5 L805 150.2 L815 145.7 L825 138.8 L835 132.5 L845 126.7 L855 121.1 L865 119.5 L875 114.8 L886 109.1 L896 103.6 L906 102.8 L916 102.1 L926 98.7 L936 98.8 L946 97.8 L956 93.9 L966 92.8 L976 93.5 L986 97.0 L996 103.5 L1006 110.7 L1016 117.7 L1026 125.5 L1036 132.0 L1047 141.0 L1057 150.9 L1067 158.7 L1077 167.1 L1087 172.0 L1097 171.5 L1107 167.2 L1117 164.2 L1127 163.6 L1137 162.2 L1147 160.3 L1157 158.3 L1167 153.3 L1177 151.0 L1187 146.0 L1197 144.2 L1208 143.2 L1218 140.1 L1228 134.9 L1238 129.1 L1248 123.9 L1258 119.3 L1268 115.1 L1278 110.4 L1288 106.7 L1298 102.7 L1308 98.1 L1318 94.1 L1328 89.2 L1338 84.0 L1348 76.1 L1358 69.7 L1369 65.6 L1379 62.6 L1389 65.2 L1399 69.2 L1409 76.2 L1419 77.9 L1429 74.1 L1439 75.3 L1449 76.6 L1459 75.5 L1469 72.7 L1479 69.3 L1489 66.9 L1499 62.9 L1509 58.8 L1519 56.1 L1530 48.8 L1540 42.7 L1550 38.9 L1560 35.6 L1570 32.8 L1580 30.0 L1590 32.0 L1600 32.6"/>
+    </svg>
     <div class="wrap">
 
     <!-- ==================================================================
@@ -81,7 +99,12 @@
              paste a new 24×24 <path> (brand glyphs are from simpleicons.org;
              the IDEAS/RePEc glyph is a generic book icon from Material Icons,
              since RePEc has no brand glyph there). -->
-        <ul class="socials fade-in">
+        <div class="hero-actions fade-in">
+        <a class="btn btn-primary" href="assets/fossati_cv.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+          Curriculum vitae
+        </a>
+        <ul class="socials">
           <li><a href="mailto:sfossati@ualberta.ca" aria-label="Email" title="Email">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </a></li>
@@ -104,9 +127,17 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026z"/></svg>
           </a></li>
         </ul>
+        </div>
       </div>
-      <img class="portrait" src="assets/img/portrait.jpg" alt="Sebastian Fossati" width="165" height="165">
+      <div class="portrait-wrap fade-in">
+        <img class="portrait" src="assets/img/portrait.jpg" alt="Sebastian Fossati" width="220" height="220">
+      </div>
     </section>
+
+    </div>
+    </div><!-- /intro-band -->
+
+    <div class="wrap">
 
     <!-- ==================================================================
          ABOUT — short bio. Edit freely.
@@ -126,11 +157,6 @@
       </p>
     </section>
 
-    </div>
-    </div><!-- /intro-band -->
-
-    <div class="wrap">
-
     <!-- ==================================================================
          SELECTED PUBLICATIONS — a short highlight reel; the full list
          lives on research.html.
@@ -140,7 +166,7 @@
          ================================================================== -->
     <section class="section">
       <h2>Selected publications</h2>
-      <ul class="pubs">
+      <ul class="pubs pubs-featured">
 
         <li class="pub">
           <div class="pub-year">2026</div>
@@ -205,6 +231,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2026 Sebastian Fossati</p>
+      <p><a href="https://www.economics.ualberta.ca/" target="_blank" rel="noopener">Department of Economics</a> · University of Alberta</p>
     </div>
   </footer>
 

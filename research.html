@@ -17,7 +17,7 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Applies the saved light/dark preference before the page paints -->
   <script>
@@ -52,14 +52,35 @@
     </nav>
   </header>
 
-  <main id="main" class="wrap">
+  <main id="main">
 
-    <div class="page-head">
-      <h1 class="fade-in">Research</h1>
-      <p class="lede fade-in">
-        Working-paper PDFs and replication code are linked where available.
-      </p>
-    </div>
+    <!-- ==================================================================
+         PAGE HEADER — the faint graphic behind it is decorative:
+         a forecast fan chart (history up to a "now" marker, then widening
+         prediction bands). Delete the <svg class="band-chart head-chart"> block
+         to remove it.
+         ================================================================== -->
+    <header class="page-head">
+    <svg class="band-chart head-chart" viewBox="0 0 1600 240" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false">
+      <g class="fan">
+        <path d="M1220 131.7 L1230 116.2 L1240 109.2 L1250 103.8 L1260 99.0 L1270 94.7 L1280 90.8 L1290 87.1 L1300 83.6 L1310 80.2 L1320 77.0 L1330 74.0 L1340 71.0 L1350 68.1 L1360 65.3 L1370 62.6 L1380 59.9 L1390 57.3 L1400 54.7 L1410 52.2 L1420 49.7 L1430 47.3 L1440 44.9 L1450 42.5 L1460 40.2 L1470 37.9 L1480 35.7 L1490 33.4 L1500 31.2 L1510 29.0 L1520 26.9 L1530 24.7 L1540 22.6 L1550 20.5 L1560 18.5 L1570 16.4 L1580 14.4 L1590 12.3 L1600 10.3 L1600 192.3 L1590 191.9 L1580 191.5 L1570 191.0 L1560 190.6 L1550 190.1 L1540 189.6 L1530 189.1 L1520 188.6 L1510 188.0 L1500 187.4 L1490 186.8 L1480 186.2 L1470 185.5 L1460 184.8 L1450 184.1 L1440 183.3 L1430 182.6 L1420 181.7 L1410 180.9 L1400 179.9 L1390 179.0 L1380 178.0 L1370 176.9 L1360 175.7 L1350 174.5 L1340 173.2 L1330 171.9 L1320 170.4 L1310 168.8 L1300 167.1 L1290 165.2 L1280 163.1 L1270 160.7 L1260 158.0 L1250 154.9 L1240 151.0 L1230 145.7 L1220 131.7 Z"/>
+        <path d="M1220 131.7 L1230 121.6 L1240 116.9 L1250 113.1 L1260 109.8 L1270 106.8 L1280 104.0 L1290 101.4 L1300 98.8 L1310 96.4 L1320 94.1 L1330 91.9 L1340 89.7 L1350 87.6 L1360 85.5 L1370 83.5 L1380 81.5 L1390 79.5 L1400 77.6 L1410 75.7 L1420 73.9 L1430 72.0 L1440 70.2 L1450 68.4 L1460 66.7 L1470 64.9 L1480 63.2 L1490 61.5 L1500 59.8 L1510 58.1 L1520 56.4 L1530 54.8 L1540 53.2 L1550 51.5 L1560 49.9 L1570 48.3 L1580 46.8 L1590 45.2 L1600 43.6 L1600 159.0 L1590 159.1 L1580 159.1 L1570 159.1 L1560 159.1 L1550 159.1 L1540 159.1 L1530 159.0 L1520 159.0 L1510 158.9 L1500 158.8 L1490 158.8 L1480 158.6 L1470 158.5 L1460 158.4 L1450 158.2 L1440 158.0 L1430 157.8 L1420 157.6 L1410 157.3 L1400 157.0 L1390 156.7 L1380 156.4 L1370 156.0 L1360 155.5 L1350 155.1 L1340 154.5 L1330 154.0 L1320 153.3 L1310 152.6 L1300 151.8 L1290 150.9 L1280 149.8 L1270 148.6 L1260 147.2 L1250 145.5 L1240 143.4 L1230 140.3 L1220 131.7 Z"/>
+        <path d="M1220 131.7 L1230 124.9 L1240 121.6 L1250 118.9 L1260 116.5 L1270 114.2 L1280 112.1 L1290 110.2 L1300 108.3 L1310 106.4 L1320 104.6 L1330 102.9 L1340 101.2 L1350 99.6 L1360 98.0 L1370 96.4 L1380 94.8 L1390 93.3 L1400 91.7 L1410 90.2 L1420 88.7 L1430 87.3 L1440 85.8 L1450 84.4 L1460 83.0 L1470 81.6 L1480 80.2 L1490 78.8 L1500 77.4 L1510 76.0 L1520 74.7 L1530 73.3 L1540 72.0 L1550 70.7 L1560 69.4 L1570 68.0 L1580 66.7 L1590 65.4 L1600 64.1 L1600 138.5 L1590 138.8 L1580 139.1 L1570 139.4 L1560 139.7 L1550 140.0 L1540 140.2 L1530 140.5 L1520 140.7 L1510 141.0 L1500 141.2 L1490 141.4 L1480 141.7 L1470 141.9 L1460 142.1 L1450 142.2 L1440 142.4 L1430 142.5 L1420 142.7 L1410 142.8 L1400 142.9 L1390 143.0 L1380 143.0 L1370 143.1 L1360 143.1 L1350 143.1 L1340 143.0 L1330 142.9 L1320 142.8 L1310 142.6 L1300 142.4 L1290 142.1 L1280 141.7 L1270 141.2 L1260 140.6 L1250 139.8 L1240 138.6 L1230 136.9 L1220 131.7 Z"/>
+      </g>
+      <line class="origin" x1="1220.0" y1="0" x2="1220.0" y2="240"/>
+      <path class="line line-dashed" d="M1220 131.7 L1230 130.9 L1240 130.1 L1250 129.3 L1260 128.5 L1270 127.7 L1280 126.9 L1290 126.1 L1300 125.3 L1310 124.5 L1320 123.7 L1330 122.9 L1340 122.1 L1350 121.3 L1360 120.5 L1370 119.7 L1380 118.9 L1390 118.1 L1400 117.3 L1410 116.5 L1420 115.7 L1430 114.9 L1440 114.1 L1450 113.3 L1460 112.5 L1470 111.7 L1480 110.9 L1490 110.1 L1500 109.3 L1510 108.5 L1520 107.7 L1530 106.9 L1540 106.1 L1550 105.3 L1560 104.5 L1570 103.7 L1580 102.9 L1590 102.1 L1600 101.3"/>
+      <path class="line draw" pathLength="1" d="M935 149.4 L942 151.2 L950 153.9 L958 156.6 L965 158.5 L972 159.6 L980 160.0 L988 161.0 L995 160.1 L1002 162.6 L1010 167.0 L1018 170.5 L1025 175.3 L1032 181.4 L1040 185.2 L1048 186.1 L1055 188.5 L1062 187.0 L1070 187.7 L1078 189.0 L1085 188.1 L1092 182.4 L1100 179.0 L1108 177.8 L1115 177.5 L1122 171.5 L1130 167.9 L1138 165.6 L1145 163.7 L1152 160.2 L1160 154.1 L1168 152.4 L1175 150.9 L1182 146.4 L1190 145.3 L1198 141.7 L1205 140.0 L1212 135.7 L1220 131.7"/>
+      <circle class="marker" cx="1220.0" cy="131.7" r="4.5"/>
+    </svg>
+      <div class="wrap">
+        <h1 class="fade-in">Research</h1>
+        <p class="lede fade-in">
+          Working-paper PDFs and replication code are linked where available.
+        </p>
+      </div>
+    </header>
+
+    <div class="wrap">
 
     <!-- ==================================================================
          WORKING PAPERS / IN PROGRESS
@@ -75,7 +96,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">A Man Down: The Cost of Punishment in the FIFA World Cup</span>
-            <p class="pub-meta">with E. Choque, <a href="https://sites.google.com/view/carlosddiaz" target="_blank" rel="noopener">C. Díaz</a>, F. Fernández, and A. Surco · Submitted</p>
+            <p class="pub-meta">with E. Choque, <a href="https://sites.google.com/view/carlosddiaz" target="_blank" rel="noopener">C. Díaz</a>, F. Fernández, and A. Surco · <span class="status">Submitted</span></p>
           </div>
         </li>
 
@@ -83,7 +104,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Nowcasting in a Data-Poor Environment: A Monthly Real GDP Index for the Province of Alberta</span>
-            <p class="pub-meta">with A. Pollozhani · Submitted</p>
+            <p class="pub-meta">with A. Pollozhani · <span class="status">Submitted</span></p>
           </div>
         </li>
 
@@ -91,7 +112,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Eyes on the Street, Threshold Dynamics, and Property Crime</span>
-            <p class="pub-meta">with <a href="https://sites.google.com/view/carlosddiaz" target="_blank" rel="noopener">C. Díaz</a>, M. Felson, F. Fernández, and <a href="https://research.manchester.ac.uk/en/persons/nico.trajtenberg" target="_blank" rel="noopener">N. Trajtenberg</a> · Submitted</p>
+            <p class="pub-meta">with <a href="https://sites.google.com/view/carlosddiaz" target="_blank" rel="noopener">C. Díaz</a>, M. Felson, F. Fernández, and <a href="https://research.manchester.ac.uk/en/persons/nico.trajtenberg" target="_blank" rel="noopener">N. Trajtenberg</a> · <span class="status">Submitted</span></p>
           </div>
         </li>
 
@@ -99,7 +120,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Do Opportunity Effects Travel? Replication of Quasi-Experimental Evidence in Two Latin American Cities</span>
-            <p class="pub-meta">with <a href="https://sites.google.com/view/carlosddiaz" target="_blank" rel="noopener">C. Díaz</a>, F. Fernández, and <a href="https://research.manchester.ac.uk/en/persons/nico.trajtenberg" target="_blank" rel="noopener">N. Trajtenberg</a> · Submitted</p>
+            <p class="pub-meta">with <a href="https://sites.google.com/view/carlosddiaz" target="_blank" rel="noopener">C. Díaz</a>, F. Fernández, and <a href="https://research.manchester.ac.uk/en/persons/nico.trajtenberg" target="_blank" rel="noopener">N. Trajtenberg</a> · <span class="status">Submitted</span></p>
           </div>
         </li>
 
@@ -107,7 +128,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Unfolding Regional Business Cycles: Factor Models for Three-Way State-Level Tensors</span>
-            <p class="pub-meta">Submitted</p>
+            <p class="pub-meta"><span class="status">Submitted</span></p>
           </div>
         </li>
 
@@ -115,7 +136,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Women on the Margins: Gendered Effects of Large Minimum Wage Changes in Canada</span>
-            <p class="pub-meta">with <a href="https://sites.ualberta.ca/~jmarchan/" target="_blank" rel="noopener">J. Marchand</a> · In progress</p>
+            <p class="pub-meta">with <a href="https://sites.ualberta.ca/~jmarchan/" target="_blank" rel="noopener">J. Marchand</a> · <span class="status status-wip">In progress</span></p>
           </div>
         </li>
 
@@ -123,7 +144,7 @@
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Oil Price Shocks and Real-Time US Output Growth Density Forecasts</span>
-            <p class="pub-meta">In progress</p>
+            <p class="pub-meta"><span class="status status-wip">In progress</span></p>
           </div>
         </li>
 
@@ -299,6 +320,8 @@
       </ul>
     </section>
 
+    </div>
+
   </main>
 
   <!-- ====================================================================
@@ -307,6 +330,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2026 Sebastian Fossati</p>
+      <p><a href="https://www.economics.ualberta.ca/" target="_blank" rel="noopener">Department of Economics</a> · University of Alberta</p>
     </div>
   </footer>
 

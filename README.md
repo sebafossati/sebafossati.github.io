@@ -13,6 +13,7 @@ that's the whole workflow.
 | `assets/fossati_cv.pdf` | Your CV (pulled from your old site) |
 | `assets/papers/` | Working-paper PDFs, appendices, and replication code |
 | `assets/css/style.css` | All styling; colors/fonts are variables at the top |
+| `assets/img/favicon.svg` | Browser-tab icon (green tile with an "S") |
 | `assets/js/theme.js` | The light/dark toggle |
 | `assets/img/portrait.jpg` | Your photo (pulled from your old site) |
 
@@ -24,6 +25,15 @@ want it (newest first), and edit the year, title, coauthors, journal, and
 links. Delete any link (`Published version` / `Working paper` / `Code`) you
 don't need. On the research page you can optionally include a
 `<details class="abstract">` block for an expandable abstract.
+
+The small icon on each link button is chosen automatically from the link
+address: `doi.org` links get an arrow, `.zip` files get a code icon, and
+everything else gets a document icon.
+
+For working papers, the status pill is
+`<span class="status">Submitted</span>`; use
+`<span class="status status-wip">In progress</span>` for work in progress
+(grey instead of green).
 
 **Update the CV** — overwrite `assets/fossati_cv.pdf` with the new file. Done.
 
@@ -37,10 +47,21 @@ don't need. On the research page you can optionally include a
 **Social links** — in `index.html`, the `<ul class="socials">` list. Replace
 each `href="#"` with your profile URL; delete rows you don't use.
 
-**Change the accent color** — edit `--accent` (and `--accent-soft`) at the
-top of `assets/css/style.css`. There are two places: the light block and the
-dark blocks. Also update the fill color in `assets/img/favicon.svg` if you
-want the favicon to match.
+**Change the accent color** — edit `--accent` and `--accent-soft` at the
+top of `assets/css/style.css`. There are three places: the light block and the two (identical) dark blocks. Also update the
+fill color in `assets/img/favicon.svg` if you want the favicon to match.
+
+**Change the fonts** — the site uses Newsreader (serif, for your name, page
+titles, and paper titles) and Instrument Sans (everything else), loaded from
+Google Fonts in the `<head>` of each page. To swap them, change the Google
+Fonts `<link>` in all three HTML files and the `--font-serif` /
+`--font-sans` variables at the top of `style.css`.
+
+**Header charts** — each page has a faint, made-up decorative chart in its
+tinted header: an output series with shaded recessions (landing page), a
+forecast fan chart (Research), and a scatter plot with a fitted regression
+line (Teaching). They pick up the accent color automatically. To remove one,
+delete the `<svg class="band-chart …"> … </svg>` block in that page.
 
 **Nav / footer** — these are duplicated across the three HTML pages, so make
 the same edit in all three files.

@@ -17,7 +17,7 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Applies the saved light/dark preference before the page paints -->
   <script>
@@ -52,15 +52,67 @@
     </nav>
   </header>
 
-  <main id="main" class="wrap">
+  <main id="main">
 
-    <div class="page-head">
-      <h1 class="fade-in">Teaching</h1>
-      <p class="lede fade-in">
-        Courses in econometrics, forecasting, and machine learning for
-        economics, at the undergraduate and graduate level.
-      </p>
-    </div>
+    <!-- ==================================================================
+         PAGE HEADER — the faint graphic behind it is decorative:
+         a scatter plot with a fitted regression line and its confidence
+         band. Delete the <svg class="band-chart head-chart"> block
+         to remove it.
+         ================================================================== -->
+    <header class="page-head">
+    <svg class="band-chart head-chart" viewBox="0 0 1600 240" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false">
+      <path class="ci" d="M980 179.0 L1000 176.2 L1020 173.3 L1040 170.4 L1060 167.5 L1080 164.6 L1100 161.6 L1120 158.6 L1140 155.6 L1160 152.6 L1180 149.5 L1200 146.4 L1220 143.2 L1240 139.9 L1260 136.6 L1280 133.2 L1300 129.7 L1320 126.1 L1340 122.4 L1360 118.6 L1380 114.7 L1400 110.8 L1420 106.8 L1440 102.7 L1460 98.6 L1480 94.5 L1500 90.3 L1520 86.1 L1540 81.9 L1560 77.6 L1580 73.4 L1600 69.1 L1600 97.2 L1580 100.1 L1560 103.0 L1540 105.9 L1520 108.8 L1500 111.8 L1480 114.8 L1460 117.8 L1440 120.9 L1420 124.0 L1400 127.1 L1380 130.4 L1360 133.7 L1340 137.0 L1320 140.5 L1300 144.1 L1280 147.7 L1260 151.5 L1240 155.3 L1220 159.2 L1200 163.2 L1180 167.2 L1160 171.3 L1140 175.4 L1120 179.6 L1100 183.8 L1080 188.0 L1060 192.2 L1040 196.5 L1020 200.8 L1000 205.1 L980 209.4 Z"/>
+      <g class="dots">
+        <circle cx="1011" cy="204" r="4"/>
+        <circle cx="1017" cy="228" r="4"/>
+        <circle cx="1026" cy="166" r="4"/>
+        <circle cx="1072" cy="124" r="4"/>
+        <circle cx="1080" cy="191" r="4"/>
+        <circle cx="1086" cy="163" r="4"/>
+        <circle cx="1098" cy="164" r="4"/>
+        <circle cx="1125" cy="177" r="4"/>
+        <circle cx="1129" cy="171" r="4"/>
+        <circle cx="1129" cy="173" r="4"/>
+        <circle cx="1146" cy="153" r="4"/>
+        <circle cx="1164" cy="188" r="4"/>
+        <circle cx="1169" cy="191" r="4"/>
+        <circle cx="1266" cy="139" r="4"/>
+        <circle cx="1268" cy="128" r="4"/>
+        <circle cx="1307" cy="147" r="4"/>
+        <circle cx="1309" cy="141" r="4"/>
+        <circle cx="1326" cy="104" r="4"/>
+        <circle cx="1350" cy="112" r="4"/>
+        <circle cx="1353" cy="145" r="4"/>
+        <circle cx="1367" cy="116" r="4"/>
+        <circle cx="1383" cy="108" r="4"/>
+        <circle cx="1417" cy="113" r="4"/>
+        <circle cx="1418" cy="108" r="4"/>
+        <circle cx="1431" cy="106" r="4"/>
+        <circle cx="1447" cy="60" r="4"/>
+        <circle cx="1448" cy="141" r="4"/>
+        <circle cx="1489" cy="99" r="4"/>
+        <circle cx="1490" cy="75" r="4"/>
+        <circle cx="1505" cy="112" r="4"/>
+        <circle cx="1514" cy="96" r="4"/>
+        <circle cx="1517" cy="89" r="4"/>
+        <circle cx="1528" cy="109" r="4"/>
+        <circle cx="1529" cy="136" r="4"/>
+        <circle cx="1539" cy="96" r="4"/>
+        <circle cx="1550" cy="117" r="4"/>
+      </g>
+      <path class="line draw" pathLength="1" d="M980 194.2 L1600 83.1"/>
+    </svg>
+      <div class="wrap">
+        <h1 class="fade-in">Teaching</h1>
+        <p class="lede fade-in">
+          Courses in econometrics, forecasting, and machine learning for
+          economics, at the undergraduate and graduate level.
+        </p>
+      </div>
+    </header>
+
+    <div class="wrap">
 
     <!-- ==================================================================
          CURRENT COURSES
@@ -129,6 +181,8 @@
       </ul>
     </section>
 
+    </div>
+
   </main>
 
   <!-- ====================================================================
@@ -137,6 +191,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2026 Sebastian Fossati</p>
+      <p><a href="https://www.economics.ualberta.ca/" target="_blank" rel="noopener">Department of Economics</a> · University of Alberta</p>
     </div>
   </footer>
 
