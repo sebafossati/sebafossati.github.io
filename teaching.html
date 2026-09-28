@@ -117,30 +117,105 @@
     <!-- ==================================================================
          CURRENT COURSES
 
-         TO ADD A COURSE: copy an entire <li class="card"> … </li> block
-         and edit the code, title, and term. Add a course-links line if you
-         have a syllabus or course page to link to.
+         TO ADD A COURSE: copy an entire <li class="card course-card"> … </li>
+         block and edit the code, title, and term. Add a course-links line
+         if you have a syllabus or course page to link to.
+
+         Each card has a small decorative figure on the right (hidden on
+         phones). It is the <svg class="course-fig"> block; delete it for a
+         text-only card, or copy one from another course.
          ================================================================== -->
     <section class="section">
       <h2>Current courses (2026–2027)</h2>
-      <ul class="card-grid">
+      <ul class="card-grid course-list">
 
-        <li class="card">
-          <p class="course-code">Econ 399</p>
-          <h3>Introductory Econometrics</h3>
-          <p class="course-term">Fall · Undergraduate</p>
+        <li class="card course-card">
+          <div class="course-text">
+            <p class="course-code">Econ 399</p>
+            <h3>Introductory Econometrics</h3>
+            <p class="course-term">Fall · Undergraduate</p>
+          </div>
+          <svg class="course-fig" viewBox="0 0 220 110" aria-hidden="true" focusable="false">
+            <!-- scatter plot with a fitted regression line -->
+            <path class="fig-axis" d="M14 10 L14 96 L208 96"/>
+            <circle class="fig-dot" cx="26.3" cy="87.9" r="3"/>
+            <circle class="fig-dot" cx="35.3" cy="72.3" r="3"/>
+            <circle class="fig-dot" cx="35.5" cy="83.5" r="3"/>
+            <circle class="fig-dot" cx="50.5" cy="81.4" r="3"/>
+            <circle class="fig-dot" cx="65.2" cy="81.1" r="3"/>
+            <circle class="fig-dot" cx="65.9" cy="66.6" r="3"/>
+            <circle class="fig-dot" cx="69.6" cy="69.3" r="3"/>
+            <circle class="fig-dot" cx="89.1" cy="48.4" r="3"/>
+            <circle class="fig-dot" cx="106.8" cy="56.2" r="3"/>
+            <circle class="fig-dot" cx="107.8" cy="40.6" r="3"/>
+            <circle class="fig-dot" cx="116.1" cy="44.8" r="3"/>
+            <circle class="fig-dot" cx="119.8" cy="66.3" r="3"/>
+            <circle class="fig-dot" cx="130.3" cy="33.1" r="3"/>
+            <circle class="fig-dot" cx="134.1" cy="58.8" r="3"/>
+            <circle class="fig-dot" cx="135.7" cy="54.1" r="3"/>
+            <circle class="fig-dot" cx="136.5" cy="48.1" r="3"/>
+            <circle class="fig-dot" cx="142.2" cy="53.1" r="3"/>
+            <circle class="fig-dot" cx="154.5" cy="49.7" r="3"/>
+            <circle class="fig-dot" cx="171.2" cy="48.8" r="3"/>
+            <circle class="fig-dot" cx="171.4" cy="37.3" r="3"/>
+            <circle class="fig-dot" cx="176.8" cy="32.3" r="3"/>
+            <circle class="fig-dot" cx="199.2" cy="24.7" r="3"/>
+            <path class="fig-line" d="M20 84.2 L204 27.7"/>
+          </svg>
         </li>
 
-        <li class="card">
-          <p class="course-code">Econ 497</p>
-          <h3>Econometric Methods</h3>
-          <p class="course-term">Winter · Undergraduate</p>
+        <li class="card course-card">
+          <div class="course-text">
+            <p class="course-code">Econ 497</p>
+            <h3>Econometric Methods</h3>
+            <p class="course-term">Winter · Undergraduate</p>
+          </div>
+          <svg class="course-fig" viewBox="0 0 220 110" aria-hidden="true" focusable="false">
+            <!-- event study: estimates and 95% intervals by period -->
+            <path class="fig-ref" d="M14 78 L208 78"/>
+            <path class="fig-ref" d="M103.5 10 L103.5 96"/>
+            <path class="fig-ci" d="M30.0 59.7 L30.0 92.5"/>
+            <circle class="fig-dot fig-dot-solid" cx="30.0" cy="76.1" r="3.2"/>
+            <path class="fig-ci" d="M51.0 66.5 L51.0 95.6"/>
+            <circle class="fig-dot fig-dot-solid" cx="51.0" cy="81.0" r="3.2"/>
+            <path class="fig-ci" d="M72.0 63.8 L72.0 89.1"/>
+            <circle class="fig-dot fig-dot-solid" cx="72.0" cy="76.5" r="3.2"/>
+            <circle class="fig-dot fig-dot-hollow" cx="93.0" cy="78.0" r="3.2"/>
+            <path class="fig-ci" d="M114.0 52.0 L114.0 69.8"/>
+            <circle class="fig-dot fig-dot-solid" cx="114.0" cy="60.9" r="3.2"/>
+            <path class="fig-ci" d="M135.0 34.9 L135.0 56.5"/>
+            <circle class="fig-dot fig-dot-solid" cx="135.0" cy="45.7" r="3.2"/>
+            <path class="fig-ci" d="M156.0 23.5 L156.0 48.9"/>
+            <circle class="fig-dot fig-dot-solid" cx="156.0" cy="36.2" r="3.2"/>
+            <path class="fig-ci" d="M177.0 16.0 L177.0 45.0"/>
+            <circle class="fig-dot fig-dot-solid" cx="177.0" cy="30.5" r="3.2"/>
+            <path class="fig-ci" d="M198.0 12.2 L198.0 45.0"/>
+            <circle class="fig-dot fig-dot-solid" cx="198.0" cy="28.6" r="3.2"/>
+          </svg>
         </li>
 
-        <li class="card">
-          <p class="course-code">Econ 593</p>
-          <h3>Prediction and Machine Learning for Economics</h3>
-          <p class="course-term">Winter · Graduate</p>
+        <li class="card course-card">
+          <div class="course-text">
+            <p class="course-code">Econ 593</p>
+            <h3>Prediction and Machine Learning for Economics</h3>
+            <p class="course-term">Winter · Graduate</p>
+          </div>
+          <svg class="course-fig" viewBox="0 0 220 110" aria-hidden="true" focusable="false">
+            <!-- classification tree -->
+            <path class="fig-edge" d="M110 16 L62 48"/>
+            <path class="fig-edge" d="M110 16 L150 48"/>
+            <path class="fig-edge" d="M150 48 L120 80"/>
+            <path class="fig-edge" d="M150 48 L184 80"/>
+            <path class="fig-edge" d="M120 80 L90 102"/>
+            <path class="fig-edge" d="M120 80 L150 102"/>
+            <circle class="fig-node" cx="110" cy="16" r="4.5"/>
+            <circle class="fig-node" cx="150" cy="48" r="4.5"/>
+            <circle class="fig-node" cx="120" cy="80" r="4.5"/>
+            <rect class="fig-leaf fig-leaf-a" x="55" y="42" width="14" height="12" rx="3"/>
+            <rect class="fig-leaf fig-leaf-b" x="177" y="74" width="14" height="12" rx="3"/>
+            <rect class="fig-leaf fig-leaf-b" x="83" y="96" width="14" height="12" rx="3"/>
+            <rect class="fig-leaf fig-leaf-a" x="143" y="96" width="14" height="12" rx="3"/>
+          </svg>
         </li>
 
       </ul>

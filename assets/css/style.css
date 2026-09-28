@@ -901,6 +901,94 @@ a.pub-title:hover {
   font-weight: 500;
 }
 
+/* Current courses: one full-width card per row, with a small figure on
+   the right (the figure is hidden on phones) */
+.course-list {
+  grid-template-columns: 1fr;
+}
+
+.course-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: center;
+  gap: 2rem;
+}
+
+.course-fig {
+  display: block;
+  width: 220px;
+  height: 110px;
+  overflow: visible;
+}
+
+.course-fig .fig-axis,
+.course-fig .fig-ref,
+.course-fig .fig-edge,
+.course-fig .fig-line,
+.course-fig .fig-ci {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.course-fig .fig-axis {
+  stroke: var(--border-strong);
+  stroke-width: 1.2;
+}
+
+.course-fig .fig-ref {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.course-fig .fig-line {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.course-fig .fig-ci {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  opacity: 0.45;
+}
+
+.course-fig .fig-dot {
+  fill: var(--accent);
+  opacity: 0.4;
+}
+
+.course-fig .fig-dot-solid {
+  opacity: 1;
+}
+
+.course-fig .fig-dot-hollow {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  opacity: 1;
+}
+
+.course-fig .fig-edge {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.course-fig .fig-node {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 1.8;
+}
+
+.course-fig .fig-leaf-a {
+  fill: var(--accent);
+}
+
+.course-fig .fig-leaf-b {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.2;
+}
+
 /* Simple list of past courses */
 .plain-list {
   margin: 0;
@@ -1135,6 +1223,14 @@ a.pub-title:hover {
   .pubs-featured .pub,
   .pubs-featured .pub + .pub {
     padding: 1.25rem 1.25rem 1.15rem;
+  }
+
+  .course-card {
+    display: block;
+  }
+
+  .course-fig {
+    display: none;
   }
 
   .plain-list li {
