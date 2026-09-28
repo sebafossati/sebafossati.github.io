@@ -307,8 +307,8 @@ a:hover {
   mask-composite: intersect;
 }
 
-/* Research shows two charts (event study + fan chart), so its fade starts
-   just right of the title */
+/* Research and Teaching show two charts each, so the fade starts just
+   right of the title */
 .head-chart-dual {
   -webkit-mask-image:
     linear-gradient(to right, transparent 20%, #000 34%, #000 88%, transparent),
@@ -385,28 +385,16 @@ a:hover {
   stroke-width: 2;
 }
 
-/* Event study: point estimates and their interval bars */
-.band-chart .est {
-  fill: var(--accent);
-  opacity: 0.55;
+/* Loss functions: squared (solid), absolute (dashed), asymmetric (dotted) */
+.band-chart .loss-l1 {
+  stroke-dasharray: 5 6;
+  opacity: 0.45;
 }
 
-.band-chart .ci-bar {
-  stroke: var(--accent);
-  stroke-width: 2;
-  stroke-linecap: round;
-  opacity: 0.35;
-}
-
-/* Scatter plot: data points and the regression confidence band */
-.band-chart .dots circle {
-  fill: var(--accent);
-  opacity: 0.26;
-}
-
-.band-chart .ci {
-  fill: var(--accent);
-  opacity: 0.09;
+.band-chart .loss-asym {
+  stroke-dasharray: 0.5 5;
+  stroke-width: 2.4;
+  opacity: 0.5;
 }
 
 /* ==========================================================================
@@ -1124,13 +1112,8 @@ a.pub-title:hover {
   }
 
   .band-chart .area,
-  .band-chart .shade,
-  .band-chart .ci {
+  .band-chart .shade {
     animation: fadeIn 1.2s 0.9s ease both;
-  }
-
-  .band-chart .dots {
-    animation: fadeIn 1s 0.1s ease both;
   }
 
   .band-chart .fan,
@@ -1140,8 +1123,8 @@ a.pub-title:hover {
     animation: fadeIn 1.2s 1.9s ease both;
   }
 
-  /* Research: the event study appears after the fan chart */
-  .band-chart .es {
+  /* The loss functions appear after the fan chart */
+  .band-chart .loss {
     animation: fadeIn 1.2s 2.4s ease both;
   }
 
@@ -1234,7 +1217,7 @@ a.pub-title:hover {
     padding-bottom: 5.6875rem;
   }
 
-  .head-chart-dual .es {
+  .head-chart-dual .loss {
     display: none;
   }
 
