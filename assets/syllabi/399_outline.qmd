@@ -1,0 +1,402 @@
+---
+format:
+  pdf:
+    documentclass: article
+    papersize: letter
+    fontsize: 11pt
+    geometry:
+      - margin=1in
+    pdf-engine: pdflatex
+    colorlinks: true
+    include-in-header: preamble.tex
+---
+
+```{=latex}
+{\LARGE\firamedium ECON 399 \textperiodcentered\ Introductory Econometrics\par}
+\smallskip
+{\Large\firabook\color{slate} Course Outline \textperiodcentered\ \courseterm\par}
+\medskip
+{\color{fc_orange}\rule{1.8cm}{1.2pt}\par}
+\vspace{0.9\baselineskip}
+{\setlength{\tabcolsep}{8pt}
+\begin{tabular}{@{}rl}
+{\color{grey_cool}Instructor:} & Sebastian Fossati \\
+{\color{grey_cool}Office:} & Tory 7-11 \\
+{\color{grey_cool}Email:} & \href{mailto:sfossati@ualberta.ca}{sfossati@ualberta.ca} \\
+\end{tabular}}
+```
+
+# Lectures
+
+- \lecsecone
+- \lecsectwo
+
+Remarks:
+
+- There may be classes on which I am unavailable for our *face-to-face* lectures.
+  On those days, the sessions will be on Zoom or pre-recorded.
+
+# Office Hours
+
+\officehours{} Office hours may be adjusted throughout the term, and additional
+hours may be added before exams. On some occasions, office hours will be held on
+Zoom.
+
+# Canvas
+
+I will be using Canvas to post course information and documents. These will
+include lecture slides, lab handouts, homework assignments and answer keys, the
+formula sheet, and sample exam questions (without answer keys). Canvas will also
+be used for homework submission and course announcements.
+
+# Course Description
+
+Econometrics uses statistical methods and economic data to answer empirical
+questions in economics. We are interested in three kinds of questions.
+(1) How do we test an economic hypothesis? (Example: are men paid more than
+women with equivalent levels of education?)
+(2) How do we measure a causal effect? (Example: how much does one more year of
+schooling raise wages?)
+(3) What are good methods of forecasting? (Example: what will the inflation rate 
+be next year?)
+
+Questions (1) and (2) are the focus of ECON 399 (and ECON 497). Distinguishing
+causation from correlation is the central challenge of econometrics. Question (3)
+is the subject of ECON 409/493 — we cover prediction with regression models, but
+not time-series forecasting or machine learning.
+
+# Learning Goals
+
+The main tool we learn is multiple regression analysis. By the end of the
+course, students should be able to:
+(1) specify, estimate, and interpret regression models, and test hypotheses
+about their parameters;
+(2) judge when a regression estimate supports a causal claim, and diagnose the
+common problems — omitted variable bias and other sources of endogeneity,
+heteroskedasticity, etc. — that arise in practice; and 
+(3) use R to carry out an empirical analysis from raw data to final results.
+
+# Course Prerequisites and Corequisites
+
+Prerequisites: ECON 281, 282 and 299 or equivalent, and MATH 156 or equivalent.
+These pre/corequisites are enforced by the department. If you do not have these
+pre/corequisites your registration may be cancelled.
+
+The course uses basic probability and statistics and elementary calculus
+throughout; Appendices A–C of Wooldridge cover the expected background.
+
+# Textbooks
+
+Wooldridge (2019, 7th edition) will be our main reference. The course follows
+this textbook closely, and all chapter references in this outline are to the 7th
+edition (older editions can also be used).
+
+- Wooldridge, J.M. (2019). *Introductory Econometrics: A Modern Approach*,
+  7th edition. Cengage.
+
+In addition, two R companions are available free online (neither is a substitute
+for Wooldridge):
+
+- Heiss, F. (2020). *Using R for Introductory Econometrics*, 2nd edition. \
+  Available here: <http://www.urfie.net> (follows Wooldridge chapter by chapter).
+
+- Hanck, C., Arnold, M., Gerber, A., and Schmelzer, M. (2021).
+  *Introduction to Econometrics with R*. \
+  Available here: <https://www.econometrics-with-r.org>.
+
+# Econometrics Package
+
+R is used extensively in the course. R is a free software environment for
+statistical computing and graphics (<http://www.r-project.org>), typically used
+through RStudio (also free). No prior experience with R is assumed. We will use
+the packages `wooldridge` (all textbook data sets), `AER`, and `ggplot2`; each
+handout also ships with its data as CSV files.
+
+# Lab Sessions
+
+As part of the course you will learn how to use R. Weekly lab sessions provide 
+short guided exercises introducing the R skills needed for the homework 
+assignments. Lab attendance is highly encouraged but not graded. The lab 
+schedule will be posted on Canvas.
+
+# Evaluation
+
+```{=latex}
+\begin{highlightbox}[Key dates]
+\begin{itemize}
+\item \textbf{Midterm 1} in class, Thursday October 1.
+\item \textbf{Midterm 2} in class, Thursday November 5, before fall reading week.
+\item \textbf{Final exam} in the December exam period (December 9--22, 2026).
+\end{itemize}
+\end{highlightbox}
+```
+
+\smallskip
+
+The final grade will be based on three homework assignments (10% total), two
+midterm exams (25% each), and a final exam (40%). Further details will be
+provided as assignments are distributed. No extra credits are available.
+
+\medskip
+
+```{=latex}
+\begin{center}
+\begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}lcl}
+\toprule
+Component & Weight & When \\
+\midrule
+Homework ($\times$3) & 10\% & one before each exam \\
+Midterm 1 & 25\% & \midtermonedate \\
+Midterm 2 & 25\% & \midtermtwodate \\
+Final exam & 40\% & \finaldate \\
+\bottomrule
+\end{tabular*}
+\end{center}
+```
+
+\medskip
+
+Grades reflect judgments of student achievement made by instructors. These
+judgments are based on a combination of absolute achievement and relative
+performance in a class.
+
+Remarks:
+
+- Homework assignments will be a combination of computer problems (using R) and
+  analytical problems. The three assignments are equally weighted, with one due
+  before each exam. Everyone must turn in their own assignments, but
+  collaboration is permitted (and encouraged on the computer problems). Late
+  homework assignments will not be accepted. Solutions will follow after the
+  assignments are handed in.
+
+- The midterm exams are short exams held in class. Midterm 1 covers Block 1;
+  Midterm 2 covers Block 2 (with Block 1 material assumed). The final exam is
+  cumulative, with emphasis on Block 3.
+
+- A formula sheet is provided with every exam. Sample exam questions will be
+  made available on Canvas.
+
+- You must not use answers from previous years or answers posted online. If I
+  determine that these conditions were violated, you will receive zero points on
+  the assignment or exam, and the incident will be referred to the Dean's office
+  for further action.
+
+\newpage
+
+# Missed / Deferred Exams
+
+Deferral of term work is a privilege and not a right; there is no guarantee that
+a deferral will be granted. Misrepresentation of facts to gain a deferral is a
+serious breach of the *Code of Student Behaviour*.
+
+There will be no make-up midterm exams. A student who misses a midterm exam
+because of incapacitating illness, severe domestic affliction or other
+compelling reason (including religious conviction) may have its percentage
+weight transferred to the final exam. In that case, the student's final exam
+will be different from that for the rest of the class: it will contain
+additional questions covering the material of the missed midterm.
+
+A student who misses the final exam because of incapacitating illness, severe
+domestic affliction or other compelling reason (including religious conviction)
+may apply for a deferred final exam. Students seeking a deferred exam need to
+apply to their own Faculty; the instructor does not have the authority to
+approve such applications.
+
+# Laptops and Phones
+
+In class, notes go on paper and screens stay away: \textbf{laptops and phones 
+are not permitted during lectures}. Tablets are okay when they lie flat on 
+the desk and are used as a notebook. Students who need a device as part of 
+an *approved* accommodation plan should contact me.
+
+This policy is based on evidence rather than preference. The best study we have
+on the question is a randomized experiment run in an economics course at West
+Point, where sections that allowed laptops went on to score lower on the final
+exam than sections that banned them ([Carter et al.,
+2017](https://doi.org/10.1016/j.econedurev.2016.12.005)). Other research finds
+that the distraction is not limited to the person using the device: students
+who can merely see a neighbour's screen also do worse on tests ([Sana et al.,
+2013](https://doi.org/10.1016/j.compedu.2012.10.003)), and when schools in
+England banned phones, test scores rose, with the largest gains among the
+weakest students ([Beland and Murphy,
+2016](https://doi.org/10.1016/j.labeco.2016.04.004)). We will discuss this
+evidence, and what makes it credible, in the course.
+
+# Course Material Access program
+
+The Course Material Access program provides undergraduate students with required 
+digital and printed course materials on the first day of class for a flat fee per 
+term that is automatically applied to their account. Students may choose to opt 
+out (or back in) up to one day after the course registration deadline. 
+Visit <https://uab.ca/cmaprogram> to learn more.
+
+The fee is automatically waived for students if \textbf{none} of their digital or 
+printed course materials has an associated cost.
+
+\newpage
+
+# Course Outline
+
+The course runs in three blocks. Each block ends with a homework assignment
+followed by an exam. Chapter references are to Wooldridge (7th edition).
+
+## Block 1 · Simple Regression
+
+```{=latex}
+\begin{enumerate}[label={\color{slate}\firamedium\arabic*.}, leftmargin=2em, itemsep=5pt]
+\item \textbf{What is econometrics?} The steps of an empirical analysis; the
+      structure of economic data; causality and the notion of ceteris
+      paribus.\chref{Ch.~1}
+\item \textbf{The simple regression model: estimation.} Derivation and
+      properties of the ordinary least squares estimates; goodness of fit;
+      units of measurement and functional form; regression and
+      causality.\chref{Ch.~2}
+\item \textbf{The simple regression model: properties of OLS.} Unbiasedness;
+      sampling variance of the OLS estimators; consistency and large-sample
+      behaviour.\chref{Ch.~2, 5}
+\item \textbf{The simple regression model: inference.} Sampling distributions
+      of the OLS estimators; testing hypotheses; confidence intervals;
+      reporting regression results.\chref{lecture notes}
+\end{enumerate}
+```
+
+## Block 2 · Multiple Regression
+
+```{=latex}
+\begin{enumerate}[label={\color{slate}\firamedium\arabic*.}, leftmargin=2em, itemsep=5pt, start=5]
+\item \textbf{Multiple regression analysis: estimation.} Mechanics and
+      interpretation of ordinary least squares; omitted variable bias;
+      efficiency of OLS: the Gauss--Markov theorem.\chref{Ch.~3}
+\item \textbf{Multiple regression analysis: inference.} $t$ tests; confidence
+      intervals; testing multiple restrictions: the $F$ test.\chref{Ch.~4}
+\item \textbf{Multiple regression analysis: further issues.} Data scaling;
+      functional form; goodness of fit and selection of regressors;
+      prediction.\chref{Ch.~6}
+\item \textbf{Qualitative information.} Single and multiple binary (dummy)
+      variables; interactions; a binary dependent variable: the linear
+      probability model.\chref{Ch.~7}
+\end{enumerate}
+```
+
+## Block 3 · Complications
+
+```{=latex}
+\begin{enumerate}[label={\color{slate}\firamedium\arabic*.}, leftmargin=2em, itemsep=5pt, start=9]
+\item \textbf{Heteroskedasticity.} Consequences of heteroskedasticity for OLS;
+      heteroskedasticity-robust inference; testing for heteroskedasticity;
+      weighted least squares estimation.\chref{Ch.~8}
+\item \textbf{Serial correlation.} Properties of OLS with serially correlated
+      errors; testing for serial correlation; correcting for serial
+      correlation; robust inference after OLS.\chref{Ch.~12}
+\item \textbf{Endogeneity and causality.} Internal validity; selection bias;
+      instrumental variables; difference-in-differences.\chref{Ch.~15, 13}
+\item \textbf{More on specification and data problems.} Functional form
+      misspecification; outlying observations.\chref{Ch.~9}
+\end{enumerate}
+```
+
+\newpage
+
+# Student Responsibilities
+
+\begingroup\small
+
+**Generative AI:**
+Generative AI tools (ChatGPT, Claude, Copilot, and similar) are permitted in
+this course the way a textbook, a classmate, or office hours are: use them to
+ask questions, review material, and get unstuck — including on R code in the
+labs and homework assignments. The work you submit must be your own: write up
+your homework answers yourself, and do not submit AI-generated text,
+derivations, or code that you cannot explain. AI use is not permitted during
+exams.
+
+Before outsourcing your homework to AI, consider the design of the course: the
+homework (10% of the grade) is rehearsal for the exams (90%), which are written
+in person without AI. Recent large-scale evidence finds that pupils who did
+their homework with generative AI scored better on the homework but worse on
+the exams ([Strömberg et al.,
+2026](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6868618)). 
+
+Misrepresenting AI-generated work as your own is an academic offence under the
+University of Alberta *Code of Student Behaviour* and will be treated like any
+other form of cheating or plagiarism.
+
+**Academic Integrity:** The University of Alberta is committed to the highest
+standards of academic integrity and honesty. Students are expected to be
+familiar with these standards regarding academic honesty and to uphold the
+policies of the University in this respect. Students are particularly urged to
+familiarize themselves with the provisions of the Code of Student Behaviour
+(online at www.governance.ualberta.ca) and avoid any behaviour which could
+potentially result in suspicions of cheating, plagiarism, misrepresentation of
+facts and/or participation in an offence. Academic dishonesty is a serious
+offence and can result in suspension or expulsion from the University.
+
+All students should consult the Academic Integrity website. If you have any
+questions, ask your instructor.
+
+An instructor or coordinator who is convinced that a student has handed in work
+that he or she could not possibly reproduce without outside assistance is
+obliged, out of consideration of fairness to other students, to report the case
+to the Associate Dean of the Faculty. See the Academic Discipline Process.
+
+**Recording of Lectures:** Audio or video recording, digital or otherwise, of
+lectures, labs, seminars or any other teaching environment by students is
+allowed only with the prior written consent of the instructor or as a part of an
+approved accommodation plan. Student or instructor content, digital or
+otherwise, created and/or used within the context of the course is to be used
+solely for personal study, and is not to be used or distributed for any other
+purpose without prior written consent from the content author(s).
+
+**Recording of Virtual Meetings:** If any sessions are held or recorded on
+Zoom, please note the following disclaimer: "Please note that class times for
+this course will be recorded. Recordings of this course will be used to allow
+students enrolled in the course to review the material and will be disclosed to
+other students enrolled in this section of the class. Students have the right to
+not participate in the recording and are advised to turn off their cameras and
+audio prior to recording; they can still participate through text-based chat. It
+is recommended that students remove all identifiable and personal belongings
+from the space in which they will be participating." Recordings will be made
+available until the end of term and accessible on Canvas. Please direct any
+questions about this collection to the professor of this course.
+
+**Student Resources:** The best all-purpose website for student services is:
+<https://www.ualberta.ca/current-students>.
+
+**Accessibility Resources:** The University of Alberta is committed to creating
+work and learning communities that inspire and enable all people to reach their
+full potential. Accessibility Resources promotes an accessible, inclusive, and
+universally designed environment. For general information to register for
+services visit the Accessibility Resources webpage.
+
+**The Academic Success Centre:** The Academic Success Centre offers a variety of
+workshops on effective study and exam strategies. There are in-person and online
+sessions available for a modest fee.
+
+**The Centre for Writers:** The Centre for Writers offers free one-on-one
+writing support to students, faculty, and staff. Students can request
+consultation for a writing project at any stage of development. Instructors can
+request class visits and presentations.
+
+**Learning and Working Environment:** The Faculty of Arts is committed to
+ensuring that all students, faculty and staff are able to work and study in an
+environment that is safe and free from discrimination and harassment. It does
+not tolerate behaviour that undermines that environment.
+
+The University of Alberta acknowledges that we are located on Treaty 6
+territory, and respects the histories, languages, and cultures of the First
+Nations, Métis, Inuit, and all First Peoples of Canada, whose presence continues
+to enrich our vibrant community.
+
+**Disclaimer:** Any typographical errors in this syllabus are subject to change
+and will be announced in class and posted on Canvas. The date of the final
+examination is set by the Registrar and takes precedence over the final
+examination date reported in this syllabus.
+
+Policy about course outlines can be found in the Evaluation Procedures and
+Grading System section of the University Calendar.
+
+\endgroup
+
+# Copyright
+
+Sebastian Fossati, Faculty of Arts, University of Alberta, 2026.
