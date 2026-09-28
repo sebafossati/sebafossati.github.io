@@ -1,0 +1,585 @@
+% fossati_cv.tex
+%
+% Based on the LaTeX Curriculum Vitae Template
+%
+% Copyright (C) 2004-2006 Jason Blevins
+%
+% You may use use this document as a template to create your own CV
+% and you may redistribute the source code freely. No attribution is
+% required in any resulting documents, however, I do ask that you
+% please leave this notice and the above URL in the source code if you
+% choose to redistribute this file.
+%
+% Jason R. Blevins <jrblevin@sdf.lonestar.org>
+% http://jrblevin.freeshell.org
+% Durham, December 12, 2006
+%
+%%---------------------------------------------------------------------------%
+%
+% Notes:
+%
+% * Page breaks are automatic.  Do NOT add \newpage or per-page \cfoot /
+%   \thispagestyle commands: the footer is set once in the preamble and
+%   numbers itself ("3 of 6"), and sections flow across pages on their own.
+%   A section growing past one page needs no source changes.
+%
+% * Use \cvsection{Title} for headings.  It prints the heading, the full-width
+%   rule, and reserves enough space that a heading is never stranded at the
+%   foot of a page.  Never hand-write the \rule.
+%
+% * Use the cventries environment (not a bare enumerate) for numbered entry
+%   lists such as publications, so a multi-line entry is not split across a
+%   page break.  Numbering is automatic -- never hand-write \item[7.].
+%
+% * Alternate documentclass statement to put headings in margin:
+%   \documentclass[margin,line,11pt,final]{res}
+%
+%%----------------------------------------------------------------------------%
+
+% res.cls issues \nofiles, which disables the .aux file *and* redefines
+% \protected@write to a no-op -- so \label / \pageref silently do nothing and
+% the "of N" page count cannot work.  Neutralise \nofiles before the class is
+% loaded; this must stay above \documentclass.
+\let\nofiles\relax
+
+\documentclass[overlapped,letterpaper,11pt]{res}
+
+\addtolength{\hoffset}{-30pt} \addtolength{\textwidth}{60pt}
+\addtolength{\voffset}{-25pt} \addtolength{\textheight}{50pt}
+
+% `lining' is not the package default: FiraSans ships old-style figures, which
+% make the year column (2010--17, 2026--29) read unevenly.  Do not drop it.
+\usepackage[sfdefault,light,lining]{FiraSans}
+%\usepackage{sourceserifpro}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{needspace}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% \RaggedRight, not plain \raggedright: the latter also switches hyphenation
+% off, which leaves long entries ending well short of the right margin.
+\RaggedRight
+
+% Last-resort stretch so TeX never lets a line run into the right margin.
+% Without it, entries containing an unhyphenatable accented word (e.g.
+% "Econom\'ia") overhang the margin by ~19pt rather than break.
+\emergencystretch=3em
+
+\definecolor{doiblue}{HTML}{1F4E79}
+
+% hyperref auto-detects the driver (pdftex, xetex, luatex), so no manual switch
+\usepackage{hyperref}
+
+% \url would otherwise fall back to \ttfamily -- i.e. Latin Modern Mono, which
+% clashes with Fira Sans.  Set URLs in the body font instead.
+\urlstyle{same}
+
+\hypersetup{
+  colorlinks,
+  urlcolor=doiblue,
+  linkcolor=doiblue,
+  pdfpagemode=UseNone,   % `none' is not a valid value; UseNone = no side panel
+  pdftitle={Sebastian Fossati -- Curriculum Vitae},
+  pdfauthor={Sebastian Fossati},
+  pdfsubject={Curriculum Vitae},
+  pdfkeywords={economics, time series econometrics, forecasting,
+               empirical macroeconomics, applied microeconometrics,
+               economics of crime, labour economics}
+}
+
+% DOI badges for publications (tcolorbox after hyperref, xcolor already loaded)
+\usepackage{tcolorbox}
+
+\newtcbox{\doibox}{on line, arc=2pt, outer arc=2pt, boxrule=0.4pt, boxsep=0pt,
+  left=5pt, right=5pt, top=1pt, bottom=1pt,
+  colback=doiblue!8, colframe=doiblue}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{%
+  \doibox{\textcolor{doiblue}{\scriptsize\bfseries DOI}}}}
+
+% Section rule: spans from the section-title edge to the right text margin.
+% Derived from \textwidth and \sectionwidth so it tracks any margin change
+% and is identical in every section.
+\newcommand{\cvrule}{%
+  \hspace*{-\sectionwidth}%
+  \rule[2mm]{\dimexpr\textwidth+\sectionwidth\relax}{.25pt}}
+
+% Section heading + rule.  \needspace keeps a heading (and its first entry)
+% from being stranded at the foot of a page once breaks are automatic.
+\newcommand{\cvsection}[1]{%
+  \needspace{4\baselineskip}%
+  \section{\textbf{#1}}%
+  \cvrule}
+
+% Numbered entry list whose items may run to several lines: \interlinepenalty
+% forbids a page break inside an entry, so a publication never splits across
+% two pages.  Numbering continues automatically across page breaks.
+\newenvironment{cventries}%
+  {\begin{enumerate}\interlinepenalty=10000\relax}%
+  {\end{enumerate}}
+
+% mylist: a one-level enumerate used for the year-keyed lists (Appointments,
+% Presentations).  Every item supplies its own \item[<year>], so the declared
+% label below never actually prints -- only the leftmargin has any effect.
+\newlist{mylist}{enumerate}{1}
+\setlist[mylist,1]{leftmargin=.5cm, label={\alph*)}}
+
+
+\newenvironment{list1}{
+  % Default label: every item currently overrides it with \item[-], but the
+  % previous \ding{113} needed pifont, which is not loaded -- a bare \item
+  % would have failed.
+  \begin{list}{\textendash}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in}
+      \setlength{\leftmargin}{0.17in}}}{\end{list}
+}
+% Footer, set once for the whole document.  Page numbers are computed, not
+% typed: adding or removing material can no longer desynchronise them.
+% \small wraps the whole line: it used to sit inside the date macro only, which
+% set "1 of 5 --" at body size and the date a step smaller.
+\renewcommand{\headrulewidth}{0.0pt}
+\fancyhf{}
+\cfoot{\small\thepage\ of \pageref*{LastPage} -- \today}
+\pagestyle{fancy}
+
+%%===========================================================================%%
+
+\begin{document}
+
+%---------------------------------------------------------------------------
+% Document Specific Customizations
+
+% Make lists without bullets and with no indentation
+\setlength{\leftmargini}{.5cm}
+\renewcommand{\labelitemi}{}
+
+
+\begin{flushright}
+{\LARGE\bfseries Sebastian Fossati} \\
+Curriculum Vitae
+\end{flushright}
+
+\begin{resume}
+\vspace*{-.25in}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Contact Information}
+\begin{itemize}
+\item Department of Economics, University of Alberta, 8-14 HM Tory,
+	Edmonton, AB T6G 2H4, Canada \\
+	Web: \url{https://sites.ualberta.ca/~sfossati/} \\
+	Email: \href{mailto:sfossati@ualberta.ca}{sfossati@ualberta.ca} \\
+	ORCID: \href{https://orcid.org/0009-0007-8081-2197}{0009-0007-8081-2197}
+	% Google Scholar: paste your profile URL below and uncomment
+	%\\ Google Scholar: \href{https://scholar.google.com/citations?user=XXXXXXXX}{profile}
+\end{itemize}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Research Interests}
+\begin{itemize}
+\item Time Series Econometrics, Forecasting, Machine Learning
+\item Applied Microeconometrics, Crime/Urban, Labour
+\end{itemize}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Appointments}
+\begin{mylist}
+\item [2017--\phantom{17}] Associate Professor, Department of Economics, University of Alberta
+\item [2010--17] Assistant Professor, Department of Economics, University of Alberta
+%\item [2019--22] Associate Editor, Econom\'ia
+\end{mylist}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Education}
+\begin{itemize}
+\item [2010] Ph.D. Economics, University of Washington
+	\begin{list1}
+	\vspace*{.05in}
+	\item[-] Dissertation Title: ``Unit Root Tests, Structural Change, and Stationary Covariates''
+	\item[-] Committee:  Eric Zivot (Chair), Charles Nelson, Chang-Jin Kim, and Richard Startz
+	\end{list1}
+\item [2006] M.A. Economics, University of Washington
+\item [2003] Licenciado en Econom\'ia, Universidad de la Rep\'ublica (Uruguay)
+\end{itemize}
+
+
+%------------------------------------------------------------------------------
+\cvsection{Refereed Publications}
+\begin{cventries}
+\item ``Exchange Rate Predictability and Financial Conditions'' \\
+	w/ X. Lu \\
+	\textit{Empirical Economics}, 2026, 71(3), 33 \doi{10.1007/s00181-026-02971-w}
+\item ``Opportunity in Transit: Bus Stop Crowding and Crime'' \\
+	w/ C. D\'iaz, F. Fern\'andez, and N. Trajtenberg \\
+	\textit{Crime Science}, 2026, 15(1), 16 \doi{10.1186/s40163-026-00277-x}
+\item ``When `Eyes on the Street' Are Not Enough: Insights from Itinerant Street Markets'' \\
+	w/ C. D\'iaz and N. Trajtenberg \\
+	\textit{Journal of Quantitative Criminology}, 2026, 42(1), 141--169 \doi{10.1007/s10940-025-09620-y}
+\item ``The Heterogeneous Effects of COVID-19 Lockdowns on Crime across the World'' \\
+	w/ N. Trajtenberg, C. D\'iaz, \dots, and M. Eisner \\
+	\textit{Crime Science}, 2024, 13(1), 22 \doi{10.1186/s40163-024-00220-y}
+\item ``First to \$15: Alberta's Minimum Wage Policy on Employment by Wages, Ages, and Places'' \\
+	w/ J. Marchand \\
+	\textit{ILR Review}, 2024, 77(1), 119--142 \doi{10.1177/00197939231213064}
+\item ``Stay at home if you can: COVID-19 stay-at-home guidelines and local crime'' \\
+	w/ C. D\'iaz and N. Trajtenberg \\
+	\textit{Journal of Empirical Legal Studies}, 2022, 19(4), 1067--1113 \doi{10.1111/jels.12336}
+\item ``Output Growth and Structural Reform in Latin America: Have Business Cycles Changed?'' \\
+	\textit{Contemporary Economic Policy}, 2017, 35(1), 62--75 \doi{10.1111/coep.12178}
+\item ``Dating US Business Cycles with Macro Factors'' \\
+	\textit{Studies in Nonlinear Dynamics \& Econometrics}, 2016, 20(5), 529--547 \doi{10.1515/snde-2015-0037}
+\item ``Forecasting US Recessions with Macro Factors'' \\
+	\textit{Applied Economics}, 2015, 47(53), 5726--5738 \doi{10.1080/00036846.2015.1058904}
+\item ``Unit Root Testing with Stationary Covariates and a Structural Break in the Trend Function'' \\
+	\textit{Journal of Time Series Analysis}, 2013, 34(3), 368--384 \doi{10.1111/jtsa.12020}
+\item ``Covariate Unit Root Tests with Good Size and Power'' \\
+	\textit{Computational Statistics \& Data Analysis}, 2012, 56(11), 3070--3079 \doi{10.1016/j.csda.2011.05.019}
+\item ``Regional and International Market Integration of a Small Open Economy'' \\
+	w/ F. Lorenzo and C.M. Rodr\'iguez \\
+	\textit{Journal of Applied Economics}, 2007, 10(1), 77--98 \doi{10.1080/15140326.2007.12040482}
+\end{cventries}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Working Papers / In Progress}
+\begin{cventries}
+	\item ``A Man Down: The Cost of Punishment in the FIFA World Cup'' w/ E. Choque,
+	C. D\'iaz, F. Fern\'andez, and A. Surco, submitted
+	\item ``Nowcasting in a data-poor environment: A monthly real GDP index for the province of Alberta''
+	w/ A. Pollozhani, submitted
+	\item ``Eyes on the street, threshold dynamics, and property crime'' w/ C. D\'iaz, M. Felson,
+	F. Fern\'andez, and N. Trajtenberg, submitted
+	\item ``Do Opportunity Effects Travel? Replication of Quasi-Experimental Evidence in Two Latin 
+	American Cities'' w/ C. D\'iaz, F. Fern\'andez, and N. Trajtenberg, submitted
+	\item ``Unfolding Regional Business Cycles: Factor Models for Three-Way State-Level Tensors'', 
+	submitted
+	\item ``Women on the Margins: Gendered Effects of Large Minimum Wage Changes in Canada'' 
+	w/ J. Marchand
+	\item ``Oil Price Shocks and Real-Time US Output Growth Density Forecasts''
+	\item ``A Test for State-Dependent Predictive Ability based on a Markov-Switching Framework''
+	% \item ``Estimating Post-Pandemic Global Trends in Crime using a Multivariate
+	% Unobserved Components Model'' w/ C. D\'iaz and N. Trajtenberg
+	% \item ``Top Clubs' Performance in European International Football Competitions
+	% and Competitive Balance in the Domestic League'' w/ M. Lander
+	% \item ``Forecasting Canadian Recessions'' w/ R. Sekkel and M. Sties
+\end{cventries}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Other Publications (non-refereed) / Manuscripts}
+\begin{cventries}
+	\item ``Integraci\'on Internacional de los Mercados Agropecuarios Uruguayos'' \\
+	w/ F. Lorenzo and C.M. Rodr\'iguez. \textit{ANUARIO 2003 (OPYPA - MGAP)}.
+	\item ``Transmisi\'on de Se\~nales de Precios Internacionales a Precios Dom\'esticos.
+	Un An\'alisis de la Integraci\'on Espacial de los Mercados Agropecuarios Uruguayos'' \\
+	w/ C.M. Rodr\'iguez. Universidad de la Rep\'ublica, Uruguay (2003).
+\end{cventries}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Conference and Seminar Presentations (including scheduled)}
+\begin{mylist}
+
+	\item [2026]
+	(1) 9th RCEA Time Series Econometrics Conference, Madrid.
+	(2) 7th Vienna Workshop on High Dimensional Time Series (IHS), Vienna.
+	(3) Pontificia Universidad Javeriana and University of Alberta Virtual Workshop.
+	(4) International Association for Applied Econometrics (IAAE), Lisbon.
+	(5) Canadian Econometrics Study Group (CESG), Vancouver.
+	% (5) Sociedad de Economistas del Uruguay (SEU), Montevideo.
+
+	\item [2025]
+	(1) European Meeting of the Urban Economics Association, Berlin.
+	(2) Canadian Economics Association Annual Conference, Montreal.
+	(3) 3rd Vienna Workshop on Economic Forecasting (IHS), Vienna.
+	(4) International Association for Applied Econometrics (IAAE), Torino.
+	(5) Sociedad de Economistas del Uruguay (SEU), Montevideo.
+
+	\item [2024]
+	(1) Sociedad de Economistas del Uruguay (SEU), Montevideo.
+
+	\item [2022]
+	(1) University of Manchester, School of Social Sciences.
+	(2) International Association for Applied Econometrics (IAAE), London.
+	(3) Society for Economic Measurement (SEM), Calgary.
+
+	\item [2020]
+	(1) Sociedad de Economistas del Uruguay (SEU), Montevideo.
+
+	\item [2019]
+	(1) Canadian Economics Association Annual Conference, Banff.
+
+	\item [2018]
+	(1) Society for Nonlinear Dynamics \& Econometrics (SNDE), Tokyo.
+	(2) NBER-NSF Time Series Conference, San Diego.
+	(3) University of Houston, Department of Economics.
+	(4) Canadian Econometrics Study Group (CESG), Ottawa.
+	(5) Latin American Meeting of the Econometric Society (LAMES), Guayaquil.
+	(6) NBP Workshop on Forecasting, Warsaw.
+
+	\item [2017]
+	(1) Sociedad de Economistas del Uruguay (SEU), Montevideo.
+
+	\item [2016]
+	(1) Society for Nonlinear Dynamics \& Econometrics (SNDE), Tuscaloosa.
+	(2) Central Bank of Uruguay.
+	(3) International Association for Applied Econometrics (IAAE), Milano.
+
+	\item [2015]
+	(1) International Association for Applied Econometrics (IAAE), Thessaloniki.
+
+	\item [2014]
+	(1) Society for Nonlinear Dynamics \& Econometrics (SNDE), New York City.
+
+	\item [2013]
+	(1) Midwest Econometrics Group Meeting, Bloomington.
+	(2) Conferencia: Avances en Econom\'ia, Montevideo.
+
+	\item [2012]
+	(1) Canadian Economics Association Annual Conference, Calgary.
+	(2) Conference in Honor of Charles Nelson, Seattle.
+	(3) Midwest Econometrics Group Meeting, Lexington.
+	(4) Latin American Meeting of the Econometric Society (LAMES), Lima.
+	(5) Encuentro de Econom\'ia de Montevideo (Central Bank of Uruguay), Montevideo.
+
+	\item [2011]
+	(1) Society for Nonlinear Dynamics \& Econometrics (SNDE), Washington DC.
+	(2) University of Hawaii, Department of Economics.
+
+	\item [2010]
+	(1) University of Alberta, Department of Economics. (2) Bank of Canada.
+	(3) Santa Clara University,  Leavey School of Business. (4) University of Washington,
+	Foster Business School. (5) Central Bank of Uruguay.
+
+	\item [2009]
+	(1) ITAM, School of Business. (2) CIDE, Department of Economics.
+	(3) University of Alberta, Alberta School of Business. (4) University of St. Gallen,
+	Department of Economics. (5) Econometric Society European Meeting (ESEM), Barcelona.
+	(6) NBER-NSF Time Series Conference, Davis.
+
+	\item [2008]
+	(1) Latin American Meeting of the Econometric Society (LAMES), Rio de Janeiro.
+
+	\item [2003]
+	(1) Latin American Meeting of the Econometric Society (LAMES), Panama City.
+	(2) Jornadas de Econom\'ia (Central Bank of Uruguay), Montevideo.
+	(3) International Conference in Economics VII, Ankara.
+	(4) Latin American and Caribbean Economic Association (LACEA) Annual Conference, Puebla.
+
+\end{mylist}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Grants, Fellowships, and Awards} % ($^*$ research project with partner organization)
+\begin{itemize}
+
+\item \textbf{Research Funding}
+	\begin{list1}
+	% Summary figures are hand-maintained.  If an award is added or removed, update
+	% the count, the total, the PI/co-PI split, and the award-size range below.
+	\item[-] \textbf{MITACS Accelerate} (research with partner organizations, w/ V. Galvani), 2017--2028 \\
+	14 awards, \$915,000 total, continuous funding since 2017 \\
+	PI on 3 awards (\$150,000); co-PI on 11 awards (\$765,000) \\
+	Individual awards range from \$30,000 to \$135,000
+	\vspace*{.04in}
+
+	\item[-] ANII (Agencia Nacional de Investigaci\'on e Innovaci\'on, Uruguay), 2021--22.
+	Fondo Sectorial Seguridad Ciudadana 2020: ``Unintended Consequences of Police
+	Surveillance: Lessons from a Domestic and Gender-Based Violence Prevention Program''
+	(w/ C. D\'iaz and N. Trajtenberg, investigator, approximately \$28,000)
+	\item[-] EFF-SAS Travel Grant, University of Alberta, 2016, 2013, 2011 (3 awards)
+	\item[-] EFF-Special Capital Equipment Fund, University of Alberta, 2011 %\$2501.61
+	\end{list1}
+
+\item \textbf{Fellowships and Awards}
+	\begin{list1}
+	\item[-] Grover and Creta Ensley Fellowship, University of Washington, 2008--09
+	\item[-] Buechel Memorial Fellowship, University of Washington, 2007--08
+	% \item[-] Department of Economics four-year guaranteed funding, University of Washington, 2004--08
+	\end{list1}
+
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\cvsection{Teaching Experience}
+\begin{itemize}
+
+\item \textbf{University of Alberta:}
+Introductory Econometrics (Econ 399), Economic Forecasting (Econ 493),
+Econometric Methods (Econ 497),
+Applied Economics Projects II (Econ 504, Graduate),
+Time Series Econometrics (Econ 509, Graduate),
+Prediction and Machine Learning for Economics (Econ 593, Graduate),
+Econometric Theory and Applications (Econ 598, Graduate).
+
+\item \textbf{University of Washington:}
+Intermediate Macroeconomics (Econ 301), Econometric Applications (Econ 483).
+
+\end{itemize}
+
+
+%---------------------------------------------------------------------------
+\cvsection{Student Supervision}
+
+\begin{itemize}
+\item \textbf{PhD Student (role, graduation year, placement)}
+	\begin{list1}
+		\item[-] Husame Doganay (co-supervisor)
+		\item[-] Xiao Lu (co-supervisor, 2026)
+		\item[-] Moshe Lander (supervisor, Concordia University)
+		\item[-] Max Sties (supervisor, 2017, University of Alberta)
+		\item[-] Waleem Alausa (committee member, 2014, Alberta Pensions Services Corporation)
+	\end{list1}
+
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\cvsection{Service}
+\begin{itemize}
+
+\item \textbf{Department of Economics (University of Alberta)}
+	\begin{list1}
+		\item[-] Undergraduate Curriculum Committee, 2023--
+		\item[-] Visiting Speakers and Faculty Seminar/Workshop Committee, 2023--
+		\item[-] Computer Services Committee, 2010--17, 2018--
+		\item[-] Advisory Staff Selection (Hiring Committee), 2015--16, 2020--21, 2022--23
+		\item[-] Committee to Review Econ 299, 2015--17
+		\item[-] Graduate Appeals Committee, 2014--15
+		\item[-] Mentoring Committee for Sessional Lecturers (Econ 399), 2014--15
+	\end{list1}
+
+\item \textbf{University of Alberta}
+	\begin{list1}
+	\item[-] Science Faculty Council, 2026--29
+	\item[-] School of Business Faculty Council, 2019--23
+	\item[-] Arts Council for Technology \& Innovation (ACTI), 2014--17
+	\end{list1}
+
+\item \textbf{External PhD Thesis Examiner}
+	\begin{list1}
+	\item[-] Yusuke Tsujimoto, PhD in Business, University of Alberta, 2023
+	\item[-] Joseph DeCoste, PhD in Business, University of Alberta, 2022
+	\item[-] Joseph DeCoste, PhD candidacy exam, University of Alberta, 2020
+	\item[-] Bordin Bordeerath, PhD in Business, University of Alberta, 2020
+	\item[-] Yusuke Tsujimoto, PhD candidacy exam, University of Alberta, 2020
+	\item[-] Bordin Bordeerath, PhD candidacy exam, University of Alberta, 2017
+	\item[-] Yue Qiu, PhD in Economics, Queen's University, 2017
+	\end{list1}
+
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\cvsection{Other Professional Activities}
+\begin{itemize}
+
+	\item \textbf{Referee} \\
+	Alberta Law Review,
+	Applied Economics (4),
+	Applied Financial Economics,
+	Canadian Journal of Economics (3),
+	Computational Statistics \& Data Analysis,
+	Crime Science,
+	Econometric Reviews,
+	Econometrics,
+	Econometrics and Statistics,
+	Economic Inquiry,
+	Economics Letters (2),
+	Economic Modelling,
+	Empirical Economics,
+	International Journal of Forecasting,
+	Journal of Applied Economics,
+	Journal of Business \& Economic Statistics,
+	Journal of Business Cycle Measurement and Analysis,
+	Journal of Forecasting (3),
+	Journal of Statistical Computation and Simulation,
+	Macroeconomic Dynamics,
+	Oxford Bulletin of Economics and Statistics,
+	Studies in Nonlinear Dynamics \& Econometrics,
+	The Energy Journal.
+
+	\item \textbf{Conference Program Committee}
+		\begin{list1}
+			\item[-] Society for Economic Measurement (SEM), 2022
+			\item[-] Society for Economic Measurement (SEM), 2020 (canceled)
+			\item[-] Latin American Meeting of the Econometric Society (LAMES), 2018
+			\item[-] Sociedad de Economistas del Uruguay (SEU), 2017
+		\end{list1}
+
+	\item \textbf{Grant Proposal Reviewer}
+		\begin{list1}
+			\item[-] Social Sciences and Humanities Research Council (SSHRC) Insight Grants, 2023
+			\item[-] Advancing Research and Creativity grant, University of Wisconsin-Milwaukee, 2023
+			\item[-] Comisi\'on Sectorial de Investigaci\'on Cient\'ifica, Universidad de la Rep\'ublica (Uruguay), 2020
+			\item[-] Sea Grant College program, University of Hawai'i, 2017
+		\end{list1}
+
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\cvsection{Other Research and Professional Experience}
+\begin{itemize}
+\item [2007] Intern at the Portfolio Strategies Group, Russell Investment Group.
+\item [2006] Research Assistant for Professor Yu-chin Chen, University of Washington.
+\item [2001] Research Assistant at Arthur Andersen Uruguay (CPA Consultores).
+\item [2000] Intern at the Department of Monetary Analysis, Central Bank of Uruguay.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\cvsection{Membership, Other Skills, Etc.}
+\begin{itemize}
+
+%\item \textbf{Relevant Graduate Coursework}:
+%Macroeconomics I-II-III, Microeconomics I-II-III, Econometrics I-II,
+%Macro-Econometric Theory, Econometric Theory I-II, Time Series (Statistics Department),
+%Capital Market Theory, Asset Pricing (Financial Research),
+%Derivatives: Theory, Statistics, and Computation, Computational Economics,
+%International Finance, Stochastic Calculus for Option Pricing, Computer Programming I.
+
+\item \textbf{Membership:} Canadian Economic Association (CEA),
+Sociedad de Economistas del Uruguay (SEU).
+
+\item \textbf{Languages:} English, Spanish. 
+\item \textbf{Citizenship:} Canada, Uruguay.
+
+\end{itemize}
+
+
+%------------------------------------------------------------------------------
+%
+%\cvsection{References}
+%
+%\begin{itemize}
+%\item Available upon request.
+%\end{itemize}
+
+%\begin{itemize}
+%
+%\item \textbf{Professor Eric Zivot (Chair).} \\
+%Department of Economics, University of Washington,  Box 353330,
+%Seattle, WA 98195-3330, USA. \\
+%Phone: +1 206 543 6715 \\ Email: ezivot@u.washington.edu
+%
+%\item \textbf{Professor Charles R. Nelson.} \\
+%Department of Economics, University of Washington,  Box 353330,
+%Seattle, WA 98195-3330, USA. \\
+%Phone: +1 206 685 1382 \\ Email: cnelson@u.washington.edu
+%
+%\item \textbf{Professor Chang-Jin Kim.} \\
+%Department of Economics, University of Washington,  Box 353330,
+%Seattle, WA 98195-3330, USA. \\
+%Phone: +1 206 543 5955 \\ Email: changjin@u.washington.edu
+%
+%\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\end{resume}
+\end{document}

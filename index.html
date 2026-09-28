@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sebastian Fossati — Economics, University of Alberta</title>
   <meta name="description" content="Sebastian Fossati is an associate professor of economics at the University of Alberta, working in time series econometrics and empirical macroeconomics.">
+  <!-- Link previews (X, Bluesky, LinkedIn, Slack, …). These URLs must be
+       absolute; if the site's address ever changes, update them here and on
+       research.html / teaching.html. -->
+  <link rel="canonical" href="https://sfossati.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sebastian Fossati">
+  <meta property="og:title" content="Sebastian Fossati — Economics, University of Alberta">
+  <meta property="og:description" content="Sebastian Fossati is an associate professor of economics at the University of Alberta, working in time series econometrics and empirical macroeconomics.">
+  <meta property="og:url" content="https://sfossati.github.io/">
+  <meta property="og:image" content="https://sfossati.github.io/assets/img/portrait.jpg">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +54,14 @@
     </nav>
   </header>
 
-  <main id="main" class="wrap">
+  <main id="main">
+
+    <!-- ==================================================================
+         INTRO BAND — full-width tinted background behind the hero and
+         About sections. The tint color is --band in style.css.
+         ================================================================== -->
+    <div class="intro-band">
+    <div class="wrap">
 
     <!-- ==================================================================
          HERO — name, title, short intro, photo, and profile links.
@@ -55,10 +73,18 @@
         <p class="eyebrow fade-in">Department of Economics · University of Alberta</p>
         <h1 class="fade-in">Sebastian Fossati</h1>
 
+        <p class="lede fade-in">
+          Associate Professor of Economics. I work on time series econometrics
+          and its applications in macroeconomics, labour economics, and
+          criminology.
+        </p>
+
         <!-- PROFILE / CONTACT LINKS (icon buttons).
              Each link has aria-label + title for screen readers and hover
              tooltips. To add a service, copy a <li>, swap the href/label, and
-             paste a new 24×24 <path> (brand glyphs are from simpleicons.org). -->
+             paste a new 24×24 <path> (brand glyphs are from simpleicons.org;
+             the IDEAS/RePEc glyph is a generic book icon from Material Icons,
+             since RePEc has no brand glyph there). -->
         <ul class="socials fade-in">
           <li><a href="mailto:sfossati@ualberta.ca" aria-label="Email" title="Email">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -68,6 +94,9 @@
           </a></li>
           <li><a href="https://orcid.org/0009-0007-8081-2197" target="_blank" rel="me noopener" aria-label="ORCID" title="ORCID (0009-0007-8081-2197)">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+          </a></li>
+          <li><a href="https://ideas.repec.org/e/pfo140.html" target="_blank" rel="me noopener" aria-label="IDEAS/RePEc" title="IDEAS/RePEc">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
           </a></li>
           <li><a href="https://www.linkedin.com/in/sebafossati/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
@@ -89,9 +118,10 @@
     <section class="section">
       <h2>About</h2>
       <p>
-        I am an Associate Professor in the
+        I joined the
         <a href="https://www.economics.ualberta.ca/" target="_blank" rel="noopener">Department of Economics</a>
-        at the University of Alberta. My research is in time series econometrics
+        at the University of Alberta after completing my PhD at the University
+        of Washington in 2010. My research is in time series econometrics
         — unit root testing, forecasting, and business-cycle dating — and I apply
         these and other tools to questions in empirical macroeconomics, labour
         economics, and quantitative criminology. You can find my full record on
@@ -99,6 +129,11 @@
         <a href="assets/fossati_cv.pdf" target="_blank" rel="noopener">CV</a>.
       </p>
     </section>
+
+    </div>
+    </div><!-- /intro-band -->
+
+    <div class="wrap">
 
     <!-- ==================================================================
          SELECTED PUBLICATIONS — a short highlight reel; the full list
@@ -114,11 +149,23 @@
         <li class="pub">
           <div class="pub-year">2026</div>
           <div class="pub-body">
-            <a class="pub-title" href="https://doi.org/10.1186/s40163-026-00277-x" target="_blank" rel="noopener">Opportunity in Transit: Bus Stop Crowding and Crime</a>
-            <p class="pub-meta">with C. Díaz, F. Fernandez, and N. Trajtenberg · <em>Crime Science</em>, forthcoming</p>
+            <a class="pub-title" href="https://doi.org/10.1007/s00181-026-02971-w" target="_blank" rel="noopener">Exchange Rate Predictability and Financial Conditions</a>
+            <p class="pub-meta">with X. Lu · <em>Empirical Economics</em>, 2026</p>
             <p class="pub-links">
-              <a href="https://doi.org/10.1186/s40163-026-00277-x" target="_blank" rel="noopener">Published version</a>
-              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5897163" target="_blank" rel="noopener">Working paper</a>
+              <a href="https://doi.org/10.1007/s00181-026-02971-w" target="_blank" rel="noopener">Published version</a>
+              <a href="https://sites.ualberta.ca/~econwps/2025/wp2025-06.pdf" target="_blank" rel="noopener">Working paper</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <a class="pub-title" href="https://doi.org/10.1007/s10940-025-09620-y" target="_blank" rel="noopener">When 'Eyes on the Street' Are Not Enough: Insights from Itinerant Street Markets</a>
+            <p class="pub-meta">with C. Díaz and N. Trajtenberg · <em>Journal of Quantitative Criminology</em>, 2026</p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.1007/s10940-025-09620-y" target="_blank" rel="noopener">Published version</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5048885" target="_blank" rel="noopener">Working paper</a>
             </p>
           </div>
         </li>
@@ -148,22 +195,11 @@
           </div>
         </li>
 
-        <li class="pub">
-          <div class="pub-year">2013</div>
-          <div class="pub-body">
-            <a class="pub-title" href="https://doi.org/10.1111/jtsa.12020" target="_blank" rel="noopener">Unit Root Testing with Stationary Covariates and a Structural Break in the Trend Function</a>
-            <p class="pub-meta"><em>Journal of Time Series Analysis</em>, 2013</p>
-            <p class="pub-links">
-              <a href="https://doi.org/10.1111/jtsa.12020" target="_blank" rel="noopener">Published version</a>
-              <a href="assets/papers/break.pdf" target="_blank" rel="noopener">Working paper</a>
-              <a href="assets/papers/break_matlab.zip">Code</a>
-            </p>
-          </div>
-        </li>
-
       </ul>
       <a class="more-link" href="research.html">View all research <span class="arrow" aria-hidden="true">→</span></a>
     </section>
+
+    </div>
 
   </main>
 
