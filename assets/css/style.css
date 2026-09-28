@@ -293,16 +293,16 @@ a:hover {
   mask-composite: intersect;
 }
 
-/* Research / Teaching: fills the page header, kept clear of the title */
+/* Research / Teaching: fills the page header, to the right of the title */
 .head-chart {
   top: 0;
   height: 100%;
   -webkit-mask-image:
-    linear-gradient(to right, transparent 30%, #000 62%, #000 88%, transparent),
+    linear-gradient(to right, transparent 25%, #000 52%, #000 88%, transparent),
     linear-gradient(to top, #000 50%, transparent);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 30%, #000 62%, #000 88%, transparent),
+    linear-gradient(to right, transparent 25%, #000 52%, #000 88%, transparent),
     linear-gradient(to top, #000 50%, transparent);
   mask-composite: intersect;
 }
@@ -546,6 +546,17 @@ a:hover {
   color: var(--muted);
   font-size: 1.12rem;
   max-width: 38rem;
+}
+
+/* Header with a title but no subtitle (Research, Teaching): extra bottom
+   padding keeps it as tall as a header with a one-line subtitle.
+   One subtitle line = 1.12rem × 1.65 line height. */
+.page-head-title-only h1 {
+  margin-bottom: 0;
+}
+
+.page-head-title-only .wrap {
+  padding-bottom: calc(3.25rem + 0.75rem + 1.12rem * 1.65);
 }
 
 /* ==========================================================================
@@ -1082,9 +1093,14 @@ a.pub-title:hover {
     padding-bottom: 6rem;
   }
 
+  /* On phones, leave just enough room under the title for the chart */
+  .page-head-title-only .wrap {
+    padding-bottom: 5.6875rem;
+  }
+
   .head-chart {
     top: auto;
-    height: 110px;
+    height: 120px;
     -webkit-mask-image:
       linear-gradient(to right, transparent, #000 25%, #000 90%, transparent),
       linear-gradient(to top, #000 50%, transparent);
