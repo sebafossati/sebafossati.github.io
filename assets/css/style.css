@@ -335,7 +335,7 @@ a:hover {
 /* Landing page: along the bottom of the hero, fading at both edges and
    toward the top */
 .hero-chart {
-  height: 190px;
+  height: 160px;
   -webkit-mask-image:
     linear-gradient(to right, transparent, #000 15%, #000 85%, transparent),
     linear-gradient(to top, #000 35%, transparent);
@@ -509,13 +509,13 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 4rem;
-  padding: 5.5rem 0 7.5rem;
+  gap: 3.5rem;
+  padding: 4.25rem 0 6.25rem;
 }
 
 .eyebrow {
-  margin: 0 0 1rem;
-  font-size: 0.78rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -523,9 +523,9 @@ a:hover {
 }
 
 .hero h1 {
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.75rem;
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 6vw, 4.25rem);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.02;
@@ -533,7 +533,7 @@ a:hover {
 
 .hero .lede {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.12rem;
   color: var(--muted);
 }
 
@@ -542,7 +542,7 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem 1.25rem;
-  margin-top: 2.25rem;
+  margin-top: 1.75rem;
 }
 
 /* Photo with an offset outline behind it */
@@ -556,16 +556,16 @@ a:hover {
   position: absolute;
   inset: 14px -14px -14px 14px;
   border: 1px solid var(--accent);
-  border-radius: 28px;
+  border-radius: 24px;
   opacity: 0.4;
 }
 
 .portrait {
   position: relative;
   display: block;
-  width: 220px;
-  height: 220px;
-  border-radius: 28px;
+  width: 184px;
+  height: 184px;
+  border-radius: 24px;
   object-fit: cover;
   box-shadow: var(--shadow);
 }
@@ -1266,8 +1266,8 @@ a.pub-title:hover {
   }
 
   .portrait {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
   }
 }
 
