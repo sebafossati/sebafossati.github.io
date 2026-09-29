@@ -14,7 +14,7 @@ that's the whole workflow.
 | `assets/papers/` | Working-paper PDFs, appendices, and replication code |
 | `assets/css/style.css` | All styling; colors/fonts are variables at the top |
 | `assets/img/favicon.svg` | Browser-tab icon (steel-blue tile with an "S") |
-| `assets/js/theme.js` | The light/dark toggle |
+| `assets/js/theme.js` | The light/dark toggle (dark is the default) |
 | `assets/img/portrait.jpg` | Your photo (pulled from your old site) |
 
 ## Common updates
@@ -51,7 +51,7 @@ each `href="#"` with your profile URL; delete rows you don't use.
 steel and pale blue, with gold for "Submitted" pills and the highlighted
 chart series). Edit `--accent` and `--accent-soft` (or `--gold` /
 `--gold-soft` / `--gold-ink`) at the top of `assets/css/style.css`. There
-are three places: the light block and the two (identical) dark blocks.
+are two places: the dark block (the default) and the light block.
 In light mode the course cards and the landing page's publication cards
 are steel-blue panels; their colors are the two "Steel-blue cards" blocks
 just below. Also update the
