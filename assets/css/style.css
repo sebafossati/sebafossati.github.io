@@ -1,71 +1,72 @@
 /* ==========================================================================
    style.css — all styling for the site.
 
-   To change the look, edit the variables in the blocks below:
-   the first block is light mode, the two "dark" blocks are dark mode
-   (keep them identical). Fonts are set in the "Type" block.
+   Palette and type follow 1hand.app: a deep navy ground, steel-blue
+   buttons, pale-blue accents, a single gold highlight, and heavy tracked
+   capitals set in the system sans. Dark is the default look; the toggle in
+   the header switches to a light version of the same palette.
+
+   To change the look, edit the variables in the two blocks below: the
+   first is the dark (default) theme, the second is light mode.
    ========================================================================== */
 
-/* ---- Type (shared by both themes) ---------------------------------------- */
+/* ---- Type and layout (shared by both themes) ----------------------------- */
 :root {
-  --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --radius: 16px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius: 14px;
   --wrap: 70rem;
   --label-col: 12rem;
 }
 
-/* ---- Light theme (default) ---------------------------------------------- */
+/* ---- Dark theme (default) — the 1hand.app palette ------------------------ */
 :root {
-  --bg: #fbfaf7;
-  --surface: #ffffff;
-  --band: #f3f1ec;
-  --text: #15171a;
-  --muted: #555c66;
-  --faint: #8a9099;
-  --border: #e6e2da;
-  --border-strong: #d3cec4;
-  --accent: #17624a;
-  --accent-soft: rgba(23, 98, 74, 0.08);
-  --chart-band: rgba(21, 23, 26, 0.045);
-  --shadow: 0 1px 2px rgba(20, 24, 28, 0.04), 0 12px 32px -8px rgba(20, 24, 28, 0.1);
-  color-scheme: light;
-}
-
-/* ---- Dark theme (follows system setting) -------------------------------- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f1113;
-    --surface: #161a1d;
-    --band: #131618;
-    --text: #ebe8e2;
-    --muted: #a4aab2;
-    --faint: #6f7680;
-    --border: #262b30;
-    --border-strong: #353b42;
-    --accent: #62c9a4;
-    --accent-soft: rgba(98, 201, 164, 0.1);
-    --chart-band: rgba(255, 255, 255, 0.035);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
-    color-scheme: dark;
-  }
-}
-
-/* ---- Dark theme (forced by the toggle button) ---------------------------- */
-:root[data-theme="dark"] {
-  --bg: #0f1113;
-  --surface: #161a1d;
-  --band: #131618;
-  --text: #ebe8e2;
-  --muted: #a4aab2;
-  --faint: #6f7680;
-  --border: #262b30;
-  --border-strong: #353b42;
-  --accent: #62c9a4;
-  --accent-soft: rgba(98, 201, 164, 0.1);
-  --chart-band: rgba(255, 255, 255, 0.035);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  --bg: #0d1620;
+  --surface: #14202e;
+  --band: #111b27;
+  --text: #f2f6fa;
+  --muted: #8fa1b5;
+  --faint: #71879f;
+  --border: #1e2e3f;
+  --border-strong: #2b3f55;
+  --primary: #4a76a8;          /* buttons */
+  --primary-hover: #3d6390;
+  --on-primary: #ffffff;
+  --accent: #9db9dc;           /* links, labels, chart lines */
+  --accent-soft: rgba(157, 185, 220, 0.12);
+  --accent-strong: rgba(157, 185, 220, 0.22);
+  --gold: #d09a5a;             /* the one warm highlight */
+  --gold-ink: #d09a5a;
+  --gold-soft: rgba(208, 154, 90, 0.14);
+  --neutral-soft: rgba(255, 255, 255, 0.05);
+  --chart-band: rgba(157, 185, 220, 0.05);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 32px -10px rgba(0, 0, 0, 0.55);
   color-scheme: dark;
+}
+
+/* ---- Light theme (chosen with the toggle button) ------------------------- */
+:root[data-theme="light"] {
+  --bg: #f3f6f9;
+  --surface: #ffffff;
+  --band: #e8eef4;
+  --text: #0d1620;
+  --muted: #465a70;
+  --faint: #5f7287;
+  --border: #dae2ea;
+  --border-strong: #c3cfdb;
+  --primary: #4a76a8;
+  --primary-hover: #3d6390;
+  --on-primary: #ffffff;
+  --accent: #3d6390;
+  --accent-soft: rgba(74, 118, 168, 0.1);
+  --accent-strong: rgba(74, 118, 168, 0.18);
+  --gold: #c08545;
+  --gold-ink: #8a5a20;
+  --gold-soft: rgba(208, 154, 90, 0.16);
+  --neutral-soft: rgba(13, 22, 32, 0.05);
+  --chart-band: rgba(13, 22, 32, 0.04);
+  --shadow: 0 1px 2px rgba(13, 22, 32, 0.05), 0 14px 32px -10px rgba(13, 22, 32, 0.14);
+  color-scheme: light;
 }
 
 /* ==========================================================================
@@ -94,8 +95,8 @@ body {
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--accent-strong);
+  color: var(--text);
 }
 
 a {
@@ -112,7 +113,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -163,34 +164,46 @@ a:hover {
   min-height: 4rem;
 }
 
-/* Brand: monogram tile + full name (name hides on small screens) */
+/* Brand: monogram tile + two-tone wordmark (the wordmark hides on small
+   screens). The second word / letter is drawn in the accent color, as in
+   1hand.app's BRICK·LINE. The tile keeps its navy colors in both themes. */
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.75rem;
   margin-right: auto;
-  font-weight: 600;
-  font-size: 0.98rem;
-  letter-spacing: -0.01em;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
 }
 
+.brand .accent {
+  color: var(--accent);
+}
+
 .brand .brand-short {
   order: -1;
   display: inline-grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
+  grid-auto-flow: column;
+  place-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid #2b3f55;
   border-radius: 9px;
-  background: var(--accent);
-  color: var(--bg);
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  background: #14202e;
+  color: #f2f6fa;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
   transition: transform 0.2s ease;
+}
+
+.brand .brand-short span {
+  color: #9db9dc;
 }
 
 .brand:hover .brand-short {
@@ -204,11 +217,11 @@ a:hover {
 }
 
 .nav-links a {
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 999px;
   color: var(--muted);
-  font-size: 0.92rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.15s ease, background 0.15s ease;
 }
@@ -232,7 +245,7 @@ a:hover {
   height: 2.25rem;
   margin-left: 0.25rem;
   padding: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: 50%;
   background: var(--surface);
   color: var(--muted);
@@ -251,24 +264,21 @@ a:hover {
   height: 1rem;
 }
 
-/* Show sun in dark mode, moon in light mode */
-.icon-moon { display: block; }
-.icon-sun  { display: none; }
+/* Show sun in dark mode (the default), moon in light mode */
+.icon-moon { display: none; }
+.icon-sun  { display: block; }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .icon-moon { display: none; }
-  :root:not([data-theme="light"]) .icon-sun  { display: block; }
-}
-
-:root[data-theme="dark"] .icon-moon { display: none; }
-:root[data-theme="dark"] .icon-sun  { display: block; }
+:root[data-theme="light"] .icon-moon { display: block; }
+:root[data-theme="light"] .icon-sun  { display: none; }
 
 /* ==========================================================================
    Decorative charts
    The landing page has an output series with shaded recessions along the
    bottom of the hero. Research and Teaching have a row of cards next to the
    title, one small chart per card (see .head-cards below). Colors come from
-   --accent and --chart-band.
+   --accent and --chart-band; the one series each chart is "about" (the
+   forecast origin, the counterfactual, the asymmetric loss, the fitted
+   line) is picked out in --gold.
    ========================================================================== */
 
 .band-chart {
@@ -298,7 +308,9 @@ a:hover {
    the title. The first card in the HTML sits at the far right. The row
    wraps, but only its first line is visible, so a card that doesn't fit the
    window is hidden whole rather than cut off. All cards are drawn at the
-   same strength, except where they sit behind the title. */
+   same strength, except where they sit behind the title (about
+   --title-span × its font size wide, since the title is set in wide
+   capitals). */
 .head-cards {
   --card-w: 13.75rem;
   --card-h: 8.25rem;
@@ -312,14 +324,13 @@ a:hover {
   margin-right: min(0px, (var(--wrap) - 100vw) / 2);
   overflow: hidden;
   pointer-events: none;
-  /* extra fade behind the title (about 4 × its font size wide), easing
-     back to full strength just past it */
+  /* extra fade behind the title, easing back to full strength just past it */
   -webkit-mask-image: linear-gradient(to right,
-    rgb(0 0 0 / 0.3) calc(var(--title-size) * 4),
-    #000 calc(var(--title-size) * 4 + 4rem));
+    rgb(0 0 0 / 0.25) calc(var(--title-size) * var(--title-span)),
+    #000 calc(var(--title-size) * var(--title-span) + 4rem));
   mask-image: linear-gradient(to right,
-    rgb(0 0 0 / 0.3) calc(var(--title-size) * 4),
-    #000 calc(var(--title-size) * 4 + 4rem));
+    rgb(0 0 0 / 0.25) calc(var(--title-size) * var(--title-span)),
+    #000 calc(var(--title-size) * var(--title-span) + 4rem));
 }
 
 .head-card {
@@ -393,32 +404,41 @@ a:hover {
   opacity: 0.6;
 }
 
+/* "Now": the forecast origin, in gold */
 .head-card .marker {
   fill: var(--band);
-  stroke: var(--accent);
-  stroke-width: 1.6;
+  stroke: var(--gold);
+  stroke-width: 1.8;
 }
 
-/* Actual (solid) vs counterfactual (dashed) series, with a band around
+/* Actual (solid) vs counterfactual (dashed, gold), with a band around
    the counterfactual */
 .head-card .band {
-  fill: var(--accent);
+  fill: var(--gold);
   opacity: 0.1;
 }
 
-/* Loss functions: squared (solid), absolute (dashed), asymmetric (dotted) */
+.card-did .line-dashed {
+  stroke: var(--gold);
+  opacity: 0.6;
+}
+
+/* Loss functions: squared (solid), absolute (dashed), asymmetric (dotted,
+   gold) */
 .head-card .loss-l1 {
   stroke-dasharray: 5 6;
   opacity: 0.45;
 }
 
 .head-card .loss-asym {
+  stroke: var(--gold);
   stroke-dasharray: 0.5 5;
   stroke-width: 2.4;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
-/* Scatter plot: data points and the regression confidence band */
+/* Scatter plot: data points, the regression confidence band, and the
+   fitted line in gold */
 .head-card .dots circle {
   fill: var(--accent);
   opacity: 0.3;
@@ -427,6 +447,11 @@ a:hover {
 .head-card .ci {
   fill: var(--accent);
   opacity: 0.09;
+}
+
+.card-scatter .line {
+  stroke: var(--gold);
+  opacity: 0.7;
 }
 
 /* ==========================================================================
@@ -450,27 +475,35 @@ a:hover {
   padding: 5.5rem 0 7.5rem;
 }
 
+/* Small tracked capitals (the "kicker" style) */
 .eyebrow {
-  margin: 0 0 1rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  margin: 0 0 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--muted);
 }
 
+/* The name as a two-tone wordmark: heavy tracked capitals, the surname in
+   the accent color */
 .hero h1 {
-  margin: 0 0 0.9rem;
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 6vw, 4.25rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 5.6vw, 4.1rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hero h1 .accent {
+  color: var(--accent);
 }
 
 .hero .lede {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 500;
   color: var(--muted);
 }
 
@@ -492,9 +525,9 @@ a:hover {
   content: "";
   position: absolute;
   inset: 14px -14px -14px 14px;
-  border: 1px solid var(--accent);
-  border-radius: 28px;
-  opacity: 0.4;
+  border: 1.5px dashed var(--accent);
+  border-radius: 24px;
+  opacity: 0.45;
 }
 
 .portrait {
@@ -502,21 +535,23 @@ a:hover {
   display: block;
   width: 220px;
   height: 220px;
-  border-radius: 28px;
+  border-radius: 24px;
   object-fit: cover;
   box-shadow: var(--shadow);
 }
 
-/* Buttons */
+/* Buttons: solid steel-blue pill with tracked capitals */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  height: 2.6rem;
-  padding: 0 1.15rem;
+  gap: 0.55rem;
+  height: 2.75rem;
+  padding: 0 1.4rem;
   border-radius: 999px;
-  font-size: 0.92rem;
-  font-weight: 550;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
@@ -527,13 +562,12 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--text);
-  color: var(--bg);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 
 .btn-primary:hover {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--primary-hover);
   transform: translateY(-1px);
 }
 
@@ -551,9 +585,9 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  border: 1px solid var(--border);
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border-strong);
   border-radius: 50%;
   background: var(--surface);
   color: var(--muted);
@@ -581,7 +615,8 @@ a:hover {
    ========================================================================== */
 
 .page-head {
-  --title-size: clamp(2.4rem, 5vw, 3.4rem);
+  --title-size: clamp(2.1rem, 4.4vw, 3rem);
+  --title-span: 6;
   position: relative;
   height: 11.25rem; /* 180px, bottom border included */
   overflow: hidden;
@@ -605,11 +640,11 @@ a:hover {
   z-index: 1;
   justify-self: start;
   margin: 0;
-  font-family: var(--font-serif);
   font-size: var(--title-size);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -638,24 +673,26 @@ a:hover {
   position: sticky;
   top: 6rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.65rem;
   margin: 0.3rem 0 0;
-  font-size: 0.76rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
   line-height: 1.4;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
+/* A small "brick" before each section label */
 .section > h2::before {
   content: "";
   flex: none;
-  width: 1.25rem;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent);
+  width: 1rem;
+  height: 0.32rem;
+  margin-top: 0.34rem; /* centered on the first line of the label */
+  border-radius: 1.5px;
+  background: var(--primary);
 }
 
 .section > p {
@@ -691,18 +728,18 @@ a:hover {
 }
 
 .pub-year {
-  padding-top: 0.2rem;
+  padding-top: 0.15rem;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
   color: var(--faint);
 }
 
 .pub-title {
-  font-family: var(--font-serif);
-  font-size: 1.22rem;
-  font-weight: 500;
-  line-height: 1.35;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
   letter-spacing: -0.005em;
   color: var(--text);
   text-decoration: none;
@@ -730,22 +767,22 @@ a.pub-title:hover {
   color: var(--accent);
 }
 
-/* Status pill for working papers: <span class="status">Submitted</span>.
-   Add "status-wip" for work in progress (neutral color). */
+/* Status pill for working papers: <span class="status">Submitted</span>
+   (gold). Add "status-wip" for work in progress (neutral color). */
 .status {
   display: inline-block;
-  padding: 0.05rem 0.55rem;
+  padding: 0.1rem 0.6rem;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  background: var(--gold-soft);
+  color: var(--gold-ink);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   vertical-align: 0.05em;
 }
 
 .status-wip {
-  background: color-mix(in srgb, var(--faint) 14%, transparent);
+  background: var(--neutral-soft);
   color: var(--muted);
 }
 
@@ -767,16 +804,15 @@ a.pub-title:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.3rem 0.75rem;
-  border: 1px solid var(--border);
+  padding: 0.35rem 0.8rem;
   border-radius: 999px;
-  background: var(--surface);
-  color: var(--muted);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.3;
   text-decoration: none;
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  transition: color 0.15s ease, background 0.15s ease;
 }
 
 .pub-links a::before,
@@ -801,9 +837,8 @@ a.pub-title:hover {
 
 .pub-links a:hover,
 .course-links a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  color: var(--text);
+  background: var(--accent-strong);
 }
 
 /* Selected publications on the landing page: a grid of cards */
@@ -834,9 +869,9 @@ a.pub-title:hover {
 .pubs-featured .pub-year {
   margin-bottom: 0.6rem;
   padding: 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
   color: var(--accent);
 }
 
@@ -847,7 +882,7 @@ a.pub-title:hover {
 }
 
 .pubs-featured .pub-title {
-  font-size: 1.28rem;
+  font-size: 1.15rem;
 }
 
 .pubs-featured .pub-links {
@@ -865,7 +900,7 @@ a.pub-title:hover {
   cursor: pointer;
   width: fit-content;
   color: var(--faint);
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.15s ease;
 }
 
@@ -873,24 +908,39 @@ a.pub-title:hover {
   color: var(--accent);
 }
 
+/* dashed outline, like the challenge box on 1hand.app */
 .abstract p {
   margin: 0.6rem 0 0;
   padding: 0.9rem 1.1rem;
   color: var(--muted);
-  background: var(--band);
+  border: 1px dashed var(--border-strong);
   border-radius: 12px;
 }
 
-/* "View all" style link with sliding arrow */
+/* "View all" link: an outlined pill (1hand.app's secondary button) with a
+   sliding arrow */
 .more-link {
   justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  height: 2.75rem;
   margin-top: 1.75rem;
-  font-size: 0.95rem;
-  font-weight: 550;
+  padding: 0 1.3rem;
+  border: 2px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.more-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .more-link .arrow {
@@ -931,19 +981,18 @@ a.pub-title:hover {
 
 .card .course-code {
   margin: 0 0 0.6rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .card h3 {
   margin: 0 0 0.4rem;
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  font-weight: 500;
-  line-height: 1.25;
+  font-size: 1.22rem;
+  font-weight: 700;
+  line-height: 1.3;
   letter-spacing: -0.01em;
 }
 
@@ -1017,10 +1066,11 @@ a.pub-title:hover {
   opacity: 1;
 }
 
+/* the reference period of the event study, in gold */
 .course-fig .fig-dot-hollow {
   fill: var(--surface);
-  stroke: var(--accent);
-  stroke-width: 1.5;
+  stroke: var(--gold);
+  stroke-width: 1.8;
   opacity: 1;
 }
 
@@ -1035,14 +1085,13 @@ a.pub-title:hover {
   stroke-width: 1.8;
 }
 
+/* the tree's two classes: blue and gold "bricks" */
 .course-fig .fig-leaf-a {
-  fill: var(--accent);
+  fill: var(--primary);
 }
 
 .course-fig .fig-leaf-b {
-  fill: var(--accent-soft);
-  stroke: var(--accent);
-  stroke-width: 1.2;
+  fill: var(--gold);
 }
 
 /* Simple list of past courses */
@@ -1071,7 +1120,10 @@ a.pub-title:hover {
 
 .plain-list .when {
   color: var(--faint);
-  font-size: 0.86rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -1091,7 +1143,8 @@ a.pub-title:hover {
   gap: 0.5rem 2rem;
   padding-top: 1.75rem;
   padding-bottom: 2.5rem;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
   color: var(--faint);
 }
 
@@ -1237,13 +1290,13 @@ a.pub-title:hover {
 
   .portrait-wrap::before {
     inset: 10px -10px -10px 10px;
-    border-radius: 22px;
+    border-radius: 20px;
   }
 
   .portrait {
     width: 120px;
     height: 120px;
-    border-radius: 22px;
+    border-radius: 20px;
   }
 
   .hero-chart {

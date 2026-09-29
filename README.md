@@ -12,9 +12,9 @@ that's the whole workflow.
 | `teaching.html` | Current and past courses |
 | `assets/fossati_cv.pdf` | Your CV (pulled from your old site) |
 | `assets/papers/` | Working-paper PDFs, appendices, and replication code |
-| `assets/css/style.css` | All styling; colors/fonts are variables at the top |
-| `assets/img/favicon.svg` | Browser-tab icon (green tile with an "S") |
-| `assets/js/theme.js` | The light/dark toggle |
+| `assets/css/style.css` | All styling; colors/fonts are variables at the top (palette follows 1hand.app) |
+| `assets/img/favicon.svg` | Browser-tab icon (navy tile with a two-tone "SF", after the 1hand.app icon) |
+| `assets/js/theme.js` | The light/dark toggle (dark is the default) |
 | `assets/img/portrait.jpg` | Your photo (pulled from your old site) |
 
 ## Common updates
@@ -33,7 +33,7 @@ everything else gets a document icon.
 For working papers, the status pill is
 `<span class="status">Submitted</span>`; use
 `<span class="status status-wip">In progress</span>` for work in progress
-(grey instead of green).
+(grey instead of gold).
 
 **Update the CV** — overwrite `assets/fossati_cv.pdf` with the new file. Done.
 
@@ -47,18 +47,28 @@ For working papers, the status pill is
 **Social links** — in `index.html`, the `<ul class="socials">` list. Replace
 each `href="#"` with your profile URL; delete rows you don't use.
 
-**Change the accent color** — edit `--accent` and `--accent-soft` at the
-top of `assets/css/style.css`. There are three places: the light block and the two (identical) dark blocks. Also update the
-fill color in `assets/img/favicon.svg` if you want the favicon to match.
+**Change the colors** — the palette is borrowed from 1hand.app: a navy
+ground, steel-blue buttons (`--primary`), pale-blue links, labels and chart
+lines (`--accent`), and one gold highlight (`--gold`) for "Submitted" pills
+and the highlighted series in the charts. Edit the variables at the top of
+`assets/css/style.css`: the first block is the dark theme (the default),
+the second is the light theme the toggle switches to. The brand tile in the
+header and `assets/img/favicon.svg` use fixed navy colors; update those by
+hand if you want them to match.
 
-**Change the fonts** — the site uses Newsreader (serif, for your name, page
-titles, and paper titles) and Instrument Sans (everything else), loaded from
-Google Fonts in the `<head>` of each page. To swap them, change the Google
-Fonts `<link>` in all three HTML files and the `--font-serif` /
-`--font-sans` variables at the top of `style.css`.
+**Change the fonts** — the site uses the visitor's system sans (San
+Francisco on Apple devices, Segoe UI on Windows), as 1hand.app does, so no
+web fonts are loaded. Your name, page titles and small labels are set in
+heavy, widely spaced capitals; the surname in the header and hero is
+wrapped in `<span class="accent">` to draw it in the accent color. To use a
+web font instead, add its Google Fonts `<link>` to the `<head>` of all
+three pages and put its name first in `--font-sans` at the top of
+`style.css`.
 
 **Header charts** — the charts are faint, made-up decorations that pick up
-the accent color automatically. The landing page has an output series with
+the accent color automatically, with the series each chart is "about" (the
+forecast origin, the counterfactual, the asymmetric loss, the fitted line)
+drawn in gold. The landing page has an output series with
 shaded recessions along the bottom of its tinted header; delete the
 `<svg class="band-chart …"> … </svg>` block to remove it. Research and
 Teaching share a row of five same-size cards running behind the title, one
