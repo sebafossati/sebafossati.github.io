@@ -10,5 +10,9 @@
     var next = isDark ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     localStorage.setItem("theme", next);
+
+    // Match the phone browser's toolbar to the page background
+    var bar = document.querySelector('meta[name="theme-color"]');
+    if (bar) bar.content = next === "light" ? "#f3f6f9" : "#131f2c";
   });
 })();

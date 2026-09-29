@@ -78,6 +78,18 @@
   color: var(--text);
 }
 
+/* Link chips on those cards: a translucent white fill so they stand out */
+:root[data-theme="light"] :is(.card, .pubs-featured .pub) :is(.pub-links, .course-links) a {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] :is(.card, .pubs-featured .pub) :is(.pub-links, .course-links) a:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.26);
+}
+
 /* ==========================================================================
    Base
    ========================================================================== */
@@ -479,7 +491,7 @@ a:hover {
 .hero h1 {
   margin: 0 0 0.75rem;
   font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-size: clamp(2.4rem, 5vw, 3.5rem); /* same as .page-head h1 */
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.02;
@@ -598,7 +610,7 @@ a:hover {
    ========================================================================== */
 
 .page-head {
-  --title-size: clamp(2.4rem, 5vw, 3.4rem);
+  --title-size: clamp(2.4rem, 5vw, 3.5rem); /* same as .hero h1 */
   position: relative;
   height: 11.25rem; /* 180px, bottom border included */
   overflow: hidden;

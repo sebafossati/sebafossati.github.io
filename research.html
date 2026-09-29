@@ -14,6 +14,9 @@
   <meta property="og:url" content="https://sebafossati.github.io/research.html">
   <meta property="og:image" content="https://sebafossati.github.io/assets/img/portrait.jpg">
   <meta name="twitter:card" content="summary">
+  <!-- Browser toolbar color on phones (navy; light when the visitor picks
+       light mode — see the script below and assets/js/theme.js) -->
+  <meta name="theme-color" content="#131f2c">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +27,7 @@
     (function () {
       var t = localStorage.getItem("theme");
       if (t) document.documentElement.dataset.theme = t;
+      if (t === "light") document.querySelector('meta[name="theme-color"]').content = "#f3f6f9";
     })();
   </script>
 </head>
