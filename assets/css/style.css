@@ -78,14 +78,15 @@
   color: var(--text);
 }
 
-/* Link chips on those cards: a translucent white fill so they stand out */
-:root[data-theme="light"] :is(.card, .pubs-featured .pub) :is(.pub-links, .course-links) a {
+/* Link chips on the cards (both themes): a translucent white fill so they
+   stand out */
+:is(.card, .pubs-featured .pub) :is(.pub-links, .course-links) a {
   border-color: rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.14);
   color: #ffffff;
 }
 
-:root[data-theme="light"] :is(.card, .pubs-featured .pub) :is(.pub-links, .course-links) a:hover {
+:is(.card, .pubs-featured .pub) :is(.pub-links, .course-links) a:hover {
   border-color: #ffffff;
   background: rgba(255, 255, 255, 0.26);
 }
