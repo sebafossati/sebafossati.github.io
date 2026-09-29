@@ -52,8 +52,8 @@ steel and pale blue, with gold for "Submitted" pills and the highlighted
 chart series). Edit `--accent` and `--accent-soft` (or `--gold` /
 `--gold-soft` / `--gold-ink`) at the top of `assets/css/style.css`. There
 are three places: the light block and the two (identical) dark blocks.
-The course cards and the landing page's publication cards stay navy in
-both themes; their colors are the "Navy cards" block just below. Also update the
+The course cards and the landing page's publication cards use a steel-blue panel in
+both themes; their colors are the "Steel-blue cards" block just below. Also update the
 fill color in `assets/img/favicon.svg` if you want the favicon to match.
 
 **Change the fonts** — the site uses Newsreader (serif, for your name, page

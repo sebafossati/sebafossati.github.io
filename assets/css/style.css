@@ -79,20 +79,19 @@
   color-scheme: dark;
 }
 
-/* ---- Navy cards (both themes) -------------------------------------------
-   The course cards and the landing page's publication cards always use the
-   dark palette, so in light mode they read as navy panels on the light
-   page. The variables are redefined on the cards themselves, so everything
+/* ---- Steel-blue cards (both themes) -------------------------------------------
+   The course cards and the landing page's publication cards always use a
+   steel-blue panel (1hand.app's toast color) with light text. The variables are redefined on the cards themselves, so everything
    inside them (text, chips, figures) picks up the dark colors. */
 .card,
 .pubs-featured .pub {
-  --surface: #14202e;
-  --band: #111b27;
+  --surface: #24486b;
+  --band: #1f4060;
   --text: #f2f6fa;
-  --muted: #8fa1b5;
-  --faint: #71879f;
-  --border: #1e2e3f;
-  --border-strong: #2b3f55;
+  --muted: #b4c4d6;
+  --faint: #a9bbcf;
+  --border: #2d5479;
+  --border-strong: #3d6592;
   --accent: #9db9dc;
   --accent-soft: rgba(157, 185, 220, 0.12);
   --gold: #d09a5a;
@@ -763,7 +762,9 @@ a.pub-title:hover {
   color: var(--muted);
 }
 
+/* Journal names: upright, set off by color only */
 .pub-meta em {
+  font-style: normal;
   color: var(--text);
 }
 
