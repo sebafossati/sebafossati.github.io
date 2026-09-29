@@ -40,14 +40,14 @@
 /* ---- Dark theme (follows system setting) -------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d1620;
-    --surface: #14202e;
-    --band: #111b27;
+    --bg: #131f2c;
+    --surface: #1a2838;
+    --band: #172433;
     --text: #f2f6fa;
     --muted: #8fa1b5;
     --faint: #71879f;
-    --border: #1e2e3f;
-    --border-strong: #2b3f55;
+    --border: #243548;
+    --border-strong: #314862;
     --accent: #9db9dc;
     --accent-soft: rgba(157, 185, 220, 0.12);
     --gold: #d09a5a;
@@ -61,14 +61,14 @@
 
 /* ---- Dark theme (forced by the toggle button) ---------------------------- */
 :root[data-theme="dark"] {
-  --bg: #0d1620;
-  --surface: #14202e;
-  --band: #111b27;
+  --bg: #131f2c;
+  --surface: #1a2838;
+  --band: #172433;
   --text: #f2f6fa;
   --muted: #8fa1b5;
   --faint: #71879f;
-  --border: #1e2e3f;
-  --border-strong: #2b3f55;
+  --border: #243548;
+  --border-strong: #314862;
   --accent: #9db9dc;
   --accent-soft: rgba(157, 185, 220, 0.12);
   --gold: #d09a5a;
