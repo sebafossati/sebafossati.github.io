@@ -62,8 +62,9 @@ the accent color automatically. The landing page has an output series with
 shaded recessions along the bottom of its tinted header; delete the
 `<svg class="band-chart …"> … </svg>` block to remove it. Research and
 Teaching share a row of five same-size cards running behind the title, one
-chart per card: a forecast fan chart, an event study, loss functions, a
-scatter plot with a regression line, and the output series. The cards are
+chart per card: a forecast fan chart, the output series, an actual vs.
+counterfactual series around a policy date, loss functions, and a scatter
+plot with a regression line. The cards are
 listed right to left in the HTML: the first sits at the far right and always
 shows, and more appear as the window gets wider, each fainter than the one to
 its right (and fainter still behind the title). Phones show the title only.

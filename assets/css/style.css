@@ -404,17 +404,11 @@ a:hover {
   stroke-width: 1.6;
 }
 
-/* Event study: point estimates and their interval bars */
-.head-card .est {
+/* Actual (solid) vs counterfactual (dashed) series, with a band around
+   the counterfactual */
+.head-card .band {
   fill: var(--accent);
-  opacity: 0.55;
-}
-
-.head-card .ci-bar {
-  stroke: var(--accent);
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  opacity: 0.35;
+  opacity: 0.1;
 }
 
 /* Loss functions: squared (solid), absolute (dashed), asymmetric (dotted) */
