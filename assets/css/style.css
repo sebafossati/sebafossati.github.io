@@ -79,24 +79,43 @@
   color-scheme: dark;
 }
 
-/* ---- Steel-blue cards (both themes) -------------------------------------------
-   The course cards and the landing page's publication cards always use a
-   steel-blue panel (1hand.app's toast color) with light text. The variables are redefined on the cards themselves, so everything
-   inside them (text, chips, figures) picks up the dark colors. */
-.card,
-.pubs-featured .pub {
-  --surface: #24486b;
-  --band: #1f4060;
-  --text: #f2f6fa;
-  --muted: #b4c4d6;
-  --faint: #a9bbcf;
-  --border: #2d5479;
-  --border-strong: #3d6592;
-  --accent: #9db9dc;
-  --accent-soft: rgba(157, 185, 220, 0.12);
-  --gold: #d09a5a;
-  --gold-ink: #d09a5a;
-  --gold-soft: rgba(208, 154, 90, 0.14);
+/* ---- Steel-blue cards (light mode only) -----------------------------------
+   In light mode the course cards and the landing page's publication cards
+   are steel-blue panels with light text; in dark mode they are ordinary
+   navy cards. The variables are redefined on the cards themselves, so
+   everything inside them (text, chips, figures) follows. As with the
+   theme blocks above, the two blocks below must stay identical. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) :is(.card, .pubs-featured .pub) {
+    --surface: #3d6390;
+    --band: #385b85;
+    --text: #ffffff;
+    --muted: #d6e1ee;
+    --faint: #d6e1ee;
+    --border: #4a73a3;
+    --border-strong: #5a83b3;
+    --accent: #cfe0f5;
+    --accent-soft: rgba(255, 255, 255, 0.12);
+    --gold: #e6b273;
+    --gold-ink: #e6b273;
+    --gold-soft: rgba(230, 178, 115, 0.2);
+    color: var(--text);
+  }
+}
+
+:root[data-theme="light"] :is(.card, .pubs-featured .pub) {
+  --surface: #3d6390;
+  --band: #385b85;
+  --text: #ffffff;
+  --muted: #d6e1ee;
+  --faint: #d6e1ee;
+  --border: #4a73a3;
+  --border-strong: #5a83b3;
+  --accent: #cfe0f5;
+  --accent-soft: rgba(255, 255, 255, 0.12);
+  --gold: #e6b273;
+  --gold-ink: #e6b273;
+  --gold-soft: rgba(230, 178, 115, 0.2);
   color: var(--text);
 }
 
