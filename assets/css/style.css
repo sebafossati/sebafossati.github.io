@@ -297,8 +297,8 @@ a:hover {
 /* Research / Teaching: same-size 5:3 cards with no outline, running behind
    the title. The first card in the HTML sits at the far right. The row
    wraps, but only its first line is visible, so a card that doesn't fit the
-   window is hidden whole rather than cut off. Each card is fainter than the
-   one to its right. */
+   window is hidden whole rather than cut off. All cards are drawn at the
+   same strength, except where they sit behind the title. */
 .head-cards {
   --card-w: 13.75rem;
   --card-h: 8.25rem;
@@ -315,10 +315,10 @@ a:hover {
   /* extra fade behind the title (about 4 × its font size wide), easing
      back to full strength just past it */
   -webkit-mask-image: linear-gradient(to right,
-    rgb(0 0 0 / 0.4) calc(var(--title-size) * 4),
+    rgb(0 0 0 / 0.3) calc(var(--title-size) * 4),
     #000 calc(var(--title-size) * 4 + 4rem));
   mask-image: linear-gradient(to right,
-    rgb(0 0 0 / 0.4) calc(var(--title-size) * 4),
+    rgb(0 0 0 / 0.3) calc(var(--title-size) * 4),
     #000 calc(var(--title-size) * 4 + 4rem));
 }
 
@@ -328,11 +328,6 @@ a:hover {
   height: var(--card-h);
   overflow: visible;
 }
-
-.head-card:nth-child(2) { opacity: 0.72; }
-.head-card:nth-child(3) { opacity: 0.5; }
-.head-card:nth-child(4) { opacity: 0.34; }
-.head-card:nth-child(5) { opacity: 0.22; }
 
 /* ---- Chart marks ---------------------------------------------------------- */
 

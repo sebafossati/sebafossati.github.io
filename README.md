@@ -66,8 +66,8 @@ chart per card: a forecast fan chart, the output series, an actual vs.
 counterfactual series around a policy date, loss functions, and a scatter
 plot with a regression line. The cards are
 listed right to left in the HTML: the first sits at the far right and always
-shows, and more appear as the window gets wider, each fainter than the one to
-its right (and fainter still behind the title). Phones show the title only.
+shows, and more appear as the window gets wider. A card behind the title is
+drawn fainter. Phones show the title only.
 To reorder or drop a chart, move or delete its `<svg class="head-card …">`
 block (in both pages).
 
