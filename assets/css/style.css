@@ -312,32 +312,36 @@ a:hover {
   mask-composite: intersect;
 }
 
-/* Research / Teaching: same-size 5:3 cards with no outline, running behind
-   the title. The first card in the HTML sits at the far right. The row
-   wraps, but only its first line is visible, so a card that doesn't fit the
-   window is hidden whole rather than cut off. All cards are drawn at the
-   same strength, except where they sit behind the title. */
+/* Research / Teaching: same-size 5:3 cards with no outline, spread across
+   the full width of the window behind the title. The first card in the
+   HTML sits at the far left. The row wraps, but only its first line is
+   visible, so a narrower window drops cards whole from the right rather
+   than cutting them off; the cards that do fit are spaced evenly edge to
+   edge. All cards are drawn at the same strength, except where they sit
+   behind the title. */
 .head-cards {
   --card-w: 13.75rem;
   --card-h: 8.25rem;
+  /* how far the row reaches past the content column on each side */
+  --bleed: max(0px, (100vw - var(--wrap)) / 2);
   display: flex;
-  flex-flow: row-reverse wrap;
+  flex-flow: row wrap;
+  justify-content: space-between;
   align-content: flex-start;
   gap: 2rem 1.5rem;
   min-width: 0;
   height: var(--card-h);
-  /* reach past the content column to the right edge of the window */
-  margin-right: min(0px, (var(--wrap) - 100vw) / 2);
+  margin: 0 calc(var(--bleed) * -1);
   overflow: hidden;
   pointer-events: none;
   /* extra fade behind the title (about 4 × its font size wide), easing
      back to full strength just past it */
   -webkit-mask-image: linear-gradient(to right,
-    rgb(0 0 0 / 0.3) calc(var(--title-size) * 4),
-    #000 calc(var(--title-size) * 4 + 4rem));
+    rgb(0 0 0 / 0.3) calc(var(--bleed) + var(--title-size) * 4),
+    #000 calc(var(--bleed) + var(--title-size) * 4 + 4rem));
   mask-image: linear-gradient(to right,
-    rgb(0 0 0 / 0.3) calc(var(--title-size) * 4),
-    #000 calc(var(--title-size) * 4 + 4rem));
+    rgb(0 0 0 / 0.3) calc(var(--bleed) + var(--title-size) * 4),
+    #000 calc(var(--bleed) + var(--title-size) * 4 + 4rem));
 }
 
 .head-card {
@@ -456,6 +460,58 @@ a:hover {
 .card-scatter .line {
   stroke: var(--gold);
   opacity: 0.7;
+}
+
+/* Event study: estimates and intervals by period; the reference period
+   (hollow, gold) sits in the middle */
+.card-event .ci-bar {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0.35;
+}
+
+.card-event .est {
+  fill: var(--accent);
+  opacity: 0.55;
+}
+
+.card-event .est-ref {
+  fill: var(--band);
+  stroke: var(--gold);
+  stroke-width: 1.8;
+}
+
+/* Rings: distance bands around a street segment; the stacked fills get
+   darker toward the middle, and the segment's own buffer is dashed gold */
+.card-ring .ring {
+  fill: var(--accent);
+  fill-opacity: 0.07;
+  stroke: var(--accent);
+  stroke-opacity: 0.3;
+  stroke-width: 1;
+}
+
+.card-ring .core {
+  fill: var(--accent);
+  fill-opacity: 0.1;
+  stroke: var(--gold);
+  stroke-width: 1.6;
+  stroke-dasharray: 4 3.5;
+  opacity: 0.8;
+}
+
+.card-ring .street path {
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+.card-ring .street rect {
+  fill: var(--accent);
+  opacity: 0.55;
 }
 
 /* ==========================================================================
@@ -997,15 +1053,15 @@ a.pub-title:hover {
 
 .course-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(0, 1fr) 180px;
   align-items: center;
   gap: 2rem;
 }
 
 .course-fig {
   display: block;
-  width: 220px;
-  height: 110px;
+  width: 180px;
+  height: 132px;
   overflow: visible;
 }
 
@@ -1177,21 +1233,46 @@ a.pub-title:hover {
     animation: fadeIn 1.2s 0.9s ease both;
   }
 
-  /* Research / Teaching cards fade in one after another, right to left.
+  /* Research / Teaching cards fade in one after another, left to right.
      Inside each card the same sequence plays from the card's own start;
-     the forecast fan opens once the history line reaches "now". */
+     the forecast fan opens once the history line reaches "now". Marks
+     with a --i step in one after another (style="--i:2" in the HTML). */
   .head-card {
     --delay: 0.1s;
     animation: fadeIn 0.9s var(--delay) ease both;
   }
 
-  .head-card:nth-child(2) { --delay: 0.25s; }
-  .head-card:nth-child(3) { --delay: 0.4s; }
-  .head-card:nth-child(4) { --delay: 0.55s; }
-  .head-card:nth-child(5) { --delay: 0.7s; }
+  .head-card:nth-child(2)  { --delay: 0.22s; }
+  .head-card:nth-child(3)  { --delay: 0.34s; }
+  .head-card:nth-child(4)  { --delay: 0.46s; }
+  .head-card:nth-child(5)  { --delay: 0.58s; }
+  .head-card:nth-child(6)  { --delay: 0.7s; }
 
   .head-card .draw {
-    animation: draw 1.4s calc(var(--delay) + 0.1s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: draw 1.4s calc(var(--delay) + 0.1s + var(--i, 0) * 0.3s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .head-card .pop {
+    animation: fadeIn 0.5s calc(var(--delay) + 0.3s + var(--i, 0) * 0.12s) ease both;
+  }
+
+  /* rings expand outward from the street segment */
+  .head-card .grow {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: grow 0.9s calc(var(--delay) + 0.3s + var(--i, 0) * 0.15s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* loss functions open up from the flat line, one after another */
+  .head-card .grow-up {
+    transform-box: view-box;
+    transform-origin: 110px 116px;
+    animation: growUp 1.1s calc(var(--delay) + 0.2s + var(--i) * 0.3s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .card-scatter .dots,
+  .card-scatter .ci {
+    animation: fadeIn 1s calc(var(--delay) + 0.2s) ease both;
   }
 
   .head-card .area,
@@ -1212,6 +1293,14 @@ a.pub-title:hover {
 
   @keyframes fadeIn {
     from { opacity: 0; }
+  }
+
+  @keyframes grow {
+    from { opacity: 0; transform: scale(0.6); }
+  }
+
+  @keyframes growUp {
+    from { opacity: 0; transform: scaleY(0.05); }
   }
 }
 

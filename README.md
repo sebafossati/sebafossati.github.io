@@ -67,15 +67,14 @@ Fonts `<link>` in all three HTML files and the `--font-serif` /
 the accent color automatically. The landing page has an output series with
 shaded recessions along the bottom of its tinted header; delete the
 `<svg class="band-chart …"> … </svg>` block to remove it. Research and
-Teaching share a row of five same-size cards running behind the title, one
-chart per card: a forecast fan chart, the output series, an actual vs.
-counterfactual series around a policy date, loss functions, and a scatter
-plot with a regression line. The cards are
-listed right to left in the HTML: the first sits at the far right and always
-shows, and more appear as the window gets wider. A card behind the title is
-drawn fainter. Phones show the title only.
-To reorder or drop a chart, move or delete its `<svg class="head-card …">`
-block (in both pages).
+Teaching share a row of six same-size cards running behind the title, one
+chart per card. Left to right: a scatter plot with a regression line, loss
+functions, a forecast fan chart, an actual vs. counterfactual series around
+a policy date, an event study, and distance rings around a street segment. The row spans the full width of the window; the cards
+are listed left to right in the HTML, so the scatter plot (first) always
+shows and narrower windows drop cards from the right. A card behind the title
+is drawn fainter. Phones show the title only. To reorder or drop a chart,
+move or delete its `<svg class="head-card …">` block (in both pages).
 
 **Nav / footer** — these are duplicated across the three HTML pages, so make
 the same edit in all three files.
