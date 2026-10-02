@@ -312,13 +312,14 @@ a:hover {
   mask-composite: intersect;
 }
 
-/* Research / Teaching: same-size 5:3 cards with no outline, spread across
-   the full width of the window behind the title. The first card in the
-   HTML sits at the far left. The row wraps, but only its first line is
-   visible, so a narrower window drops cards whole from the right rather
-   than cutting them off; the cards that do fit are spaced evenly edge to
-   edge. All cards are drawn at the same strength, except where they sit
-   behind the title. */
+/* Research / Teaching: same-size 5:3 cards with no outline, in a strip
+   behind the title. The gap between cards is fixed and the strip is
+   centered on the content column; the row is as wide as the window, so
+   any leftover width is split evenly between the two sides until there
+   is room for one more card. The row wraps, but only its first line is
+   visible, so a narrower window drops cards whole (the last ones in the
+   HTML first) rather than cutting them off. All cards are drawn at the
+   same strength, except where they sit behind the title. */
 .head-cards {
   --card-w: 13.75rem;
   --card-h: 8.25rem;
@@ -326,7 +327,7 @@ a:hover {
   --bleed: max(0px, (100vw - var(--wrap)) / 2);
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-content: flex-start;
   gap: 2rem 1.5rem;
   min-width: 0;
@@ -1373,13 +1374,16 @@ a.pub-title:hover {
     height: 150px;
   }
 
-  /* On phones the header is just the title, no charts */
+  /* On phones the header is shorter, so the cards and the gap between
+     them shrink with it (same 5:3 shape, same centered strip) */
   .page-head {
     height: 7.5rem; /* 120px, bottom border included */
   }
 
   .head-cards {
-    display: none;
+    --card-w: 9rem;
+    --card-h: 5.4rem;
+    column-gap: 1rem;
   }
 
   .section {
