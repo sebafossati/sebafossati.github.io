@@ -43,6 +43,19 @@
            (subject === "all" || pub.dataset.subject === subject);
   }
 
+  // On phones each row scrolls sideways; bring the chosen button into view
+  function reveal(button) {
+    var row = button.parentNode;
+    if (row.scrollWidth <= row.clientWidth) return;
+    var edge = 16;
+    var r = row.getBoundingClientRect();
+    var b = button.getBoundingClientRect();
+    var shift = 0;
+    if (b.left < r.left + edge) shift = b.left - r.left - edge;
+    else if (b.right > r.right - edge) shift = b.right - r.right + edge;
+    if (shift) row.scrollLeft += shift;
+  }
+
   function apply() {
     var shown = 0;
 
@@ -70,6 +83,7 @@
       button.querySelector(".filter-count").textContent = n;
       button.setAttribute("aria-pressed", pressed ? "true" : "false");
       button.disabled = n === 0 && !pressed;
+      if (pressed) reveal(button);
     });
 
     if (empty) empty.hidden = shown > 0;
@@ -104,7 +118,7 @@
     apply();
   });
 
+  bar.hidden = false;
   readAddress();
   apply();
-  bar.hidden = false;
 })();

@@ -962,9 +962,12 @@ a.pub-title:hover {
   transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
-.filter:hover {
-  border-color: var(--chip-hover-border);
-  background: var(--chip-bg);
+/* Only on devices that can hover, so a tapped chip doesn't stay lit */
+@media (hover: hover) {
+  .filter:hover {
+    border-color: var(--chip-hover-border);
+    background: var(--chip-bg);
+  }
 }
 
 .filter[aria-pressed="true"] {
@@ -1523,7 +1526,30 @@ a.pub-title:hover {
 
   .filter-row {
     grid-template-columns: 1fr;
-    row-gap: 0.5rem;
+    row-gap: 0.6rem;
+  }
+
+  /* Each row becomes one line of chips that scrolls sideways, running
+     out to the screen edge so a cut-off chip shows there are more */
+  .filter-chips {
+    flex-wrap: nowrap;
+    margin: 0 -1rem;
+    padding: 0.2rem 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 1rem;
+    scrollbar-width: none;
+  }
+
+  .filter-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter {
+    flex: none;
+    padding: 0.55rem 1rem;
+    white-space: nowrap;
+    touch-action: manipulation;
   }
 
   .pubs-featured {
