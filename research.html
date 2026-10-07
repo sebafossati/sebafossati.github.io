@@ -188,16 +188,55 @@
     <div class="wrap">
 
     <!-- ==================================================================
+         FILTERS — two rows of buttons that show or hide papers in the
+         lists below (assets/js/filters.js). Each button's data-value is
+         matched against the data-status / data-subject of every paper.
+         The paper counts are filled in automatically. Without JavaScript
+         the buttons stay hidden and the page shows every paper.
+
+         A filtered view can be linked to directly, e.g.
+         research.html#crime or research.html#time-series+publications
+
+         TO ADD A SUBJECT: copy a button in the first row, give it a new
+         data-value, and use that value as a paper's data-subject. Add its
+         short name to the list at the top of assets/js/filters.js.
+         ================================================================== -->
+    <div class="filters" hidden>
+      <div class="filter-row" role="group" aria-label="Filter papers by subject">
+        <span class="filter-label">Subject</span>
+        <div class="filter-chips">
+          <button class="filter" type="button" data-filter="subject" data-value="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="subject" data-value="time-series" aria-pressed="false">Time series &amp; forecasting</button>
+          <button class="filter" type="button" data-filter="subject" data-value="crime" aria-pressed="false">Crime</button>
+          <button class="filter" type="button" data-filter="subject" data-value="labour" aria-pressed="false">Labour</button>
+          <button class="filter" type="button" data-filter="subject" data-value="other" aria-pressed="false">Other</button>
+        </div>
+      </div>
+      <div class="filter-row" role="group" aria-label="Filter papers by status">
+        <span class="filter-label">Status</span>
+        <div class="filter-chips">
+          <button class="filter" type="button" data-filter="status" data-value="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="status" data-value="publications" aria-pressed="false">Publications</button>
+          <button class="filter" type="button" data-filter="status" data-value="working-papers" aria-pressed="false">Working papers</button>
+          <button class="filter" type="button" data-filter="status" data-value="in-progress" aria-pressed="false">In progress</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================================
          WORKING PAPERS / IN PROGRESS
 
-         TO ADD A PAPER: copy an entire <li class="pub"> … </li> block and
-         edit the text. Delete any link you don't need.
+         TO ADD A PAPER: copy an entire <li class="pub" …> … </li> block
+         and edit the text. Delete any link you don't need. Then set the
+         two attributes the filters use:
+           data-status   publications | working-papers | in-progress
+           data-subject  time-series | crime | labour | other
          ================================================================== -->
     <section class="section">
       <h2>Working papers &amp; in progress</h2>
       <ul class="pubs">
 
-        <li class="pub">
+        <li class="pub" data-status="working-papers" data-subject="other">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6907040" target="_blank" rel="noopener">A Man Down: The Cost of Punishment in the FIFA World Cup</a>
@@ -208,7 +247,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="working-papers" data-subject="time-series">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <span class="pub-title">Nowcasting in a Data-Poor Environment: A Monthly Real GDP Index for the Province of Alberta</span>
@@ -216,7 +255,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="working-papers" data-subject="crime">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7233098" target="_blank" rel="noopener">Eyes on the Street, Threshold Dynamics, and Property Crime</a>
@@ -228,7 +267,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="working-papers" data-subject="crime">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7405561" target="_blank" rel="noopener">Do Opportunity Effects Travel? Replication of Quasi-Experimental Evidence in Two Latin American Cities</a>
@@ -240,7 +279,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="in-progress" data-subject="time-series">
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Unfolding Regional Business Cycles: Factor Models for Three-Way State-Level Tensors</span>
@@ -248,7 +287,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="in-progress" data-subject="labour">
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Women on the Margins: Gendered Effects of Large Minimum Wage Changes in Canada</span>
@@ -256,7 +295,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="in-progress" data-subject="time-series">
           <div class="pub-year">—</div>
           <div class="pub-body">
             <span class="pub-title">Oil Price Shocks and Real-Time US Output Growth Density Forecasts</span>
@@ -264,7 +303,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="working-papers" data-subject="time-series">
           <div class="pub-year">2018</div>
           <div class="pub-body">
             <span class="pub-title">A Test for State-Dependent Predictive Ability based on a Markov-Switching Framework</span>
@@ -286,7 +325,7 @@
       <h2>Publications</h2>
       <ul class="pubs">
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1007/s00181-026-02971-w" target="_blank" rel="noopener">Exchange Rate Predictability and Financial Conditions</a>
@@ -298,7 +337,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="crime">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1186/s40163-026-00277-x" target="_blank" rel="noopener">Opportunity in Transit: Bus Stop Crowding and Crime</a>
@@ -310,7 +349,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="crime">
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1007/s10940-025-09620-y" target="_blank" rel="noopener">When 'Eyes on the Street' Are Not Enough: Insights from Itinerant Street Markets</a>
@@ -322,7 +361,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="crime">
           <div class="pub-year">2024</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1186/s40163-024-00220-y" target="_blank" rel="noopener">The Heterogeneous Effects of COVID-19 Lockdowns on Crime across the World</a>
@@ -334,7 +373,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="labour">
           <div class="pub-year">2024</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1177/00197939231213064" target="_blank" rel="noopener">First to $15: Alberta's Minimum Wage Policy on Employment by Wages, Ages, and Places</a>
@@ -346,7 +385,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="crime">
           <div class="pub-year">2022</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1111/jels.12336" target="_blank" rel="noopener">Stay at Home if You Can: COVID-19 Stay-at-Home Guidelines and Local Crime</a>
@@ -359,7 +398,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2017</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1111/coep.12178" target="_blank" rel="noopener">Output Growth and Structural Reform in Latin America: Have Business Cycles Changed?</a>
@@ -371,7 +410,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2016</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1515/snde-2015-0037" target="_blank" rel="noopener">Dating US Business Cycles with Macro Factors</a>
@@ -384,7 +423,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2015</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1080/00036846.2015.1058904" target="_blank" rel="noopener">Forecasting US Recessions with Macro Factors</a>
@@ -397,7 +436,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2013</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1111/jtsa.12020" target="_blank" rel="noopener">Unit Root Testing with Stationary Covariates and a Structural Break in the Trend Function</a>
@@ -410,7 +449,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2012</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1016/j.csda.2011.05.019" target="_blank" rel="noopener">Covariate Unit Root Tests with Good Size and Power</a>
@@ -423,7 +462,7 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" data-status="publications" data-subject="time-series">
           <div class="pub-year">2007</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1080/15140326.2007.12040482" target="_blank" rel="noopener">Regional and International Market Integration of a Small Open Economy</a>
@@ -436,6 +475,9 @@
 
       </ul>
     </section>
+
+    <!-- Shown only when no paper matches the chosen filters -->
+    <p class="filter-empty" hidden>No papers match these filters.</p>
 
     </div>
 
@@ -452,5 +494,6 @@
   </footer>
 
   <script src="assets/js/theme.js"></script>
+  <script src="assets/js/filters.js"></script>
 </body>
 </html>

@@ -818,6 +818,19 @@ a.pub-title:hover {
   color: var(--accent);
 }
 
+/* Subject under the year ("Crime", "Labour", …), added by
+   assets/js/filters.js from each paper's data-subject */
+.pub-subject {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 /* Status pill for working papers: <span class="status">Submitted</span>
    (gold). Add "status-wip" for work in progress (neutral color). */
 .status {
@@ -893,6 +906,99 @@ a.pub-title:hover {
 .course-links a:hover {
   border-color: var(--chip-hover-border);
   background: var(--chip-hover-bg);
+}
+
+/* Filters above the lists on the Research page: two rows of pill buttons
+   (subject, status), labels lined up with the section labels below. The
+   chosen button in each row is filled; a button that would show nothing
+   is dimmed. Papers and sections that don't match are hidden, and the
+   first paper still showing in a list is marked .pub-first so it loses
+   its top rule. */
+.filters {
+  display: grid;
+  gap: 0.9rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.filters[hidden],
+.pub[hidden],
+.section[hidden] {
+  display: none;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: var(--label-col) minmax(0, 1fr);
+  column-gap: 3rem;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.filter:hover {
+  border-color: var(--chip-hover-border);
+  background: var(--chip-bg);
+}
+
+.filter[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.filter:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+.filter-count {
+  margin-left: 0.35rem;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.65;
+}
+
+.pub.pub-first {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.section[hidden] + .section {
+  border-top: 0;
+}
+
+.filter-empty {
+  margin: 0;
+  padding: 4rem 0;
+  color: var(--muted);
 }
 
 /* Selected publications on the landing page: a grid of cards */
@@ -1314,7 +1420,8 @@ a.pub-title:hover {
     --label-col: 9rem;
   }
 
-  .section {
+  .section,
+  .filter-row {
     column-gap: 2rem;
   }
 
@@ -1403,6 +1510,20 @@ a.pub-title:hover {
   .pub {
     grid-template-columns: 1fr;
     gap: 0.3rem;
+  }
+
+  .pub-subject {
+    display: inline;
+    margin: 0 0 0 0.6rem;
+  }
+
+  .filters {
+    padding: 1.75rem 0;
+  }
+
+  .filter-row {
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
   }
 
   .pubs-featured {
