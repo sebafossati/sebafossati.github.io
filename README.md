@@ -22,8 +22,8 @@ that's the whole workflow.
 **Add a publication** — in `index.html` (selected) or `research.html` (full
 list), copy an entire `<li class="pub"> … </li>` block, paste it where you
 want it (newest first), and edit the year, title, coauthors, journal, and
-links. Delete any link (`Published version` / `Working paper` / `Code`) you
-don't need. On the research page you can optionally include a
+links. Delete any link (`Journal` / `Working paper` / `Online appendix` /
+`Data & code`) you don't need. On the research page you can optionally include a
 `<details class="abstract">` block for an expandable abstract.
 
 The small icon on each link button is chosen automatically from the link
