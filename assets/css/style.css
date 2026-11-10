@@ -2,8 +2,8 @@
    style.css — all styling for the site.
 
    Colors follow the 1hand.app palette: navy, steel/pale blue, and one
-   gold highlight. Dark is the default; the toggle in the header switches
-   to light. To change the look, edit the variables in the blocks below:
+   gold highlight. The site follows the visitor's device setting (light or
+   dark) until they use the toggle in the header. To change the look, edit the variables in the blocks below:
    the first "theme" block is dark mode, the second is light mode. Fonts
    are set in the "Type" block.
    ========================================================================== */
@@ -17,7 +17,7 @@
   --label-col: 12rem;
 }
 
-/* ---- Dark theme (default) ------------------------------------------------ */
+/* ---- Dark theme (also used when JavaScript is off) ------------------------- */
 :root {
   --bg: #131f2c;
   --surface: #1a2838;
@@ -41,7 +41,7 @@
   color-scheme: dark;
 }
 
-/* ---- Light theme (chosen with the toggle button) -------------------------- */
+/* ---- Light theme ---------------------------------------------------------- */
 :root[data-theme="light"] {
   --bg: #f3f6f9;
   --surface: #ffffff;
@@ -63,31 +63,6 @@
   --chip-hover-border: #245fa8;
   --shadow: 0 1px 2px rgba(13, 22, 32, 0.05), 0 12px 32px -8px rgba(13, 22, 32, 0.12);
   color-scheme: light;
-}
-
-/* ---- Steel-blue cards (light mode only) -----------------------------------
-   In light mode the course cards and the landing page's publication cards
-   are steel-blue panels with light text; in dark mode they are ordinary
-   navy cards. The variables are redefined on the cards themselves, so
-   everything inside them (text, chips, figures) follows. */
-:root[data-theme="light"] :is(.card, .pubs-featured .pub) {
-  --surface: #3d6390;
-  --band: #385b85;
-  --text: #ffffff;
-  --muted: #d6e1ee;
-  --faint: #d6e1ee;
-  --border: #4a73a3;
-  --border-strong: #5a83b3;
-  --accent: #cfe0f5;
-  --accent-soft: rgba(255, 255, 255, 0.12);
-  --gold: #e6b273;
-  --gold-ink: #e6b273;
-  --gold-soft: rgba(230, 178, 115, 0.2);
-  --chip-bg: rgba(255, 255, 255, 0.14);
-  --chip-border: rgba(255, 255, 255, 0.3);
-  --chip-hover-bg: rgba(255, 255, 255, 0.26);
-  --chip-hover-border: #ffffff;
-  color: var(--text);
 }
 
 /* ==========================================================================
@@ -273,7 +248,7 @@ a:hover {
   height: 1rem;
 }
 
-/* Show sun in dark mode (the default), moon in light mode */
+/* Show sun in dark mode, moon in light mode */
 .icon-moon { display: none; }
 .icon-sun  { display: block; }
 
@@ -1049,8 +1024,14 @@ a.pub-title:hover {
 }
 
 .pubs-featured .pub-links {
+  gap: 0.4rem;
   margin-top: auto;
   padding-top: 1.1rem;
+}
+
+/* slightly tighter chips, so three fit on one row of a card */
+.pubs-featured .pub-links a {
+  padding-inline: 0.65rem;
 }
 
 /* Expandable abstract (used on the research page) */
@@ -1453,35 +1434,73 @@ a.pub-title:hover {
     padding: 0.4rem 0.6rem;
   }
 
+  /* Compact hero: department line on top, then the photo with the name
+     and title beside it, then the buttons. .hero-text is dissolved
+     (display: contents) so its children can be placed on the hero grid. */
   .hero {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 3rem 0 6rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0 1.1rem;
+    padding: 2.25rem 0 4.25rem;
   }
 
-  .hero .lede {
-    font-size: 1.1rem;
+  .hero-text {
+    display: contents;
+  }
+
+  .eyebrow {
+    grid-area: 1 / 1 / auto / -1;
+    margin-bottom: 1.25rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
   }
 
   .portrait-wrap {
-    order: -1;
-    justify-self: start;
-    margin: 0 10px 10px 0;
+    grid-area: 2 / 1 / span 2 / auto;
+    margin: 0 7px 7px 0;
   }
 
   .portrait-wrap::before {
-    inset: 10px -10px -10px 10px;
-    border-radius: 22px;
+    inset: 7px -7px -7px 7px;
+    border-radius: 18px;
   }
 
   .portrait {
-    width: 120px;
-    height: 120px;
-    border-radius: 22px;
+    width: 92px;
+    height: 92px;
+    border-radius: 18px;
+  }
+
+  .hero h1 {
+    grid-area: 2 / 2;
+    align-self: end;
+    margin-bottom: 0.45rem;
+    font-size: 2.2rem;
+  }
+
+  .hero .lede {
+    grid-area: 3 / 2;
+    align-self: start;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .hero-actions {
+    grid-area: 4 / 1 / auto / -1;
+    margin-top: 1.6rem;
+  }
+
+  /* a touch smaller, so all seven icons fit on one row of a narrow phone */
+  .socials {
+    gap: 0.4rem;
+  }
+
+  .socials a {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .hero-chart {
-    height: 150px;
+    height: 110px;
   }
 
   /* On phones the header is shorter, so the cards and the gap between

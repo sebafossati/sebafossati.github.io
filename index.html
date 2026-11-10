@@ -24,11 +24,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Applies the saved light/dark choice before the page paints (dark is the default) -->
+  <!-- Sets light or dark before the page paints: the visitor's saved choice
+       if they have used the toggle, otherwise their device's setting -->
   <script>
     (function () {
-      var t = localStorage.getItem("theme");
-      if (t) document.documentElement.dataset.theme = t;
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") {
+        t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      document.documentElement.dataset.theme = t;
       if (t === "light") document.querySelector('meta[name="theme-color"]').content = "#f3f6f9";
     })();
   </script>
@@ -176,7 +181,7 @@
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1007/s00181-026-02971-w" target="_blank" rel="noopener">Exchange Rate Predictability and Financial Conditions</a>
-            <p class="pub-meta">with X. Lu · <em>Empirical Economics</em>, 2026</p>
+            <p class="pub-meta">with X. Lu · <em>Empirical Economics</em></p>
             <p class="pub-links">
               <a href="https://doi.org/10.1007/s00181-026-02971-w" target="_blank" rel="noopener">Journal</a>
               <a href="https://sites.ualberta.ca/~econwps/2025/wp2025-06.pdf" target="_blank" rel="noopener">Working paper</a>
@@ -188,7 +193,7 @@
           <div class="pub-year">2026</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1007/s10940-025-09620-y" target="_blank" rel="noopener">When 'Eyes on the Street' Are Not Enough: Insights from Itinerant Street Markets</a>
-            <p class="pub-meta">with C. Díaz and N. Trajtenberg · <em>Journal of Quantitative Criminology</em>, 2026</p>
+            <p class="pub-meta">with C. Díaz and N. Trajtenberg · <em>Journal of Quantitative Criminology</em></p>
             <p class="pub-links">
               <a href="https://doi.org/10.1007/s10940-025-09620-y" target="_blank" rel="noopener">Journal</a>
               <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5048885" target="_blank" rel="noopener">Working paper</a>
@@ -200,7 +205,7 @@
           <div class="pub-year">2024</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1177/00197939231213064" target="_blank" rel="noopener">First to $15: Alberta's Minimum Wage Policy on Employment by Wages, Ages, and Places</a>
-            <p class="pub-meta">with J. Marchand · <em>ILR Review</em>, 2024</p>
+            <p class="pub-meta">with J. Marchand · <em>ILR Review</em></p>
             <p class="pub-links">
               <a href="https://doi.org/10.1177/00197939231213064" target="_blank" rel="noopener">Journal</a>
               <a href="https://ideas.repec.org/p/ris/albaec/2020_015.html" target="_blank" rel="noopener">Working paper</a>
@@ -212,7 +217,7 @@
           <div class="pub-year">2016</div>
           <div class="pub-body">
             <a class="pub-title" href="https://doi.org/10.1515/snde-2015-0037" target="_blank" rel="noopener">Dating US Business Cycles with Macro Factors</a>
-            <p class="pub-meta"><em>Studies in Nonlinear Dynamics &amp; Econometrics</em>, 2016</p>
+            <p class="pub-meta"><em>Studies in Nonlinear Dynamics &amp; Econometrics</em></p>
             <p class="pub-links">
               <a href="https://doi.org/10.1515/snde-2015-0037" target="_blank" rel="noopener">Journal</a>
               <a href="assets/papers/factor_probit.pdf" target="_blank" rel="noopener">Working paper</a>
