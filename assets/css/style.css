@@ -23,8 +23,8 @@
   --surface: #1a2838;
   --band: #172433;
   --text: #f2f6fa;
-  --muted: #8fa1b5;
-  --faint: #71879f;
+  --muted: #a3b3c5;
+  --faint: #8a9cb1;
   --border: #243548;
   --border-strong: #314862;
   --accent: #9db9dc;
@@ -48,7 +48,7 @@
   --band: #e8eef4;
   --text: #0d1620;
   --muted: #465a70;
-  --faint: #5f7287;
+  --faint: #53667b;
   --border: #dae2ea;
   --border-strong: #c3cfdb;
   --accent: #245fa8;
@@ -798,7 +798,7 @@ a.pub-title:hover {
 .pub-subject {
   display: block;
   margin-top: 0.35rem;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: 0.06em;
