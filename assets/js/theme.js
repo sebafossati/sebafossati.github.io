@@ -1,18 +1,43 @@
-// Light/dark toggle. The site is dark by default; clicking the button in
-// the header switches to light and back, and the choice is remembered
-// (localStorage) across visits.
+// Light/dark theme. On a first visit the site follows the visitor's device
+// setting (light or dark). Clicking the button in the header switches
+// theme, and that choice is remembered (localStorage) across visits.
+// The theme is first applied by the small script in each page's <head>,
+// so the page never flashes the wrong colors.
 (function () {
-  var button = document.querySelector(".theme-toggle");
-  if (!button) return;
+  var root = document.documentElement;
 
-  button.addEventListener("click", function () {
-    var isDark = document.documentElement.dataset.theme !== "light";
-    var next = isDark ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("theme", next);
-
+  function apply(theme) {
+    root.dataset.theme = theme;
     // Match the phone browser's toolbar to the page background
     var bar = document.querySelector('meta[name="theme-color"]');
-    if (bar) bar.content = next === "light" ? "#f3f6f9" : "#131f2c";
-  });
+    if (bar) bar.content = theme === "light" ? "#f3f6f9" : "#131f2c";
+  }
+
+  function saved() {
+    try {
+      return localStorage.getItem("theme");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  var button = document.querySelector(".theme-toggle");
+  if (button) {
+    button.addEventListener("click", function () {
+      var next = root.dataset.theme === "light" ? "dark" : "light";
+      apply(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch (e) {}
+    });
+  }
+
+  // Until the visitor picks a theme with the button, keep following the
+  // device setting if it changes (e.g. automatic dark mode at night)
+  var prefersLight = window.matchMedia("(prefers-color-scheme: light)");
+  if (prefersLight.addEventListener) {
+    prefersLight.addEventListener("change", function (e) {
+      if (!saved()) apply(e.matches ? "light" : "dark");
+    });
+  }
 })();
