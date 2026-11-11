@@ -1,8 +1,9 @@
 /* ==========================================================================
    style.css — all styling for the site.
 
-   Colors follow the 1hand.app palette: navy, steel/pale blue, and one
-   gold highlight. The site follows the visitor's device setting (light or
+   Colors: a deep navy-black base, a bright blue accent, gold for
+   highlights and labels, and teal for work in progress. Small labels,
+   years and course codes are set in JetBrains Mono. The site follows the visitor's device setting (light or
    dark) until they use the toggle in the header. To change the look, edit the variables in the blocks below:
    the first "theme" block is dark mode, the second is light mode. Fonts
    are set in the "Type" block.
@@ -12,6 +13,7 @@
 :root {
   --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --radius: 16px;
   --wrap: 70rem;
   --label-col: 12rem;
@@ -19,25 +21,29 @@
 
 /* ---- Dark theme (also used when JavaScript is off) ------------------------- */
 :root {
-  --bg: #131f2c;
-  --surface: #1a2838;
-  --band: #172433;
-  --text: #f2f6fa;
-  --muted: #a3b3c5;
-  --faint: #8a9cb1;
-  --border: #243548;
-  --border-strong: #314862;
-  --accent: #9db9dc;
-  --accent-soft: rgba(157, 185, 220, 0.12);
-  --gold: #d09a5a;
-  --gold-ink: #d09a5a;
-  --gold-soft: rgba(208, 154, 90, 0.14);
-  --chart-band: rgba(157, 185, 220, 0.05);
-  --chip-bg: rgba(255, 255, 255, 0.14);
-  --chip-border: rgba(255, 255, 255, 0.3);
-  --chip-hover-bg: rgba(255, 255, 255, 0.26);
+  --bg: #0a111a;
+  --surface: #111b27;
+  --band: #0d1621;
+  --text: #eef3f8;
+  --muted: #a9b7c8;
+  --faint: #8495aa;
+  --border: rgba(214, 224, 245, 0.09);
+  --border-strong: rgba(214, 224, 245, 0.2);
+  --accent: #82b1f5;
+  --accent-soft: rgba(130, 177, 245, 0.13);
+  --gold: #f2b660;
+  --gold-ink: #f2b660;
+  --gold-soft: rgba(242, 182, 96, 0.13);
+  --teal: #4fd1c5;
+  --teal-ink: #4fd1c5;
+  --teal-soft: rgba(79, 209, 197, 0.13);
+  --glow: rgba(130, 177, 245, 0.1);
+  --chart-band: rgba(130, 177, 245, 0.05);
+  --chip-bg: rgba(255, 255, 255, 0.08);
+  --chip-border: rgba(255, 255, 255, 0.2);
+  --chip-hover-bg: rgba(255, 255, 255, 0.16);
   --chip-hover-border: #ffffff;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.55);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -10px rgba(0, 0, 0, 0.7);
   color-scheme: dark;
 }
 
@@ -51,11 +57,15 @@
   --faint: #53667b;
   --border: #dae2ea;
   --border-strong: #c3cfdb;
-  --accent: #245fa8;
-  --accent-soft: rgba(36, 95, 168, 0.1);
-  --gold: #c08545;
-  --gold-ink: #8a5a20;
-  --gold-soft: rgba(208, 154, 90, 0.16);
+  --accent: #1f5fc4;
+  --accent-soft: rgba(31, 95, 196, 0.1);
+  --gold: #d68a26;
+  --gold-ink: #8f5a0c;
+  --gold-soft: rgba(214, 138, 38, 0.14);
+  --teal: #13a094;
+  --teal-ink: #0b7168;
+  --teal-soft: rgba(19, 160, 148, 0.12);
+  --glow: rgba(31, 95, 196, 0.07);
   --chart-band: rgba(13, 22, 32, 0.04);
   --chip-bg: rgba(36, 95, 168, 0.1);
   --chip-border: rgba(36, 95, 168, 0.35);
@@ -498,7 +508,9 @@ a:hover {
 .intro-band {
   position: relative;
   overflow: hidden;
-  background: var(--band);
+  background:
+    radial-gradient(60rem 30rem at 15% 0%, var(--glow), transparent 70%),
+    var(--band);
   border-bottom: 1px solid var(--border);
 }
 
@@ -513,11 +525,12 @@ a:hover {
 
 .eyebrow {
   margin: 0 0 0.85rem;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold-ink);
 }
 
 .hero h1 {
@@ -531,8 +544,11 @@ a:hover {
 
 .hero .lede {
   margin: 0;
-  font-size: 1.12rem;
-  color: var(--muted);
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--gold-ink);
 }
 
 .hero-actions {
@@ -553,9 +569,9 @@ a:hover {
   content: "";
   position: absolute;
   inset: 14px -14px -14px 14px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--gold);
   border-radius: 24px;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .portrait {
@@ -593,7 +609,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: var(--accent);
+  background: var(--gold);
   color: var(--bg);
   transform: translateY(-1px);
 }
@@ -702,12 +718,13 @@ a:hover {
   align-items: center;
   gap: 0.65rem;
   margin: 0.3rem 0 0;
-  font-size: 0.76rem;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent);
 }
 
 .section > h2::before {
@@ -716,7 +733,7 @@ a:hover {
   width: 1.25rem;
   height: 2px;
   border-radius: 2px;
-  background: var(--accent);
+  background: var(--gold);
 }
 
 .section > p {
@@ -752,8 +769,9 @@ a:hover {
 }
 
 .pub-year {
-  padding-top: 0.2rem;
-  font-size: 0.85rem;
+  padding-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   color: var(--faint);
@@ -811,18 +829,21 @@ a.pub-title:hover {
 .status {
   display: inline-block;
   padding: 0.05rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
   border-radius: 999px;
   background: var(--gold-soft);
   color: var(--gold-ink);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  vertical-align: 0.05em;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  vertical-align: 0.1em;
 }
 
 .status-wip {
-  background: color-mix(in srgb, var(--faint) 14%, transparent);
-  color: var(--muted);
+  border-color: color-mix(in srgb, var(--teal) 40%, transparent);
+  background: var(--teal-soft);
+  color: var(--teal-ink);
 }
 
 /* Link chips under each paper (and under each course, e.g. a syllabus):
@@ -910,11 +931,12 @@ a.pub-title:hover {
 }
 
 .filter-label {
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent);
 }
 
 .filter-chips {
@@ -999,7 +1021,7 @@ a.pub-title:hover {
 }
 
 .pubs-featured .pub:hover {
-  border-color: var(--border-strong);
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
@@ -1007,10 +1029,9 @@ a.pub-title:hover {
 .pubs-featured .pub-year {
   margin-bottom: 0.6rem;
   padding: 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--accent);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-ink);
 }
 
 .pubs-featured .pub-body {
@@ -1103,18 +1124,19 @@ a.pub-title:hover {
 }
 
 .card:hover {
-  border-color: var(--border-strong);
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
 
 .card .course-code {
   margin: 0 0 0.6rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold-ink);
 }
 
 .card h3 {
