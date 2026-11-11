@@ -14,7 +14,7 @@ that's the whole workflow.
 | `assets/papers/` | Working-paper PDFs, appendices, and replication code |
 | `assets/css/style.css` | All styling; colors/fonts are variables at the top |
 | `assets/img/favicon.svg` | Browser-tab icon (steel-blue tile with an "S") |
-| `assets/js/theme.js` | Light/dark theme: follows the visitor's device setting until they use the toggle |
+| `assets/js/theme.js` | Light/dark theme: dark by default; the header toggle switches it and the choice is remembered |
 | `assets/img/portrait.jpg` | Your photo (pulled from your old site) |
 
 ## Common updates

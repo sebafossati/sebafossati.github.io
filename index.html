@@ -25,13 +25,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400..600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Sets light or dark before the page paints: the visitor's saved choice
-       if they have used the toggle, otherwise their device's setting -->
+       if they have used the toggle, otherwise dark -->
   <script>
     (function () {
       var t = null;
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") {
-        t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        t = "dark";
       }
       document.documentElement.dataset.theme = t;
       if (t === "light") document.querySelector('meta[name="theme-color"]').content = "#f3f6f9";
@@ -221,7 +221,6 @@
             <p class="pub-links">
               <a href="https://doi.org/10.1515/snde-2015-0037" target="_blank" rel="noopener">Journal</a>
               <a href="assets/papers/factor_probit.pdf" target="_blank" rel="noopener">Working paper</a>
-              <a href="assets/papers/factor_probit_matlab.zip">Data &amp; code</a>
             </p>
           </div>
         </li>

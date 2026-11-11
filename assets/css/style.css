@@ -3,9 +3,10 @@
 
    Colors: a deep navy-black base, a bright blue accent, gold for
    highlights and labels, and teal for work in progress. Small labels,
-   years and course codes are set in JetBrains Mono. The site follows the visitor's device setting (light or
-   dark) until they use the toggle in the header. To change the look, edit the variables in the blocks below:
-   the first "theme" block is dark mode, the second is light mode. Fonts
+   years and course codes are set in JetBrains Mono. The site opens in
+   dark mode; the toggle in the header switches to light. To change the
+   look, edit the variables in the blocks below: the first "theme" block
+   is dark mode, the second is light mode. Fonts
    are set in the "Type" block.
    ========================================================================== */
 
@@ -544,11 +545,9 @@ a:hover {
 
 .hero .lede {
   margin: 0;
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  font-style: italic;
-  line-height: 1.3;
-  color: var(--gold-ink);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--muted);
 }
 
 .hero-actions {
