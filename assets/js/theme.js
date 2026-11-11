@@ -10,7 +10,7 @@
     root.dataset.theme = theme;
     // Match the phone browser's toolbar to the page background
     var bar = document.querySelector('meta[name="theme-color"]');
-    if (bar) bar.content = theme === "light" ? "#f3f6f9" : "#0c0f14";
+    if (bar) bar.content = theme === "light" ? "#f3f6f9" : "#161c23";
   }
 
   var button = document.querySelector(".theme-toggle");

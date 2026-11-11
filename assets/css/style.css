@@ -1,7 +1,7 @@
 /* ==========================================================================
    style.css — all styling for the site.
 
-   Colors: a near-black base with a slight blue cast, a bright blue accent, gold for
+   Colors: a dark slate base, a bright blue accent, gold for
    highlights and labels, and teal for work in progress. Small labels,
    years and course codes are set in JetBrains Mono. The site opens in
    dark mode; the toggle in the header switches to light. To change the
@@ -22,9 +22,9 @@
 
 /* ---- Dark theme (also used when JavaScript is off) ------------------------- */
 :root {
-  --bg: #0c0f14;
-  --surface: #14181f;
-  --band: #101319;
+  --bg: #161c23;
+  --surface: #1f2731;
+  --band: #1a2129;
   --text: #eef3f8;
   --muted: #a9b7c8;
   --faint: #8495aa;
