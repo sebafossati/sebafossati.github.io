@@ -58,22 +58,22 @@
 :root[data-theme="light"] {
   --bg: #eaeef3;
   --surface: #ffffff;
-  --band: #e1e7ee;
+  --band: #e3e5e8;
   --text: #161c23;
   --muted: #48586a;
   --faint: #536274;
   --border: rgba(22, 28, 35, 0.1);
   --border-strong: rgba(22, 28, 35, 0.22);
-  --accent: #1d59c4;
-  --accent-soft: rgba(29, 89, 196, 0.1);
+  --accent: #2b5fa8;
+  --accent-soft: rgba(43, 95, 168, 0.1);
   --gold: #e0952f;
   --gold-ink: #9a4d08;
   --gold-soft: rgba(224, 149, 47, 0.16);
   --teal: #14a596;
   --teal-ink: #0b7067;
   --teal-soft: rgba(20, 165, 150, 0.13);
-  --glow: rgba(29, 89, 196, 0.1);
-  --chart-band: rgba(29, 89, 196, 0.06);
+  --glow: rgba(255, 255, 255, 0.6);
+  --chart-band: rgba(22, 28, 35, 0.05);
   --chip-bg: rgba(22, 28, 35, 0.04);
   --chip-border: rgba(22, 28, 35, 0.2);
   --chip-hover-bg: rgba(22, 28, 35, 0.09);
