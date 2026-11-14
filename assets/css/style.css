@@ -48,32 +48,56 @@
   color-scheme: dark;
 }
 
-/* ---- Light theme ---------------------------------------------------------- */
+/* ---- Light theme ----------------------------------------------------------
+   A mirror of the dark theme: the same slate hue (the dark page color
+   #161c23 becomes the text color), the same accent hues darkened just
+   enough to read on white (every text color here is at least 4.5:1 on
+   the page, the header band, and the cards), and slate-tinted borders
+   and chips where dark mode uses white-tinted ones. Cards are white on
+   a slate-gray page, so they stand out the way they do in dark mode. */
 :root[data-theme="light"] {
-  --bg: #f3f6f9;
+  --bg: #eaeef3;
   --surface: #ffffff;
-  --band: #e8eef4;
-  --text: #0d1620;
-  --muted: #465a70;
-  --faint: #53667b;
-  --border: #dae2ea;
-  --border-strong: #c3cfdb;
-  --accent: #1f5fc4;
-  --accent-soft: rgba(31, 95, 196, 0.1);
-  --gold: #d68a26;
-  --gold-ink: #8f5a0c;
-  --gold-soft: rgba(214, 138, 38, 0.14);
-  --teal: #13a094;
-  --teal-ink: #0b7168;
-  --teal-soft: rgba(19, 160, 148, 0.12);
-  --glow: rgba(31, 95, 196, 0.07);
-  --chart-band: rgba(13, 22, 32, 0.04);
-  --chip-bg: rgba(36, 95, 168, 0.1);
-  --chip-border: rgba(36, 95, 168, 0.35);
-  --chip-hover-bg: rgba(36, 95, 168, 0.18);
-  --chip-hover-border: #245fa8;
-  --shadow: 0 1px 2px rgba(13, 22, 32, 0.05), 0 12px 32px -8px rgba(13, 22, 32, 0.12);
+  --band: #e1e7ee;
+  --text: #161c23;
+  --muted: #48586a;
+  --faint: #536274;
+  --border: rgba(22, 28, 35, 0.1);
+  --border-strong: rgba(22, 28, 35, 0.22);
+  --accent: #1d59c4;
+  --accent-soft: rgba(29, 89, 196, 0.1);
+  --gold: #e0952f;
+  --gold-ink: #9a4d08;
+  --gold-soft: rgba(224, 149, 47, 0.16);
+  --teal: #14a596;
+  --teal-ink: #0b7067;
+  --teal-soft: rgba(20, 165, 150, 0.13);
+  --glow: rgba(29, 89, 196, 0.1);
+  --chart-band: rgba(29, 89, 196, 0.06);
+  --chip-bg: rgba(22, 28, 35, 0.04);
+  --chip-border: rgba(22, 28, 35, 0.2);
+  --chip-hover-bg: rgba(22, 28, 35, 0.09);
+  --chip-hover-border: #161c23;
+  --shadow: 0 1px 2px rgba(22, 28, 35, 0.06), 0 14px 34px -10px rgba(22, 28, 35, 0.2);
   color-scheme: light;
+}
+
+/* The decorative charts are tuned for a dark background; on a light one
+   the same lines read too faint, so they are drawn a little stronger */
+:root[data-theme="light"] :is(.band-chart, .head-card) .line { opacity: 0.8; }
+:root[data-theme="light"] :is(.band-chart, .head-card) .line-dashed { opacity: 0.65; }
+:root[data-theme="light"] .head-card .fan path { opacity: 0.12; }
+:root[data-theme="light"] .head-card :is(.origin, .ref) { opacity: 0.75; }
+:root[data-theme="light"] .head-card .band { opacity: 0.18; }
+:root[data-theme="light"] .card-synth .line-dashed { opacity: 0.9; }
+:root[data-theme="light"] .head-card .loss-l1 { opacity: 0.6; }
+:root[data-theme="light"] .head-card .loss-asym { opacity: 0.95; }
+:root[data-theme="light"] .card-event .ci-bar { opacity: 0.5; }
+:root[data-theme="light"] .card-event .est { opacity: 0.8; }
+
+/* Cards rest on a soft shadow in light mode (dark mode uses contrast) */
+:root[data-theme="light"] :is(.card, .pubs-featured .pub) {
+  box-shadow: 0 1px 2px rgba(22, 28, 35, 0.05);
 }
 
 /* ==========================================================================
