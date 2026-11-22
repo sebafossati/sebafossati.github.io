@@ -581,9 +581,9 @@ a:hover {
   content: "";
   position: absolute;
   inset: 14px -14px -14px 14px;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--accent);
   border-radius: 24px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .portrait {
