@@ -1,11 +1,12 @@
 // Filters on the Research page. The two rows of buttons (.filter) show or
 // hide papers by matching each button's data-value against the paper's
 // data-status / data-subject. Also fills in the paper counts on the
-// buttons, writes the subject under each paper's year, and keeps the
-// choice in the address (e.g. research.html#crime+publications) so a
+// buttons, adds a row of teal tags above each paper's title (one per
+// subject), and keeps the choice in the address (e.g. research.html#crime+publications) so a
 // filtered view can be linked to.
 (function () {
-  // Short subject names shown under the year
+  // Short subject names shown on each paper's subject tags. A paper can
+  // have several subjects: data-subject="time-series crime".
   var subjectNames = {
     "time-series": "Time series",
     "crime": "Crime",
@@ -22,14 +23,42 @@
   var empty = document.querySelector(".filter-empty");
   var state = { status: "all", subject: "all" };
 
+  function subjectsOf(pub) {
+    return (pub.dataset.subject || "").split(/\s+/).filter(Boolean);
+  }
+
   pubs.forEach(function (pub) {
-    var year = pub.querySelector(".pub-year");
-    var name = subjectNames[pub.dataset.subject];
-    if (!year || !name) return;
-    var tag = document.createElement("span");
-    tag.className = "pub-subject";
-    tag.textContent = name;
-    year.appendChild(tag);
+    var body = pub.querySelector(".pub-body");
+    if (!body) return;
+
+    // Subject tags on their own row above the title
+    var names = subjectsOf(pub).filter(function (s) { return subjectNames[s]; });
+    if (names.length) {
+      var row = document.createElement("div");
+      row.className = "pub-tags";
+      names.forEach(function (s) {
+        var tag = document.createElement("span");
+        tag.className = "status status-subject";
+        tag.textContent = subjectNames[s];
+        row.appendChild(tag);
+      });
+      body.insertBefore(row, body.firstChild);
+    }
+
+    // Keep the "·" before a status pill on the same line as the pill, so
+    // a wrapped details line never starts with a lone dot
+    Array.prototype.forEach.call(pub.querySelectorAll(".pub-meta .status"), function (pill) {
+      var before = pill.previousSibling;
+      if (!before || before.nodeType !== 3) return;
+      var m = before.nodeValue.match(/\s*·\s*$/);
+      if (!m) return;
+      before.nodeValue = before.nodeValue.slice(0, m.index) + " ";
+      var keep = document.createElement("span");
+      keep.className = "nowrap";
+      pill.parentNode.insertBefore(keep, pill);
+      keep.appendChild(document.createTextNode("· "));
+      keep.appendChild(pill);
+    });
   });
 
   buttons.forEach(function (button) {
@@ -40,7 +69,7 @@
 
   function matches(pub, status, subject) {
     return (status === "all" || pub.dataset.status === status) &&
-           (subject === "all" || pub.dataset.subject === subject);
+           (subject === "all" || subjectsOf(pub).indexOf(subject) !== -1);
   }
 
   // On phones each row scrolls sideways; bring the chosen button into view

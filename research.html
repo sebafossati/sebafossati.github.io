@@ -208,6 +208,8 @@
          TO ADD A SUBJECT: copy a button in the first row, give it a new
          data-value, and use that value as a paper's data-subject. Add its
          short name to the list at the top of assets/js/filters.js.
+         A paper can have several subjects, separated by spaces:
+         data-subject="time-series crime".
          ================================================================== -->
     <div class="filters" hidden>
       <div class="filter-row" role="group" aria-label="Filter papers by subject">
@@ -239,6 +241,7 @@
          two attributes the filters use:
            data-status   publications | working-papers | in-progress
            data-subject  time-series | crime | labour | other
+                         (several allowed, space-separated)
          ================================================================== -->
     <section class="section">
       <h2>Working papers &amp; in progress</h2>
