@@ -1,8 +1,8 @@
 // Filters on the Research page. The two rows of buttons (.filter) show or
 // hide papers by matching each button's data-value against the paper's
 // data-status / data-subject. Also fills in the paper counts on the
-// buttons, adds a row of teal tags above each paper's title (one per
-// subject), and keeps the choice in the address (e.g. research.html#crime+publications) so a
+// buttons, builds a row of tags above each paper's title (a teal tag per
+// subject, then the status pill moved up from the details line), and keeps the choice in the address (e.g. research.html#crime+publications) so a
 // filtered view can be linked to.
 (function () {
   // Short subject names shown on each paper's subject tags. A paper can
@@ -31,34 +31,29 @@
     var body = pub.querySelector(".pub-body");
     if (!body) return;
 
-    // Subject tags on their own row above the title
-    var names = subjectsOf(pub).filter(function (s) { return subjectNames[s]; });
-    if (names.length) {
-      var row = document.createElement("div");
-      row.className = "pub-tags";
-      names.forEach(function (s) {
-        var tag = document.createElement("span");
-        tag.className = "status status-subject";
-        tag.textContent = subjectNames[s];
-        row.appendChild(tag);
-      });
-      body.insertBefore(row, body.firstChild);
-    }
-
-    // Keep the "·" before a status pill on the same line as the pill, so
-    // a wrapped details line never starts with a lone dot
-    Array.prototype.forEach.call(pub.querySelectorAll(".pub-meta .status"), function (pill) {
-      var before = pill.previousSibling;
-      if (!before || before.nodeType !== 3) return;
-      var m = before.nodeValue.match(/\s*·\s*$/);
-      if (!m) return;
-      before.nodeValue = before.nodeValue.slice(0, m.index) + " ";
-      var keep = document.createElement("span");
-      keep.className = "nowrap";
-      pill.parentNode.insertBefore(keep, pill);
-      keep.appendChild(document.createTextNode("· "));
-      keep.appendChild(pill);
+    // Tag row above the title: subjects first, then the status pill
+    var row = document.createElement("div");
+    row.className = "pub-tags";
+    subjectsOf(pub).forEach(function (s) {
+      if (!subjectNames[s]) return;
+      var tag = document.createElement("span");
+      tag.className = "status status-subject";
+      tag.textContent = subjectNames[s];
+      row.appendChild(tag);
     });
+
+    // Take each status pill out of the details line, with the "·" before it
+    Array.prototype.forEach.call(pub.querySelectorAll(".pub-meta .status"), function (pill) {
+      var meta = pill.parentNode;
+      var before = pill.previousSibling;
+      if (before && before.nodeType === 3) {
+        before.nodeValue = before.nodeValue.replace(/\s*·?\s*$/, "");
+      }
+      row.appendChild(pill);
+      if (!meta.textContent.trim()) meta.parentNode.removeChild(meta);
+    });
+
+    if (row.children.length) body.insertBefore(row, body.firstChild);
   });
 
   buttons.forEach(function (button) {

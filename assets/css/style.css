@@ -818,10 +818,11 @@ a.pub-title:hover {
   color: var(--accent);
 }
 
-/* Pills on a paper's details line: <span class="status">Submitted</span>
-   (gold). Add "status-wip" for work in progress (grey). Subject tags
-   ("status-subject", teal) are added by assets/js/filters.js from each
-   paper's data-subject, in a row (.pub-tags) above the title. */
+/* Paper tags. Status: <span class="status">Submitted</span> (gold), or
+   add "status-wip" for work in progress (grey); write it in the details
+   line. assets/js/filters.js moves it into a row (.pub-tags) above the
+   title, after a teal tag ("status-subject") for each subject in the
+   paper's data-subject. */
 .status {
   display: inline-block;
   padding: 0.05rem 0.55rem;
@@ -856,10 +857,6 @@ a.pub-title:hover {
 /* Year level with the tag row when a paper has one */
 .pub:has(.pub-tags) .pub-year {
   padding-top: 0.05rem;
-}
-
-.pub-meta .nowrap {
-  white-space: nowrap;
 }
 
 .status-subject {
